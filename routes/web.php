@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Client\ReservationController;
+use App\Http\Controllers\Client\VoyageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -23,7 +25,10 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');    
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/client/liste/voyage', [VoyageController::class, 'index'])->name('client.liste.voyage.index');
+    Route::get('/client/detail/voyage', [VoyageController::class, 'detail'])->name('client.voyage.detail');
+    Route::post('/client/create/reservation', [App\Http\Controllers\Client\ReservationController::class, 'create'])->name('client.create.reservation');
 });
 
 require __DIR__.'/auth.php';
