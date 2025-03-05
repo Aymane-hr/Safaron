@@ -14,7 +14,7 @@ class AutocarController extends Controller
     public function index()
     {
         $autocars = autocar::paginate(10);
-        return view('autocars.index', compact('autocars'));
+        return view('admin.autocars.index', compact('autocars'));
     }
 
     /**
@@ -22,7 +22,7 @@ class AutocarController extends Controller
      */
     public function create()
     {
-        return view('autocars.create');
+        return view('admin.autocars.create');
     }
 
     /**
@@ -39,7 +39,7 @@ class AutocarController extends Controller
 
         Autocar::create($formFields);
 
-        return redirect()->route("autocars.index")->with("success", "Votre autocar a été créé avec succès.");
+        return redirect()->route("admin.autocars.index")->with("success", "Votre autocar a été créé avec succès.");
     }
 
     /**
@@ -47,7 +47,7 @@ class AutocarController extends Controller
      */
     public function show(autocar $autocar)
     {
-        return view('autocars.show', compact('autocar'));
+        return view('admin.autocars.show', compact('autocar'));
     }
 
     /**
@@ -55,7 +55,7 @@ class AutocarController extends Controller
      */
     public function edit(autocar $autocar)
     {
-        return view('autocars.edit', compact('autocar'));
+        return view('admin.autocars.edit', compact('autocar'));
     }
 
     /**
@@ -73,7 +73,7 @@ class AutocarController extends Controller
 
         $autocar->update($formFields);
 
-        return redirect()->route("autocars.index")->with("update", "Votre autocar a été modifié avec succès.");
+        return redirect()->route("admin.autocars.index")->with("update", "Votre autocar a été modifié avec succès.");
     }
 
     /**
@@ -82,6 +82,6 @@ class AutocarController extends Controller
     public function destroy(autocar $autocar)
     {
         $autocar->delete();
-        return redirect()->route("autocars.index")->with("destroy", "Votre autocar a été supprimé avec succès.");
+        return redirect()->route("admin.autocars.index")->with("destroy", "Votre autocar a été supprimé avec succès.");
     }
 }

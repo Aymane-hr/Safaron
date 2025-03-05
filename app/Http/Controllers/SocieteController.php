@@ -14,7 +14,7 @@ class SocieteController extends Controller
     public function index()
     {
         $societes = Societe::paginate();
-        return view('societes.index', compact('societes'));
+        return view('admin.societes.index', compact('societes'));
     }
 
     /**
@@ -22,7 +22,7 @@ class SocieteController extends Controller
      */
     public function create()
     {
-        return view('societes.create');
+        return view('admin.societes.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class SocieteController extends Controller
         }
         Societe::create($formFields);
 
-        return redirect()->route("societes.index")->with("success", "votre societe est bien crée");
+        return redirect()->route("admin.societes.index")->with("success", "votre societe est bien crée");
     }
 
     /**
@@ -45,7 +45,7 @@ class SocieteController extends Controller
      */
     public function show(Societe $societe)
     {
-        return view('societes.show', compact('societe'));
+        return view('admin.societes.show', compact('societe'));
     }
 
     /**
@@ -53,7 +53,7 @@ class SocieteController extends Controller
      */
     public function edit(Societe $societe)
     {
-        return view('societes.edit', compact('societe'));
+        return view('admin.societes.edit', compact('societe'));
     }
 
     /**
@@ -70,7 +70,7 @@ class SocieteController extends Controller
         }
         $societe->update($formFields);
 
-        return redirect()->route("societes.index")->with("update", "votre societe est bien modifier");
+        return redirect()->route("admin.societes.index")->with("update", "votre societe est bien modifier");
     }
 
     /**
@@ -79,6 +79,6 @@ class SocieteController extends Controller
     public function destroy(Societe $societe)
     {
         $societe->delete();
-        return redirect()->route("societes.index")->with("destroy", "votre societe est bien supprimer");
+        return redirect()->route("admin.societes.index")->with("destroy", "votre societe est bien supprimer");
     }
 }
