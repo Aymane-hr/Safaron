@@ -13,7 +13,7 @@ class SocieteController extends Controller
      */
     public function index()
     {
-        $societes = Societe::paginate();
+        $societes = Societe::paginate(10);
         return view('admin.societes.index', compact('societes'));
     }
 
@@ -37,7 +37,7 @@ class SocieteController extends Controller
         }
         Societe::create($formFields);
 
-        return redirect()->route("admin.societes.index")->with("success", "votre societe est bien crée");
+        return redirect()->route("societes.index")->with("success", "votre societe est bien crée");
     }
 
     /**
@@ -70,7 +70,7 @@ class SocieteController extends Controller
         }
         $societe->update($formFields);
 
-        return redirect()->route("admin.societes.index")->with("update", "votre societe est bien modifier");
+        return redirect()->route("societes.index")->with("update", "votre societe est bien modifier");
     }
 
     /**
@@ -79,6 +79,6 @@ class SocieteController extends Controller
     public function destroy(Societe $societe)
     {
         $societe->delete();
-        return redirect()->route("admin.societes.index")->with("destroy", "votre societe est bien supprimer");
+        return redirect()->route("societes.index")->with("destroy", "votre societe est bien supprimer");
     }
 }

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('nom_contact');
             $table->string('email');
             $table->string('ice');
-            $table->string('logo');
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
 
