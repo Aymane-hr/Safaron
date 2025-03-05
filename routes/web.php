@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Client\ReservationController;
 use App\Http\Controllers\Client\VoyageController;
+use App\Http\Controllers\AutocarController;
+use App\Http\Controllers\SocieteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -29,6 +31,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/client/liste/voyage', [VoyageController::class, 'index'])->name('client.liste.voyage.index');
     Route::get('/client/detail/voyage', [VoyageController::class, 'detail'])->name('client.voyage.detail');
     Route::post('/client/create/reservation', [App\Http\Controllers\Client\ReservationController::class, 'create'])->name('client.create.reservation');
+    Route::resource('autocars', AutocarController::class);
+    Route::resource('societes', SocieteController::class);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
