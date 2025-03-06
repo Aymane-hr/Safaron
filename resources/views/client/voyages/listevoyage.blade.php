@@ -1004,15 +1004,11 @@
                                 @foreach ($voyages as $voyage)
                                     <div class="place-item mb-4">
                                         <div class="place-img">
-                                            <div class="img-slider image-slide owl-carousel nav-center">
-                                                <div class="slide-images">
-                                                    <a href="flight-details.html">
-                                                        <img src="assets/img/flight/flight-09.jpg" class="img-fluid"
+                                            <div class=" nav-center">
+                                                        <img src="{{ $voyage->autocar->image }}" class="img-fluid"
                                                             alt="img">
-                                                    </a>
-                                                </div>
                                             </div>
-                                            <div class="fav-item">
+                                            {{-- <div class="fav-item">
                                                 <div class="d-flex align-items-center">
                                                     <a href="javascript:void(0);" class="fav-icon me-2 selected">
                                                         <i class="isax isax-heart5"></i>
@@ -1021,36 +1017,33 @@
                                                 </div>
                                                 <span
                                                     class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium rounded">5.0</span>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         <div class="place-content">
                                             <div
                                                 class="d-flex justify-content-between align-items-center flex-wrap row-gap-2 mb-3">
                                                 <div>
                                                     <h5 class="text-truncate mb-1"><a
-                                                            href="flight-details.html">Antonov An-32</a></h5>
+                                                            href="flight-details.html">{{ $voyage->autocar->societe->raison_social }}</a></h5>
                                                     <div class="d-flex">
                                                         <span class="avatar avatar-sm me-2">
                                                             <img src="assets/img/icons/airindia.svg"
                                                                 class="rounded-circle" alt="icon">
                                                         </span>
-                                                        <p class="fs-14 mb-0 me-2">Air India</p>
-                                                        <p class="fs-14 mb-0"><i
-                                                                class="ti ti-point-filled text-primary me-2"></i>1-stop
-                                                            at Texas</p>
+                                                        <p class="fs-14 mb-0 me-2">{{ $voyage->autocar->societe->raison_social }}</p>
                                                     </div>
                                                 </div>
-                                                <div class="d-flex align-items-center">
+                                                {{-- <div class="d-flex align-items-center">
                                                     <span class="badge bg-outline-success fs-10 fw-medium  me-2">20
                                                         Seats Left</span>
                                                     <a href="javascript:void(0);" class="avatar avatar-sm">
                                                         <img src="assets/img/users/user-08.jpg" class="rounded-circle"
                                                             alt="img">
                                                     </a>
-                                                </div>
+                                                </div> --}}
                                             </div>
-                                            <p class=" fs-14 mb-3">Experience top-notch service, in-flight amenities,
-                                                and smooth takeoffs for a stress-free journey.</p>
+                                            {{-- <p class=" fs-14 mb-3">Experience top-notch service, in-flight amenities,
+                                                and smooth takeoffs for a stress-free journey.</p> --}}
                                             <div
                                                 class="flight-loc d-flex align-items-center justify-content-between mb-3">
                                                 <span
