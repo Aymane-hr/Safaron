@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\Client\ReservationController;
-use App\Http\Controllers\AutocarController;
-use App\Http\Controllers\SocieteController;
+use App\Models\Voyage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Models\Voyage;
 use App\Http\Controllers\VoyageController;
+use App\Http\Controllers\AutocarController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SocieteController;
+use App\Http\Controllers\TypeVoyageController;
+use App\Http\Controllers\Client\ReservationController;
 
 Route::get('/', function () {
     return view('welcome');
