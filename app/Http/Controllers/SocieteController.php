@@ -13,8 +13,8 @@ class SocieteController extends Controller
      */
     public function index()
     {
-        $societes = Societe::paginate();
-        return view('societes.index', compact('societes'));
+        $societes = Societe::paginate(10);
+        return view('admin.societes.index', compact('societes'));
     }
 
     /**
@@ -22,7 +22,7 @@ class SocieteController extends Controller
      */
     public function create()
     {
-        return view('societes.create');
+        return view('admin.societes.create');
     }
 
     /**
@@ -45,7 +45,7 @@ class SocieteController extends Controller
      */
     public function show(Societe $societe)
     {
-        return view('societes.show', compact('societe'));
+        return view('admin.societes.show', compact('societe'));
     }
 
     /**
@@ -53,7 +53,7 @@ class SocieteController extends Controller
      */
     public function edit(Societe $societe)
     {
-        return view('societes.edit', compact('societe'));
+        return view('admin.societes.edit', compact('societe'));
     }
 
     /**

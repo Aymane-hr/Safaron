@@ -14,7 +14,7 @@ class AutocarController extends Controller
     public function index()
     {
         $autocars = autocar::paginate(10);
-        return view('autocars.index', compact('autocars'));
+        return view('admin.autocars.index', compact('autocars'));
     }
 
     /**
@@ -22,7 +22,7 @@ class AutocarController extends Controller
      */
     public function create()
     {
-        return view('autocars.create');
+        return view('admin.autocars.create');
     }
 
     /**
@@ -47,7 +47,7 @@ class AutocarController extends Controller
      */
     public function show(autocar $autocar)
     {
-        return view('autocars.show', compact('autocar'));
+        return view('admin.autocars.show', compact('autocar'));
     }
 
     /**
@@ -55,7 +55,7 @@ class AutocarController extends Controller
      */
     public function edit(autocar $autocar)
     {
-        return view('autocars.edit', compact('autocar'));
+        return view('admin.autocars.edit', compact('autocar'));
     }
 
     /**

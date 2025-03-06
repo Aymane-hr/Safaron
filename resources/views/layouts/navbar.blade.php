@@ -91,11 +91,11 @@
                     </div>
                     @if (Route::has('login'))
                         @auth
-                            {{-- <nav id="mobile-menu">
+                            <nav id="mobile-menu">
                                 <ul class="main-nav">
                                     <li class="has-submenu megamenu active">
-                                        <a href="javascript:void(0);">Home<i class="fa-solid fa-angle-down"></i></a>
-                                        <ul class="submenu mega-submenu">
+                                        <a href="{{ route('client.liste.voyage.index') }}">Voyage</a>
+                                        {{-- <ul class="submenu mega-submenu">
                                             <li>
                                                 <div class="megamenu-wrapper">
                                                     <div class="d-none d-lg-flex align-items-center justify-content-between flex-wrap">
@@ -166,9 +166,9 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </li>
-                                    <li class="has-submenu mega-innermenu">
+                                    {{-- <li class="has-submenu mega-innermenu">
                                         <a href="javascript:void(0);">Flight<i class="fa-solid fa-angle-down"></i></a>
                                         <ul class="submenu mega-submenu">
                                             <li>
@@ -384,9 +384,9 @@
                                                 </div>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li> --}}
                                 </ul>
-                            </nav> --}}
+                            </nav>
                             {{-- ========= Profile ========= --}}
                             <div class="header-btn d-flex align-items-center">
                                 <div class="me-3">
@@ -400,7 +400,7 @@
                                 <div class="dropdown profile-dropdown">
                                     <a href="javascript:void(0);" class="d-flex align-items-center" data-bs-toggle="dropdown">
                                         <span class="avatar avatar-md">
-                                            <img src="assets/img/users/user-05.jpg" alt="Img" class="img-fluid rounded-circle border border-white border-4">
+                                            <img src="{{asset('assets/img/users/user-05.jpg')}}" alt="Img" class="img-fluid rounded-circle border border-white border-4">
                                         </span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end p-3">

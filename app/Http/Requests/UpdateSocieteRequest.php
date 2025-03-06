@@ -29,7 +29,7 @@ class UpdateSocieteRequest extends FormRequest
             'nom_contact' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
             'ice' => ['required', 'string', 'max:15'],
-            'logo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp'],
+            'logo' => ['nullable', 'image', 'mimes:png'],
         ];
     }
 
@@ -45,7 +45,7 @@ class UpdateSocieteRequest extends FormRequest
             'email.email' => 'L\'adresse email n\'est pas valide.',
             'ice.required' => 'Le champ ICE est obligatoire.',
             'logo.image' => 'Le logo doit être une image.',
-            'image.mimes' => 'Les formats valides pour l\'image sont jpeg, png, jpg, gif ,webp.',
+            'image.mimes' => 'Les formats valides pour l\'image sont  png.',
 
         ];
     }
