@@ -30,7 +30,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/voyages/list', function () {
     $voyages = Voyage::all();
-    return view('client.voyages.listevoyage');
+    return view('client.voyages.listevoyage',compact('voyages'));
 })->name('voyages.list');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
