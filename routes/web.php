@@ -15,7 +15,7 @@ Route::get('/', function () {
 
 Route::get('/ex', function () {
     $v = Voyage::all();
-    dd($v);
+
 });
 
 Route::get('/admin', function () {
@@ -28,19 +28,22 @@ Route::get('/admin', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
+Route::get('/voyages/list', function () {
+    $voyages = Voyage::all();
+    return view('client.voyages.listevoyage');
+})->name('voyages.list');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
     Route::get('/detail/voyage', [VoyageController::class, 'detail'])->name('voyage.detail');
     Route::post('/client/create/reservation', [App\Http\Controllers\Client\ReservationController::class, 'create'])->name('client.create.reservation');
-    
     // Définition des ressources pour les autocars, sociétés et voyages
     Route::resource('autocars', AutocarController::class);
     Route::resource('societes', SocieteController::class);
     Route::resource('voyages', VoyageController::class);
 });
+
+
 
 require __DIR__ . '/auth.php';
