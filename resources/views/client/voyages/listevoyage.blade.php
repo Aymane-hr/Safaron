@@ -1026,10 +1026,10 @@
                                                     <h5 class="text-truncate mb-1"><a
                                                             href="flight-details.html">{{ $voyage->autocar->societe->raison_social }}</a></h5>
                                                     <div class="d-flex">
-                                                        <span class="avatar avatar-sm me-2">
+                                                        {{-- <span class="avatar avatar-sm me-2">
                                                             <img src="assets/img/icons/airindia.svg"
                                                                 class="rounded-circle" alt="icon">
-                                                        </span>
+                                                        </span> --}}
                                                         <p class="fs-14 mb-0 me-2">{{ $voyage->autocar->societe->raison_social }}</p>
                                                     </div>
                                                 </div>
@@ -1062,7 +1062,7 @@
                                                             class="isax isax-calendar-2 me-2"></i>{{ $voyage->date_depart }} - {{ $voyage->date_arrivee }}</p>
                                                 </div>
                                                 <h6 class="text-primary"><span
-                                                        class="fs-14 fw-normal text-default">From </span>$500</h6>
+                                                        class="fs-14 fw-normal text-default">From </span>{{ number_format($voyage->prix , 2, ',', '')  }} DH</h6>
 
                                             </div>
                                         </div>
