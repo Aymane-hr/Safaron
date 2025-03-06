@@ -41,10 +41,14 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                  <i class="nav-icon bi bi-circle"></i>
-                  <p>type voyages</p>
+                <a href="#"  class="nav-link" data-bs-toggle="collapse" data-bs-target="#typeVoyageMenu">
+                  <i class="nav-icon bi bi-circle"></i><P>Type de Voyage</P>
                 </a>
+                <div id="typeVoyageMenu" class="collapse">
+                  <ul class="nav flex-column ms-3">
+                    <li class="nav-item"><a class="nav-link" href="{{ route('type_voyages.index') }}"><i class="nav-icon bi bi-circle-fill"></i><p>Liste des Types</p></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('type_voyages.create') }}"><i class="nav-icon bi bi-circle-fill"></i><p>Ajouter Type</p></a></li>
+                  </ul> 
               </li>
               <li class="nav-item">
                 <a href="./index.html" class="nav-link">
