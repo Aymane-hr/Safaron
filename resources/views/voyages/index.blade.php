@@ -5,17 +5,6 @@
 <div class="container mt-5">
     <h1 class="mb-4 text-center">Liste des Voyages</h1>
 
-    <!-- Message de succès -->
-    @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert">
-            {{ session('success') }}
-        </div>
-        <script>
-            setTimeout(function() {
-            document.getElementById('success-alert').style.display = 'none';
-            }, 3000); // Alert will disappear after 3 seconds
-        </script>
-    @endif
     <div class="d-flex justify-content-start">
         <a href="{{ route('voyages.create') }}" class="btn btn-primary">
             <i class="bi bi-plus-circle"></i> Ajouter un voyage
