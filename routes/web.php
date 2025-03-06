@@ -42,6 +42,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('autocars', AutocarController::class);
     Route::resource('societes', SocieteController::class);
     Route::resource('voyages', VoyageController::class);
+    Route::resource('type_voyages', TypeVoyageController::class);
+
 });
 
 
