@@ -4,12 +4,17 @@ use App\Http\Controllers\AutocarController;
 use App\Http\Controllers\SocieteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Models\Voyage;
+use App\Http\Controllers\VoyageController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/ex', function () {
+    $v=Voyage::all();
+    dd($v);
+});
 Route::get('/admin', function () {
     if (Auth::check() && Auth::user()->isadmin == 1) {
         return view('admin.Layout.app');
@@ -28,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('autocars', AutocarController::class);
 Route::resource('societes',SocieteController::class);
+Route::resource('voyages', VoyageController::class);
 });
 
 require __DIR__.'/auth.php';

@@ -7,22 +7,22 @@ use illuminate\Database\Eloquent\Factories\HasFactory;
 class Voyage extends Model
 {
     protected $guarded=['id'];
-    use HasFactory;
+    
     
 
     public function villeDepart()
     {
-        return $this->belongsTo(Ville::class, 'villes_depart_id');
+        return $this->belongsTo(Ville::class, 'ville_depart_id');
     }
 
-    public function villeArrive()
+    public function villeArrivee()
     {
-        return $this->belongsTo(Ville::class, 'villes_arrive_id');
+        return $this->belongsTo(Ville::class, 'ville_arrivee_id');
     }
 
     public function autocar()
     {
-        return $this->belongsTo(AutocarEquipement::class);
+        return $this->belongsTo(Autocar::class);
     }
 
     public function typeVoyage()
@@ -30,4 +30,3 @@ class Voyage extends Model
         return $this->belongsTo(TypeVoyage::class);
     }
 }
-

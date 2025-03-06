@@ -1,20 +1,20 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class autocar extends Model
+class TypeVoyage extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
-    public function societe(){
-        return $this->belongsTo(Societe::class);
-    }
-    
-    public function voyages(){
+
+    protected $fillable = [
+        'type_voyage',  
+    ];
+
+    // Définir la relation avec le modèle Voyage
+    public function voyages()
+    {
         return $this->hasMany(Voyage::class);
     }
-
 }

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Voyage;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreVoyageRequest;
+use App\Http\Requests\UpdateVoyageRequest;
 
 class VoyageController extends Controller
 {
@@ -12,9 +13,8 @@ class VoyageController extends Controller
      */
     public function index()
     {
-        $voyages=Voyage::all();
-        return view('voyages.index',compact('voyages'));
-  
+        $voyages = Voyage::paginate(10);
+        return view('voyages.index', compact('voyages'));
     }
 
     /**
@@ -23,17 +23,18 @@ class VoyageController extends Controller
     public function create()
     {
         return view('voyages.create');
-   
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreVoyageRequest $request)
     {
-        Voyage::create($request->all());
-        return redirect()->route('voyages.index');
-    
+        $formFields = $request->validated();
+
+        Voyage::create($formFields);
+
+        return redirect()->route("voyages.index")->with("success", "Votre voyage a été créé avec succès.");
     }
 
     /**
@@ -41,7 +42,7 @@ class VoyageController extends Controller
      */
     public function show(Voyage $voyage)
     {
-        //
+        return view('voyages.show', compact('voyage'));
     }
 
     /**
@@ -49,18 +50,19 @@ class VoyageController extends Controller
      */
     public function edit(Voyage $voyage)
     {
-        return view('voyages.edit',compact('voyage'));
-   
+        return view('voyages.edit', compact('voyage'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Voyage $voyage)
+    public function update(UpdateVoyageRequest $request, Voyage $voyage)
     {
-        $voyage->update($request->all());
-        return redirect()->route('voyages.index');
-   
+        $formFields = $request->validated();
+
+        $voyage->update($formFields);
+
+        return redirect()->route("voyages.index")->with("update", "Votre voyage a été modifié avec succès.");
     }
 
     /**
@@ -69,6 +71,6 @@ class VoyageController extends Controller
     public function destroy(Voyage $voyage)
     {
         $voyage->delete();
-        return redirect()->route('voyages.index');
+        return redirect()->route("voyages.index")->with("destroy", "Votre voyage a été supprimé avec succès.");
     }
 }
