@@ -1,3 +1,4 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
 <script
   src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.10.1/browser/overlayscrollbars.browser.es6.min.js"
   integrity="sha256-dghWARbRe2eLlIJ56wNB+b760ywulqK3DzZYEpsg2fQ="
@@ -38,4 +39,15 @@
     }
   });
 </script>
+
+@if (session('error'))
+<x-alert type="error" message="{{ session('error') }}" />
+@endif
+
+
+@if (session('success'))
+<x-alert type="success" message="{{ session('success') }}" />
+@endif
+
+
 <!--end::OverlayScrollbars Configure-->
