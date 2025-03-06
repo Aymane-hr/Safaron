@@ -43,7 +43,7 @@
               <li class="nav-item">
                 <a href="{{route('type_voyages.index')}}" class="nav-link">
                   <i class="nav-icon bi bi-circle"></i>
-                  <p>type voyages</p>
+                  <p>type de voyages</p>
                 </a>
               </li>
               <li class="nav-item">
