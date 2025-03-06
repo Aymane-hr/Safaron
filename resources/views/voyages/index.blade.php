@@ -1,5 +1,5 @@
 @extends('admin.Layout.app')
-@section('title', 'Liste des Voyages') 
+@section('title', 'Liste des Voyages')
 
 @section('content')
 <div class="container mt-5">
@@ -7,9 +7,14 @@
 
     <!-- Message de succès -->
     @if(session('success'))
-        <div class="alert alert-success">
+        <div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert">
             {{ session('success') }}
         </div>
+        <script>
+            setTimeout(function() {
+            document.getElementById('success-alert').style.display = 'none';
+            }, 3000); // Alert will disappear after 3 seconds
+        </script>
     @endif
     <div class="d-flex justify-content-start">
         <a href="{{ route('voyages.create') }}" class="btn btn-primary">
@@ -48,13 +53,13 @@
                     <td>{{ $voyage->prix }} MAD</td>
                     <td>
                         <a href="{{ route('voyages.edit', $voyage->id) }}" class="btn btn-warning btn-sm">
-                            <i class="bi bi-pencil"></i> 
+                            <i class="bi bi-pencil"></i>
                         </a>
                         <form action="{{ route('voyages.destroy', $voyage->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">
-                                <i class="bi bi-trash"></i> 
+                                <i class="bi bi-trash"></i>
                             </button>
                         </form>
                     </td>
