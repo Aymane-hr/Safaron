@@ -70,7 +70,7 @@ class SocieteController extends Controller
         }
         $societe->update($formFields);
 
-        return redirect()->route("societes.index")->with("update", "votre societe est bien modifier");
+        return redirect()->route("societes.index")->with("success", "votre societe est bien modifier");
     }
 
     /**
@@ -79,6 +79,6 @@ class SocieteController extends Controller
     public function destroy(Societe $societe)
     {
         $societe->delete();
-        return redirect()->route("societes.index")->with("destroy", "votre societe est bien supprimer");
+        return redirect()->route("societes.index")->with("success", "votre societe est bien supprimer");
     }
 }
