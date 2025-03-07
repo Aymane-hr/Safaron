@@ -81,4 +81,8 @@ class SocieteController extends Controller
         $societe->delete();
         return redirect()->route("societes.index")->with("success", "votre societe est bien supprimer");
     }
+    public function showAutoCar(Societe $societe)
+    {
+        return view('client.societes.showAutoCar.index', compact('societe'));
+    }
 }

@@ -16,7 +16,6 @@ Route::get('/', function () {
 
 Route::get('/ex', function () {
     $v = Voyage::all();
-
 });
 
 Route::get('/admin', function () {
@@ -31,7 +30,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/voyages/list', function () {
     $voyages = Voyage::all();
-    return view('client.voyages.listevoyage',compact('voyages'));
+    return view('client.voyages.listevoyage', compact('voyages'));
 })->name('voyages.list');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -44,7 +43,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('societes', SocieteController::class);
     Route::resource('voyages', VoyageController::class);
     Route::resource('type_voyages', TypeVoyageController::class);
-
+    // Assuming `showAutoCar` method is under 'client' namespace
+    Route::get('/client/societes/{societe}/showAutoCar', [SocieteController::class, 'showAutoCar'])->name('client.societes.showAutoCar.index');
 });
 
 
