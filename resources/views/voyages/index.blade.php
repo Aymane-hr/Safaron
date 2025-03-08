@@ -37,7 +37,7 @@
             @foreach($voyages as $voyage)
                 <tr>
                     <td>{{ $voyage->id }}</td>
-                    <td>{{ $voyage->villeDepart->ville }}</td> <!-- Assurez-vous d'utiliser la bonne relation -->
+                    <td>{{ $voyage->villeDepart->ville }}</td> 
                     <td>{{ $voyage->villeArrivee->ville }}</td>
                     <td>{{ $voyage->autocar->matricule }}</td>
                     <td>{{ $voyage->typeVoyage->type_voyage }}</td>

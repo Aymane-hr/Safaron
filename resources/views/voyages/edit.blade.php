@@ -171,10 +171,8 @@
         <!-- Boutons -->
         <div class="d-flex justify-content-between">
             <a href="{{ route('voyages.index') }}" class="btn btn-secondary">Retour à la liste</a>
-          <!--  <button type="submit" class="btn btn-primary">Mettre à jour</button> -->
-            <a href="{{ route('voyages.edit', $voyage->id) }}" class="btn btn-primary">
-                Mettre à jour
-           </a>
+           <button type="submit" class="btn btn-primary">Mettre à jour</button> 
+           
         </div>
     </form>
 </div>
