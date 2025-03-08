@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="container">
-        <h1>Voyages for {{ $societe->raison_social }}</h1>
+        <h1>Voyages for {{ $societe->raison_social }} Transport</h1>
         <div class="row">
             @if ($voyages->isEmpty())
             <div class="col-12 flex justify-center items-center">
@@ -31,9 +31,7 @@
                                                 <i class="isax isax-airplane rotate-135 me-2"></i>{{ $voyage->arrival_city }}
                                             </span>
                                         </div>
-                                        <h5 class="text-truncate mb-1">
-                                            <a href="flight-details.html">{{ $voyage->ville_depart_id }} to {{ $voyage->ville_arrivee_id }}</a>
-                                        </h5>
+
                                         <div class="d-flex align-items-center mb-2">
 
                                             <p class="fs-14 mb-0">{{ $voyage->raison_social }}</p>
@@ -48,7 +46,7 @@
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between border-top pt-3">
                                             <h6 class="text-primary">
-                                                <span class="fs-14 fw-normal text-default">From </span>{{ $voyage->prix }}
+                                                <span class="fs-14 fw-normal text-default">price </span>{{ $voyage->prix }}
                                             </h6>
                                         </div>
                                     </div>
