@@ -45,19 +45,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('autocars', AutocarController::class);
     Route::resource('societes', SocieteController::class);
     Route::resource('voyages', VoyageController::class);
-    
+
     Route::resource("villes", VilleController::class);
     Route::resource('type_voyages', TypeVoyageController::class);
 
     Route::get('/client/societes/{societe}/showVoyageSociete', [SocieteController::class, 'showVoyageSociete'])->name('client.societes.showVoyageSociete.index');
+    Route::resource('modeReglements', ModeReglementController::class);
 });
 
-<<<<<<< HEAD
-
-
-require __DIR__ . '/auth.php';
-=======
 require __DIR__.'/auth.php';
 
-Route::resource('modeReglements', ModeReglementController::class);
->>>>>>> a34d1b7 (add mode de reglement)
