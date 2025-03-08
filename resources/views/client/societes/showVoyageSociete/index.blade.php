@@ -35,9 +35,7 @@
                                             <a href="flight-details.html">{{ $voyage->ville_depart_id }} to {{ $voyage->ville_arrivee_id }}</a>
                                         </h5>
                                         <div class="d-flex align-items-center mb-2">
-                                            <span class="avatar avatar-sm me-2">
-                                                <img src="assets/img/icons/airindia.svg" class="rounded-circle" alt="icon">
-                                            </span>
+
                                             <p class="fs-14 mb-0">{{ $voyage->raison_social }}</p>
                                             <p class="fs-14 d-inline-flex align-items-center mb-0">
                                                 <i class="fa-solid fa-circle fs-6 text-primary mx-2"></i>
