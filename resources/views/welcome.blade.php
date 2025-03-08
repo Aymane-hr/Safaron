@@ -1,4 +1,4 @@
-<x-app-layout>fwe ra
+<x-app-layout>
  <!-- Hero Section -->
  <section class="hero-section-four">
     <div class="container">
@@ -6,8 +6,8 @@
             <div class="row align-items-center">
                 <div class="col-lg-10 col-md-12 mx-auto wow fadeInUp" data-wow-delay="0.3s">
                     <div class="banner-content text-center mx-auto">
-                        <h1 class="text-white display-4 mb-2">Discover the World, One <span class="flight-icon"><img src="assets/img/icons/flight-icon.svg" alt="icon"></span> Flight at a Time with DreamsTour!</h1>
-                        <p class="text-white mx-auto">Your ultimate destination for all things help you celebrate & remember tour experience.</p>
+                        <h1 class="text-white display-4 mb-2">Découvrez de nouveaux horizons, un <span class="flight-icon"><img src="{{asset('./assets/img/clients/images/car-front.png')}}" style="width: 140px" alt="icon"></span> trajet à la fois avec DreamsTour !</h1>
+                        <p class="text-white mx-auto">Votre plateforme idéale pour organiser et vivre des voyages inoubliables.</p>
                         {{-- <a class="video-btn video-effect" data-fancybox="" href="https://youtu.be/NSAOrGb9orM"><i class="isax isax-play5"></i></a> --}}
                     </div>
                 </div>
