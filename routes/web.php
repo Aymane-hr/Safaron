@@ -3,13 +3,14 @@
 use App\Models\Voyage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VilleController;
 use App\Http\Controllers\VoyageController;
 use App\Http\Controllers\AutocarController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocieteController;
 use App\Http\Controllers\TypeVoyageController;
+use App\Http\Controllers\ModeReglementController;
 use App\Http\Controllers\Client\ReservationController;
-use App\Http\Controllers\VilleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -48,8 +49,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('type_voyages', TypeVoyageController::class);
 
     Route::get('/client/societes/{societe}/showVoyageSociete', [SocieteController::class, 'showVoyageSociete'])->name('client.societes.showVoyageSociete.index');
+    Route::resource('modeReglements', ModeReglementController::class);
 });
 
+require __DIR__.'/auth.php';
 
-
-require __DIR__ . '/auth.php';
