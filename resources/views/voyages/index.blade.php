@@ -37,10 +37,10 @@
             @foreach($voyages as $voyage)
                 <tr>
                     <td>{{ $voyage->id }}</td>
-                    <td>{{ $voyage->villeDepart->nom }}</td> <!-- Assurez-vous d'utiliser la bonne relation -->
-                    <td>{{ $voyage->villeArrivee->nom }}</td>
+                    <td>{{ $voyage->villeDepart->ville }}</td> <!-- Assurez-vous d'utiliser la bonne relation -->
+                    <td>{{ $voyage->villeArrivee->ville }}</td>
                     <td>{{ $voyage->autocar->matricule }}</td>
-                    <td>{{ $voyage->typeVoyage->nom }}</td>
+                    <td>{{ $voyage->typeVoyage->type_voyage }}</td>
                     <td>{{ $voyage->date_depart }}</td>
                     <td>{{ $voyage->date_arrivee }}</td>
                     <td>{{ $voyage->heure_depart }}</td>

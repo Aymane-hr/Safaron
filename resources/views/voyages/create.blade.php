@@ -20,7 +20,7 @@
             <select name="ville_depart_id" id="ville_depart_id" class="form-select" required>
                 @foreach($villes as $ville)
                     <option value="{{ $ville->id }}">
-                        {{ $ville->nom }} <!-- Assurez-vous d'utiliser le champ approprié -->
+                        {{ $ville->ville }} <!-- Assurez-vous d'utiliser le champ approprié -->
                     </option>
                 @endforeach
             </select>
@@ -37,7 +37,7 @@
             <select name="ville_arrivee_id" id="ville_arrivee_id" class="form-select" required>
                 @foreach($villes as $ville)
                     <option value="{{ $ville->id }}">
-                        {{ $ville->nom }} <!-- Assurez-vous d'utiliser le champ approprié -->
+                        {{ $ville->ville }} 
                     </option>
                 @endforeach
             </select>
@@ -54,7 +54,7 @@
             <select name="autocar_id" id="autocar_id" class="form-select" required>
                 @foreach($autocars as $autocar)
                     <option value="{{ $autocar->id }}">
-                        {{ $autocar->matricule }} <!-- Assurez-vous d'utiliser le champ approprié -->
+                        {{ $autocar->matricule }}  
                     </option>
                 @endforeach
             </select>
@@ -71,7 +71,7 @@
             <select name="type_voyage_id" id="type_voyage_id" class="form-select" required>
                 @foreach($types_voyage as $type)
                     <option value="{{ $type->id }}">
-                        {{ $type->nom }} <!-- Assurez-vous d'utiliser le champ approprié -->
+                        {{ $type->type_voyage }}
                     </option>
                 @endforeach
             </select>
