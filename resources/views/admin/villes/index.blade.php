@@ -30,14 +30,14 @@
                             <td>{{ $ville->ville }}</td>
                             <td>
                                 {{-- href="{{ route('villes.edit', $ville->id) }}" --}}
-                                <a  class="btn btn-warning btn-sm" href="{{route("villes.edit", $ville)}}" id="editBtn"> 
+                                <a  class="btn btn-warning btn-sm" href="{{route("villes.edit", $ville)}}" id="editBtn">
                                     <i class="bi bi-pencil fs-3"></i>
                                 </a>
                                 <form action="{{ route('villes.destroy', $ville->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" 
-                                        onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette ville ?')">
+                                    <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="confirmDelete(event, this)">
                                         <i class="bi bi-trash fs-3"></i>
                                     </button>
                                 </form>
@@ -53,8 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let alertDiv = document.getElementById("alert-message");
     if (alertDiv) {
         setTimeout(function () {
-            alertDiv.style.display = "none"; 
-        }, 3000); 
+            alertDiv.style.display = "none";
+        }, 3000);
     }
 });
     </script>
