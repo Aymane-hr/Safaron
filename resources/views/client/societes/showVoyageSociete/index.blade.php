@@ -29,7 +29,7 @@
                                         <span class="avatar avatar-sm me-2">
                                             <img src="assets/img/icons/airindia.svg" class="rounded-circle" alt="icon">
                                         </span>
-                                        <p class="fs-14 mb-0">{{ $voyage->societe_name }}</p>
+                                        <p class="fs-14 mb-0">{{ $voyage->raison_social }}</p>
                                         <p class="fs-14 d-inline-flex align-items-center mb-0">
                                             <i class="fa-solid fa-circle fs-6 text-primary mx-2"></i>
                                         </p>
@@ -43,7 +43,7 @@
                                         <h6 class="text-primary">
                                             <span class="fs-14 fw-normal text-default">From </span>{{ $voyage->prix }}
                                         </h6>
-                                        
+
                                     </div>
                                 </div>
                             </div>
