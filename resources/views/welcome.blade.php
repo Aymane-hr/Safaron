@@ -1310,7 +1310,7 @@
             </div>
             <div class="owl-carousel client-slider">
                 @foreach ($societes as $societe)
-                    <a href="{{ route('client.societes.showAutoCar.index', ['societe' => $societe->id]) }}">
+                    <a href="{{ route('client.societes.showVoyageSociete.index', ['societe' => $societe->id]) }}">
                         <div class="client-img">
                             <img src="{{ asset('storage/' . $societe->logo) }}" alt="Client Logo">
                         </div>
