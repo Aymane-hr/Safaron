@@ -43,8 +43,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('societes', SocieteController::class);
     Route::resource('voyages', VoyageController::class);
     Route::resource('type_voyages', TypeVoyageController::class);
-    // Assuming `showAutoCar` method is under 'client' namespace
-    Route::get('/client/societes/{societe}/showAutoCar', [SocieteController::class, 'showAutoCar'])->name('client.societes.showAutoCar.index');
+
+    Route::get('/client/societes/{societe}/showVoyageSociete', [SocieteController::class, 'showVoyageSociete'])->name('client.societes.showVoyageSociete.index');
 });
 
 
