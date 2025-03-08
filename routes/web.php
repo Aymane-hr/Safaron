@@ -11,6 +11,8 @@ use App\Http\Controllers\TypeVoyageController;
 use App\Http\Controllers\Client\ReservationController;
 use App\Http\Controllers\VilleController;
 
+use App\Http\Controllers\ModeReglementController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -50,6 +52,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/client/societes/{societe}/showVoyageSociete', [SocieteController::class, 'showVoyageSociete'])->name('client.societes.showVoyageSociete.index');
 });
 
+<<<<<<< HEAD
 
 
 require __DIR__ . '/auth.php';
+=======
+require __DIR__.'/auth.php';
+
+Route::resource('modeReglements', ModeReglementController::class);
+>>>>>>> a34d1b7 (add mode de reglement)
