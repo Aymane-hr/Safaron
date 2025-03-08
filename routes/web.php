@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocieteController;
 use App\Http\Controllers\TypeVoyageController;
 use App\Http\Controllers\Client\ReservationController;
+use App\Http\Controllers\VilleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,6 +43,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('autocars', AutocarController::class);
     Route::resource('societes', SocieteController::class);
     Route::resource('voyages', VoyageController::class);
+    
+    Route::resource("villes", VilleController::class);
     Route::resource('type_voyages', TypeVoyageController::class);
     // Assuming `showAutoCar` method is under 'client' namespace
     Route::get('/client/societes/{societe}/showAutoCar', [SocieteController::class, 'showAutoCar'])->name('client.societes.showAutoCar.index');
