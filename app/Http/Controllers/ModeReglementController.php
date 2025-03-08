@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reservation;
-use App\Http\Requests\StoreReservationRequest;
-use App\Http\Requests\UpdateReservationRequest;
+use App\Models\Mode_reglement;
+use Illuminate\Http\Request;
 
-class ReservationController extends Controller
+class ModeReglementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,13 +20,13 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        // return view('client.reservations.create');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreReservationRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -35,7 +34,7 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Reservation $reservation)
+    public function show(Mode_reglement $mode_reglement)
     {
         //
     }
@@ -43,7 +42,7 @@ class ReservationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Reservation $reservation)
+    public function edit(Mode_reglement $mode_reglement)
     {
         //
     }
@@ -51,7 +50,7 @@ class ReservationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateReservationRequest $request, Reservation $reservation)
+    public function update(Request $request, Mode_reglement $mode_reglement)
     {
         //
     }
@@ -59,7 +58,7 @@ class ReservationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Reservation $reservation)
+    public function destroy(Mode_reglement $mode_reglement)
     {
         //
     }
