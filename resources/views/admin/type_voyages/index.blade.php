@@ -23,7 +23,7 @@
                                     class="bi bi-pencil"></i></a>
 
                             <form action="{{ route('type_voyages.destroy', $type->id) }}" method="POST"
-                                onsubmit="return confirm('Etes-vous sûr de vouloir supprimer ce type?')" class="d-inline">
+                                onsubmit="confirmDelete(event, this)"  class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>

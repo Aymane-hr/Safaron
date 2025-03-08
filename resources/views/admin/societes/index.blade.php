@@ -55,7 +55,7 @@
                                     <a href="{{ route('societes.edit', $societe->id) }}"
                                         class="btn btn-warning btn-sm">Modifier</a>
                                     <form action="{{ route('societes.destroy', $societe->id) }}" method="POST"
-                                        onsubmit="return confirm('Etes-vous s��r de vouloir supprimer cet societe?')">
+                                        onsubmit="confirmDelete(event, this)">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>

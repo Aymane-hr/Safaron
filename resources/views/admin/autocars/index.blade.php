@@ -41,7 +41,7 @@
                                     <a href="{{ route('autocars.edit', $autocar->id) }}" class="btn btn-warning btn-sm">
                                          Modifier
                                     </a>
-                                    <form action="{{ route('autocars.destroy', $autocar->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet autocar ?')">
+                                    <form action="{{ route('autocars.destroy', $autocar->id) }}" method="POST" onsubmit="confirmDelete(event, this)">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">
