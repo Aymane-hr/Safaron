@@ -1,14 +1,14 @@
 @extends('admin.Layout.app')
-@section('title', 'Ajouter Voyage') 
+@section('title', 'Ajouter Voyage')
 
 @section('content')
 <div class="container mt-5">
     <h1 class="mb-4 text-center">Ajouter Voyage</h1>
 
-    @php 
-        $villes = App\Models\Ville::all(); 
-        $autocars = App\Models\Autocar::all(); 
-        $types_voyage = App\Models\TypeVoyage::all(); 
+    @php
+        $villes = App\Models\Ville::all();
+        $autocars = App\Models\Autocar::all();
+        $types_voyage = App\Models\TypeVoyage::all();
     @endphp
 
     <form action="{{ route('voyages.store') }}" method="POST" enctype="multipart/form-data" class="bg-light p-4 rounded shadow-sm">
@@ -37,7 +37,7 @@
             <select name="ville_arrivee_id" id="ville_arrivee_id" class="form-select" required>
                 @foreach($villes as $ville)
                     <option value="{{ $ville->id }}">
-                        {{ $ville->ville }} 
+                        {{ $ville->nom }} <!-- Assurez-vous d'utiliser le champ approprié -->
                     </option>
                 @endforeach
             </select>
@@ -71,7 +71,7 @@
             <select name="type_voyage_id" id="type_voyage_id" class="form-select" required>
                 @foreach($types_voyage as $type)
                     <option value="{{ $type->id }}">
-                        {{ $type->type_voyage }}
+                        {{ $type->nom }} <!-- Assurez-vous d'utiliser le champ approprié -->
                     </option>
                 @endforeach
             </select>
@@ -85,11 +85,11 @@
         <!-- Date de départ -->
         <div class="mb-3">
             <label for="date_depart" class="form-label fw-bold">Date de départ:</label>
-            <input 
+            <input
                 type="date"
-                class="form-control" 
-                name="date_depart" 
-                id="date_depart" 
+                class="form-control"
+                name="date_depart"
+                id="date_depart"
                 required>
             <small class="text-danger">
                 @error('date_depart')
@@ -101,11 +101,11 @@
         <!-- Date d'arrivée -->
         <div class="mb-3">
             <label for="date_arrivee" class="form-label fw-bold">Date d'arrivée:</label>
-            <input 
+            <input
                 type="date"
-                class="form-control" 
-                name="date_arrivee" 
-                id="date_arrivee" 
+                class="form-control"
+                name="date_arrivee"
+                id="date_arrivee"
                 required>
             <small class="text-danger">
                 @error('date_arrivee')
@@ -117,11 +117,11 @@
         <!-- Heure de départ -->
         <div class="mb-3">
             <label for="heure_depart" class="form-label fw-bold">Heure de départ:</label>
-            <input 
+            <input
                 type="time"
-                class="form-control" 
-                name="heure_depart" 
-                id="heure_depart" 
+                class="form-control"
+                name="heure_depart"
+                id="heure_depart"
                 required>
             <small class="text-danger">
                 @error('heure_depart')
@@ -133,11 +133,11 @@
         <!-- Heure d'arrivée -->
         <div class="mb-3">
             <label for="heure_arrivee" class="form-label fw-bold">Heure d'arrivée:</label>
-            <input 
+            <input
                 type="time"
-                class="form-control" 
-                name="heure_arrivee" 
-                id="heure_arrivee" 
+                class="form-control"
+                name="heure_arrivee"
+                id="heure_arrivee"
                 required>
             <small class="text-danger">
                 @error('heure_arrivee')
@@ -149,11 +149,11 @@
         <!-- Prix -->
         <div class="mb-3">
             <label for="prix" class="form-label fw-bold">Prix:</label>
-            <input 
+            <input
                 type="number"
-                class="form-control" 
-                name="prix" 
-                id="prix" 
+                class="form-control"
+                name="prix"
+                id="prix"
                 required>
             <small class="text-danger">
                 @error('prix')

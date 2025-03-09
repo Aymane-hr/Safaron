@@ -94,7 +94,7 @@
                             <nav id="mobile-menu">
                                 <ul class="main-nav">
                                     <li class="has-submenu megamenu active">
-                                        <a href="{{ route('client.liste.voyage.index') }}">Voyage</a>
+                                        <a href="{{route('voyages.list')}}">Voyage</a>
                                         {{-- <ul class="submenu mega-submenu">
                                             <li>
                                                 <div class="megamenu-wrapper">

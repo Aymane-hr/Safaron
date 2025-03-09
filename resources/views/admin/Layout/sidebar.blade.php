@@ -35,43 +35,43 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+                <a href="{{route('villes.index')}}" class="nav-link @if (request()->routeIs('villes.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Ville</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="{{route('type_voyages.index')}}" class="nav-link @if (request()->routeIs('type_voyages.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
-                  <p>type voyages</p>
+                  <p>type de voyages</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index.html" class="nav-link">
+                <a href="./index.html" class="nav-link @if (request()->routeIs('mode_reglements.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>mode reglements</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+                <a href="./index2.html" class="nav-link @if (request()->routeIs('reservations.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Reservations</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('voyages.index')}}" class="nav-link">
+                <a href="{{route('voyages.index')}}" class="nav-link @if (request()->routeIs('voyages.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Voyages</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('societes.index') }}" class="nav-link">
+                <a href="{{ route('societes.index') }}" class="nav-link @if (request()->routeIs('societes.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Societes</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a  href="{{route('autocars.index')}}"  class="nav-link">
+                <a  href="{{route('autocars.index')}}"  class="nav-link @if (request()->routeIs('autocars.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>AutoCars</p>
                 </a>

@@ -73,7 +73,7 @@ class AutocarController extends Controller
 
         $autocar->update($formFields);
 
-        return redirect()->route("autocars.index")->with("update", "Votre autocar a été modifié avec succès.");
+        return redirect()->route("autocars.index")->with("success", "Votre autocar a été modifié avec succès.");
     }
 
     /**
@@ -82,6 +82,6 @@ class AutocarController extends Controller
     public function destroy(autocar $autocar)
     {
         $autocar->delete();
-        return redirect()->route("autocars.index")->with("destroy", "Votre autocar a été supprimé avec succès.");
+        return redirect()->route("autocars.index")->with("success", "Votre autocar a été supprimé avec succès.");
     }
 }
