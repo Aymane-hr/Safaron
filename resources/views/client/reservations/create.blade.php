@@ -16,7 +16,9 @@
         </div>
     </div>
     <!-- /Breadcrumb -->
-
+{{-- @php
+    $voyage = 
+@endphp --}}
     <!-- Page Wrapper -->
     <div class="content content-two">
         <div class="container">
@@ -34,7 +36,7 @@
                                     <input type="date" class="form-control" name="date_reservation" value="{{ date('Y-m-d') }}" required>
                                     <div class="mb-3">
                                         <label class="form-label">Price</label>
-                                        <input type="number" class="form-control" name="prix" value="55" required>
+                                        <input type="number" class="form-control" name="prix" value={{55}} required>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Frais</label>
@@ -62,7 +64,7 @@
                                     </div>
                     
                                     <!-- Traveler Info -->
-                                    <div class="mb-4">
+                                    {{-- <div class="mb-4">
                                         <h6 class="text-primary"> Traveler Info</h6>
                                         <div class="row">
                                             <div class="col-md-6">
@@ -74,7 +76,7 @@
                                                 <input type="text" class="form-control" value="{{ auth()->user()->last_name }}" readonly>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                     
                                     <!-- Travel Details -->
                                     <div class="mb-4">
@@ -82,19 +84,22 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label class="form-label">Departure City</label>
-                                                <select class="form-select" name="ville_depart_id" required>
+                                                {{-- <select class="form-select" name="ville_depart_id" required>
                                                     @foreach($villes as $ville)
                                                         <option value="{{ $ville->id }}">{{ $ville->ville }}</option>
                                                     @endforeach
-                                                </select>
+                                                </select> --}}
+                                                <h1 value="{{$SelectedVoyage->ville_depart_id}}" readonly>{{$v_d->ville}}  =====></h1>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Arrival City</label>
-                                                <select class="form-select" name="ville_arrivee_id" required>
+                                                {{-- <select class="form-select" name="ville_arrivee_id" required>
                                                     @foreach($villes as $ville)
                                                         <option value="{{ $ville->id }}">{{ $ville->ville }}</option>
                                                     @endforeach
-                                                </select>
+                                                </select> --}}
+                                                <h1 value="{{$SelectedVoyage->ville_arrivee_id}}" readonly>=====> {{$v_a->ville}}</h1>
+
                                             </div>
                                         </div>
                                     </div>
@@ -105,19 +110,19 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label class="form-label">Departure Date</label>
-                                                <input type="date" class="form-control" name="date_depart" required>
+                                                <input type="date" class="form-control" name="date_depart" value="{{$SelectedVoyage->date_depart}}" readonly>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Arrival Date</label>
-                                                <input type="date" class="form-control" name="date_arrivee" required>
+                                                <input type="date" class="form-control" name="date_arrivee" value="{{$SelectedVoyage->date_arrivee}}" readonly>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Departure Time</label>
-                                                <input type="time" class="form-control" name="heure_depart" required>
+                                                <input type="time" class="form-control" name="heure_depart" value="{{$SelectedVoyage->heure_depart}}" readonly>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Arrival Time</label>
-                                                <input type="time" class="form-control" name="heure_arrivee" required>
+                                                <input type="time" class="form-control" name="heure_arrivee" value="{{$SelectedVoyage->heure_arrivee}}" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -157,25 +162,15 @@
                                         </div>
                                     </div>
                     
-                                    <!-- Submit Button -->
-                                    <div class="text-center">
-                                        <button type="submit" class="btn btn-primary px-4 py-2">
-                                            Confirm Booking
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    
 
-                    <!-- Payment Details -->
-                    {{-- <div class="card payment-details">
-                        <div class="card-header">
+                                                        <!-- Payment Details -->
+                    <div class="card payment-details">
+                        <div class="card-header bg-primary text-white">
                             <h5>Payment Details</h5>
                         </div>
                         <div class="card-body">
-                            <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                            <!-- Payment Method Selection -->
+                            <div class="d-flex align-items-center justify-content-between flex-wrap mb-4">
                                 <div class="d-flex align-items-center flex-wrap payment-form">
                                     <div class="form-check d-flex align-items-center me-3 mb-2">
                                         <input class="form-check-input mt-0" type="radio" name="Radio" id="credit-card" value="credit-card" checked>
@@ -186,7 +181,7 @@
                                     <div class="form-check d-flex align-items-center me-3 mb-2">
                                         <input class="form-check-input mt-0" type="radio" name="Radio" id="paypal" value="paypal">
                                         <label class="form-check-label fs-14 ms-2" for="paypal">
-                                            Paypal
+                                            PayPal
                                         </label>
                                     </div>
                                     <div class="form-check d-flex align-items-center me-3 mb-2">
@@ -197,47 +192,47 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Credit Card -->
+                    
+                            <!-- Credit Card Details -->
                             <div class="credit-card-details">
                                 <div class="mb-3">
-                                    <h6 class="fs-16 ">Payment With Credit Card</h6>
+                                    <h6 class="fs-16 fw-bold">Payment With Credit Card</h6>
                                 </div>
                                 <div class="card-form">
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Card Holder Name</label>
-                                                <div class="user-icon">
-                                                    <span class="input-icon fs-14"><i class="isax isax-user"></i></span>
-                                                    <input type="text" class="form-control">
+                                                <div class="input-group">
+                                                    <span class="input-group-text"><i class="isax isax-user"></i></span>
+                                                    <input type="text" class="form-control" placeholder="Enter your name">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Card Number</label>
-                                                <div class="user-icon">
-                                                    <span class="input-icon fs-14"><i class="isax isax-card-tick"></i></span>
-                                                    <input type="text" class="form-control">
+                                                <div class="input-group">
+                                                    <span class="input-group-text"><i class="isax isax-card-tick"></i></span>
+                                                    <input type="text" class="form-control" placeholder="Card Number">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Expire Date</label>
-                                                <div class="user-icon">
-                                                    <span class="input-icon fs-14"><i class="isax isax-calendar-2"></i></span>
-                                                    <input type="text" class="form-control">
+                                                <div class="input-group">
+                                                    <span class="input-group-text"><i class="isax isax-calendar-2"></i></span>
+                                                    <input type="text" class="form-control" placeholder="MM/YY">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label class="form-label">CVV</label>
-                                                <div class="user-icon">
-                                                    <span class="input-icon fs-14"><i class="isax isax-check"></i></span>
-                                                    <input type="text" class="form-control">
+                                                <div class="input-group">
+                                                    <span class="input-group-text"><i class="isax isax-check"></i></span>
+                                                    <input type="text" class="form-control" placeholder="CVV">
                                                 </div>
                                             </div>
                                         </div>
@@ -245,94 +240,119 @@
                                 </div>
                             </div>
                             <!-- /Credit Card -->
-
-                            <!-- Paypal -->
+                    
+                            <!-- PayPal Details -->
                             <div class="paypal-details">
                                 <div class="mb-3">
-                                    <h6 class="fs-16 ">Payment With Paypal</h6>
+                                    <h6 class="fs-16 fw-bold">Payment With PayPal</h6>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label class="form-label">Email Address</label>
-                                            <div class="user-icon">
-                                                <span class="input-icon fs-14"><i class="isax isax-sms"></i></span>
-                                                <input type="email" class="form-control">
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="isax isax-sms"></i></span>
+                                                <input type="email" class="form-control" placeholder="Email Address">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label class="form-label">Password</label>
-                                            <div class="user-icon">
-                                                <span class="input-icon fs-14"><i class="isax isax-lock"></i></span>
-                                                <input type="password" class="form-control pass-input">
-                                                <span class="input-icon toggle-password fs-14"><i class="isax isax-eye-slash"></i></span>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="isax isax-lock"></i></span>
+                                                <input type="password" class="form-control" placeholder="Password">
+                                                <span class="input-group-text toggle-password fs-14"><i class="isax isax-eye-slash"></i></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /Paypal -->
-
-                            <!-- Stripe -->
+                            <!-- /PayPal -->
+                    
+                            <!-- Stripe Details -->
                             <div class="stripe-details">
                                 <div class="mb-3">
-                                    <h6 class="fs-16">Payment With Stripe</h6>
+                                    <h6 class="fs-16 fw-bold">Payment With Stripe</h6>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label class="form-label">Email Address</label>
-                                            <div class="user-icon">
-                                                <span class="input-icon fs-14"><i class="isax isax-sms"></i></span>
-                                                <input type="email" class="form-control">
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="isax isax-sms"></i></span>
+                                                <input type="email" class="form-control" placeholder="Email Address">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label class="form-label">Password</label>
-                                            <div class="user-icon">
-                                                <span class="input-icon fs-14"><i class="isax isax-lock"></i></span>
-                                                <input type="password" class="form-control pass-input">
-                                                <span class="input-icon toggle-password fs-14"><i class="isax isax-eye-slash"></i></span>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="isax isax-lock"></i></span>
+                                                <input type="password" class="form-control" placeholder="Password">
+                                                <span class="input-group-text toggle-password fs-14"><i class="isax isax-eye-slash"></i></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- /Stripe -->
-
-                            <div class="d-flex align-items-center justify-content-end flex-wrap gap-2">
-                                <button type="submit" class="btn btn-primary">Confirm & Pay $9569</button>
+                    
+                            <!-- Confirm and Pay Button -->
+                            {{-- <div class="d-flex align-items-center justify-content-end flex-wrap gap-2 mt-4">
+                                <button type="submit" class="btn btn-primary btn-lg">Confirm & Pay</button>
+                            </div> --}}
+                        </div>
+                    </div>
+                                                        <!-- Submit Button -->
+                                                        <div class="text-center">
+                                                            <button type="submit" class="btn btn-primary px-4 py-2">
+                                                                Confirm & Pay
+                                                            </button>
+                                                        </div>
+                                </div>
                             </div>
                         </div>
-                    </div> --}}
+                    </form>
+                    
+
+
+                    
                 </div>
 
                 <!-- Review Order Details -->
-                {{-- <div class="col-lg-4 theiaStickySidebar">
+                <div class="col-lg-4 theiaStickySidebar">
                     <div class="card order-details">
-                        <div class="card-header">
+                        <div class="card-header bg-primary text-white">
                             <div class="d-flex align-items-center justify-content-between header-content">
-                                <h5>Review Order Details</h5>
-                                <a href="flight-details.html" class="rounded-circle p-2 btn btn-light d-flex align-items-center justify-content-center"><span class="fs-16 d-flex align-items-center justify-content-center"><i class="isax isax-edit-2"></i></span></a>
+                                <h5 class="mb-0">Review Order Details</h5>
+                                <a href="flight-details.html" class="rounded-circle p-2 btn btn-light d-flex align-items-center justify-content-center">
+                                    <span class="fs-16 d-flex align-items-center justify-content-center">
+                                        <i class="isax isax-edit-2"></i>
+                                    </span>
+                                </a>
                             </div>
                         </div>
                         <div class="card-body">
+                            <!-- Flight Info Section -->
                             <div class="pb-3 border-bottom">
                                 <div class="mb-3 review-img">
-                                    <img src="{{ asset('assets/img/flight/flight-large-01.jpg') }}" alt="Img" class="img-fluid">
+                                    <img src="{{ asset('assets/img/flight/flight-large-01.jpg') }}" alt="Img" class="img-fluid rounded-3">
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
-                                        <h6 class="mb-2">Antonov An-32- Economy Class</h6>
-                                        <p class="fs-14 "><span class="badge badge-warning text-gray-9 fs-13 fw-medium me-2">5.0</span>(400 Reviews)</p>
+                                        <h6 class="mb-2">Antonov An-32 - Economy Class</h6>
+                                        <p class="fs-14">
+                                            <span class="badge badge-warning text-dark fs-13 fw-medium me-2">5.0</span>
+                                            (400 Reviews)
+                                        </p>
                                     </div>
                                     <h6 class="fs-14 fw-normal text-gray-9">$200</h6>
                                 </div>
                             </div>
+                
+                            <!-- Order Info Section -->
                             <div class="mt-3 pb-3 border-bottom">
                                 <h6 class="text-primary mb-3">Order Info</h6>
                                 <div class="d-flex align-items-center details-info">
@@ -343,15 +363,15 @@
                                     <h6 class="fs-16">Arrival</h6>
                                     <p class="fs-16">16 Sep 2025 at 09:15 AM</p>
                                 </div>
-                                <div class="d-flex align-items-center  details-info">
+                                <div class="d-flex align-items-center details-info">
                                     <h6 class="fs-16">Travel Time</h6>
                                     <p class="fs-16">2hrs 30min</p>
                                 </div>
-                                <div class="d-flex align-items-center  details-info">
+                                <div class="d-flex align-items-center details-info">
                                     <h6 class="fs-16">Adults</h6>
                                     <p class="fs-16">2</p>
                                 </div>
-                                <div class="d-flex align-items-center  details-info">
+                                <div class="d-flex align-items-center details-info">
                                     <h6 class="fs-16">Children</h6>
                                     <p class="fs-16">2</p>
                                 </div>
@@ -364,6 +384,8 @@
                                     <p class="fs-16">Economy</p>
                                 </div>
                             </div>
+                
+                            <!-- Payment Info Section -->
                             <div class="mt-3 border-bottom">
                                 <h6 class="text-primary mb-3">Payment Info</h6>
                                 <div class="d-flex align-items-center justify-content-between mb-3">
@@ -371,7 +393,7 @@
                                     <p class="fs-16">$8565</p>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between mb-3">
-                                    <h6 class="fs-16">Tax <span class="text-gray-6"> (10%)</span></h6>
+                                    <h6 class="fs-16">Tax <span class="text-gray-6">(10%)</span></h6>
                                     <p class="fs-16">$85</p>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between mb-3">
@@ -379,19 +401,22 @@
                                     <p class="fs-16">$89</p>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between mb-3">
-                                    <h6 class="fs-16">Discount <span class="text-gray-6"> (10%)</span></h6>
+                                    <h6 class="fs-16">Discount <span class="text-gray-6">(10%)</span></h6>
                                     <p class="fs-16">-$20</p>
                                 </div>
                             </div>
+                
+                            <!-- Amount to Pay Section -->
                             <div class="mt-3">
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <h6>Amount to Pay</h6>
-                                    <h6 class="text-primary">$9569</h6>
+                                    <h6 class="fw-bold">Amount to Pay</h6>
+                                    <h6 class="text-primary fw-bold">$9569</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
+                
                 <!-- /Review Order Details -->
             </div>
         </div>
