@@ -37,7 +37,7 @@
             <select name="ville_arrivee_id" id="ville_arrivee_id" class="form-select" required>
                 @foreach($villes as $ville)
                     <option value="{{ $ville->id }}">
-                        {{ $ville->nom }} <!-- Assurez-vous d'utiliser le champ approprié -->
+                        {{ $ville->ville }} 
                     </option>
                 @endforeach
             </select>
@@ -71,7 +71,7 @@
             <select name="type_voyage_id" id="type_voyage_id" class="form-select" required>
                 @foreach($types_voyage as $type)
                     <option value="{{ $type->id }}">
-                        {{ $type->nom }} <!-- Assurez-vous d'utiliser le champ approprié -->
+                        {{ $type->type_voyage }} 
                     </option>
                 @endforeach
             </select>
