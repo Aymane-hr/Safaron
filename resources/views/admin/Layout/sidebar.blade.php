@@ -47,7 +47,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index.html" class="nav-link @if (request()->routeIs('mode_reglements.*')) active @endif">
+                <a href="{{ route('modeReglements.index') }}" class="nav-link @if (request()->routeIs('mode_reglements.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>mode reglements</p>
                 </a>
