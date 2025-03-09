@@ -24,5 +24,7 @@ class ReservationController extends Controller
     public function store(Request $request)
     {
         Reservation::create($request->all());
+        return redirect()->route('dashboard');
+
     }
 }

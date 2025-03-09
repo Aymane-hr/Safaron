@@ -23,7 +23,7 @@
             <!-- Cart -->
             <div class="row">
                 <div class="col-lg-8">
-                    <form action={{ route('routeName', ['id'=>1]) }} method="POST">
+                    <form action={{ route('client.store') }} method="POST">
                         @csrf
                         <div class="container mt-5">
                             <div class="card shadow-lg">
@@ -31,6 +31,21 @@
                                     <h5 class="mb-0"> Secure Checkout</h5>
                                 </div>
                                 <div class="card-body">
+                                    <input type="date" class="form-control" name="date_reservation" value="{{ date('Y-m-d') }}" required>
+                                    <div class="mb-3">
+                                        <label class="form-label">Price</label>
+                                        <input type="number" class="form-control" name="prix" value="55" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Frais</label>
+                                        <input type="number" class="form-control" name="frais" required>
+                                    </div>
+
+
+                                    <input type="number" class="form-control" name="user_id" value="{{ auth()->user()->id }}" hidden>
+
+                                    
+                                    
                                     <!-- Contact Info -->
                                     <div class="mb-4">
                                         <h6 class="text-primary"> Contact Info</h6>
@@ -69,7 +84,7 @@
                                                 <label class="form-label">Departure City</label>
                                                 <select class="form-select" name="ville_depart_id" required>
                                                     @foreach($villes as $ville)
-                                                        <option value="{{ $ville->id }}">{{ $ville->name }}</option>
+                                                        <option value="{{ $ville->id }}">{{ $ville->ville }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -124,10 +139,10 @@
                                                 </select>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="form-label">Bus</label>
+                                                <label class="form-label">Autocar</label>
                                                 <select class="form-select" name="autocar_id" required>
                                                     @foreach($autocars as $autocar)
-                                                        <option value="{{ $autocar->id }}">{{ $autocar->name }}</option>
+                                                        <option value="{{ $autocar->id }}">{{ $autocar->matricule }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -135,7 +150,7 @@
                                                 <label class="form-label">Payment Method</label>
                                                 <select class="form-select" name="mode_reglement_id" required>
                                                     @foreach($mode_reglements as $mode)
-                                                        <option value="{{ $mode->id }}">{{ $mode->name }}</option>
+                                                        <option value="{{ $mode->id }}">{{ $mode->mode_reglement }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
