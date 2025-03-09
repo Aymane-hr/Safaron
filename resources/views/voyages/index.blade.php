@@ -34,7 +34,7 @@
                     <td>{{ $voyage->villeDepart->ville }}</td> <!-- Assurez-vous d'utiliser la bonne relation -->
                     <td>{{ $voyage->villeArrivee->ville }}</td>
                     <td>{{ $voyage->autocar->matricule }}</td>
-                    <td>{{ $voyage->typeVoyage-> }}</td>
+                    <td>{{ $voyage->typeVoyage->type_voyage_id }}</td>
                     <td>{{ $voyage->date_depart }}</td>
                     <td>{{ $voyage->date_arrivee }}</td>
                     <td>{{ $voyage->heure_depart }}</td>

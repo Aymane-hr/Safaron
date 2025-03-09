@@ -93,34 +93,34 @@
 
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Frais</label>
-                                                <input type="number" class="form-control" name="frais" required>
+                                                <input type="number" id="Frais1" class="form-control" name="frais" hidden value="0">
                                             </div>
                                             <div class="mb-3">
-                                                <h1>Price: <input type="number" name="prix" value="{{$SelectedVoyage->prix}}" hidden>{{$SelectedVoyage->prix}}Dh</h1>
+                                                {{-- <h1 >Price:{{$SelectedVoyage->prix}}Dh</h1> --}}
+                                                <input type="number" name="prix" id="prix" value="{{$SelectedVoyage->prix}}" hidden>
                                             </div>
                                         </div>
                                     </div>
                     
                                     <!-- Date & Time -->
-                                    <div class="mb-4">
+                                    <div class="mb-4" >
                                         <h6 class="text-primary"> Date & Time</h6>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label class="form-label">Departure Date</label>
-                                                <input type="date" class="form-control" name="date_depart" value="{{$SelectedVoyage->date_depart}}" readonly>
+                                                <input type="date" class="form-control" name="date_depart" id="date_depart" value="{{$SelectedVoyage->date_depart}}" readonly>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Arrival Date</label>
-                                                <input type="date" class="form-control" name="date_arrivee" value="{{$SelectedVoyage->date_arrivee}}" readonly>
+                                                <input type="date" class="form-control" name="date_arrivee" id="date_arrivee" value="{{$SelectedVoyage->date_arrivee}}" readonly>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Departure Time</label>
-                                                <input type="time" class="form-control" name="heure_depart" value="{{$SelectedVoyage->heure_depart}}" readonly>
+                                                <input type="time" class="form-control" name="heure_depart" id="heure_depart" value="{{$SelectedVoyage->heure_depart}}" readonly>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Arrival Time</label>
-                                                <input type="time" class="form-control" name="heure_arrivee" value="{{$SelectedVoyage->heure_arrivee}}" readonly>
+                                                <input type="time" class="form-control" name="heure_arrivee" id="heure_arrivee" value="{{$SelectedVoyage->heure_arrivee}}" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -131,21 +131,14 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label class="form-label">Number of Seats</label>
-                                                <input type="number" class="form-control" name="num_siege" required>
+                                                <input type="number" id="N_Seat1" class="form-control" name="num_siege" required>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Travel Type</label>
-                                                <select class="form-select" name="type_voyage_id" required>
+                                                <select class="form-select" name="type_voyage_id" required id="Travel_Type">
+                                                    <option value="0">---select---</option>
                                                     @foreach($type_voyages as $type)
                                                         <option value="{{ $type->id }}">{{ $type->type_voyage }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Autocar</label>
-                                                <select class="form-select" name="autocar_id" required>
-                                                    @foreach($autocars as $autocar)
-                                                        <option value="{{ $autocar->id }}">{{ $autocar->matricule }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -156,6 +149,15 @@
                                                         <option value="{{ $mode->id }}">{{ $mode->mode_reglement }}</option>
                                                     @endforeach
                                                 </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{-- <label class="form-label">Autocar</label> --}}
+                                                {{-- <select class="form-select" name="autocar_id" required>
+                                                    @foreach($autocars as $autocar)
+                                                        <option value="{{ $autocar->id }}">{{ $autocar->matricule }}</option>
+                                                    @endforeach
+                                                </select> --}}
+                                                <input type="number" name="autocar_id" value="{{$autocar->id}}" hidden>
                                             </div>
                                         </div>
                                     </div>
@@ -355,11 +357,11 @@
                                 <h6 class="text-primary mb-3">Order Info</h6>
                                 <div class="d-flex align-items-center details-info">
                                     <h6 class="fs-16">Departure</h6>
-                                    <p class="fs-16">15 Sep 2025 at 10:10 AM</p>
+                                    <p class="fs-16" id="date_depart1"></p>
                                 </div>
                                 <div class="d-flex align-items-center details-info">
                                     <h6 class="fs-16">Arrival</h6>
-                                    <p class="fs-16">16 Sep 2025 at 09:15 AM</p>
+                                    <p class="fs-16" id="date_arrivee1"></p>
                                 </div>
                                 <div class="d-flex align-items-center details-info">
                                     <h6 class="fs-16">Travel Time</h6>
@@ -375,7 +377,7 @@
                                 </div> --}}
                                 <div class="d-flex align-items-center details-info">
                                     <h6 class="fs-16">No of Seats</h6>
-                                    <p class="fs-16">4</p>
+                                    <p class="fs-16" id="N_Seat"></p>
                                 </div>
                                 <div class="d-flex align-items-center details-info">
                                     <h6 class="fs-16">Preferred Class</h6>
@@ -388,27 +390,27 @@
                                 <h6 class="text-primary mb-3">Payment Info</h6>
                                 <div class="d-flex align-items-center justify-content-between mb-3">
                                     <h6 class="fs-16">Sub Total</h6>
-                                    <p class="fs-16">$8565</p>
+                                    <p class="fs-16">{{$SelectedVoyage->prix}}Dh</p>
                                 </div>
-                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                {{-- <div class="d-flex align-items-center justify-content-between mb-3">
                                     <h6 class="fs-16">Tax <span class="text-gray-6">(10%)</span></h6>
                                     <p class="fs-16">$85</p>
-                                </div>
+                                </div> --}}
                                 <div class="d-flex align-items-center justify-content-between mb-3">
-                                    <h6 class="fs-16">Booking Fees</h6>
-                                    <p class="fs-16">$89</p>
+                                    <h6 class="fs-16">Frais</h6>
+                                    <p class="fs-16" id="Frais">0Dh</p>
                                 </div>
-                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                {{-- <div class="d-flex align-items-center justify-content-between mb-3">
                                     <h6 class="fs-16">Discount <span class="text-gray-6">(10%)</span></h6>
                                     <p class="fs-16">-$20</p>
-                                </div>
+                                </div> --}}
                             </div>
                 
                             <!-- Amount to Pay Section -->
                             <div class="mt-3">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <h6 class="fw-bold">Amount to Pay</h6>
-                                    <h6 class="text-primary fw-bold">$9569</h6>
+                                    <h6 class="text-primary fw-bold" id="Amount">{{$SelectedVoyage->prix}}Dh</h6>
                                 </div>
                             </div>
                         </div>

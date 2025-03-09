@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 class ReservationController extends Controller
 {
     public function create(Request $request){
-        $SelectedVoyage = DB::table('voyages')->find(4); //replace 1 by voyage id selected
+        $SelectedVoyage = DB::table('voyages')->find(5); //replace 1 by voyage id selected
         // dd($SelectedVoyage->ville_depart_id);
 
         $autocar = DB::table('autocars')->find($SelectedVoyage->autocar_id);
@@ -30,7 +30,7 @@ class ReservationController extends Controller
         // dd($type_voyages);
         $autocars = autocar::all();
         $mode_reglements = Mode_reglement::all();
-        return view('client.reservations.create',compact('villes','type_voyages','autocars','mode_reglements','SelectedVoyage','v_d','v_a'));
+        return view('client.reservations.create',compact('villes','type_voyages','autocars','mode_reglements','SelectedVoyage','v_d','v_a','autocar'));
     }
     public function store(Request $request)
     {
