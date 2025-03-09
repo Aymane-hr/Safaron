@@ -23,7 +23,8 @@
             <!-- Cart -->
             <div class="row">
                 <div class="col-lg-8">
-                    <form action="" method="POST">
+                    <form action={{ route('routeName', ['id'=>1]) }} method="POST">
+                        @csrf
                         <div class="container mt-5">
                             <div class="card shadow-lg">
                                 <div class="card-header bg-primary text-white">
@@ -39,7 +40,7 @@
                                                 <input type="email" class="form-control" value="{{ auth()->user()->email }}" readonly>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="form-label">Full</label>
+                                                <label class="form-label">Full Name</label>
                                                 <input type="text" class="form-control" value="{{ auth()->user()->name }}" readonly>
                                             </div>
                                         </div>
@@ -76,7 +77,7 @@
                                                 <label class="form-label">Arrival City</label>
                                                 <select class="form-select" name="ville_arrivee_id" required>
                                                     @foreach($villes as $ville)
-                                                        <option value="{{ $ville->id }}">{{ $ville->name }}</option>
+                                                        <option value="{{ $ville->id }}">{{ $ville->ville }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -118,7 +119,7 @@
                                                 <label class="form-label">Travel Type</label>
                                                 <select class="form-select" name="type_voyage_id" required>
                                                     @foreach($type_voyages as $type)
-                                                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                                        <option value="{{ $type->id }}">{{ $type->type_voyage }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

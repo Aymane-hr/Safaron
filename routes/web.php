@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/detail/voyage', [VoyageController::class, 'detail'])->name('voyage.detail');
     Route::get('/client/create/reservation', [App\Http\Controllers\Client\ReservationController::class, 'create'])->name('client.create.reservation');
+    Route::post('/client', [App\Http\Controllers\Client\ReservationController::class, 'store'])->name('client.store');
     // Définition des ressources pour les autocars, sociétés et voyages
     Route::resource('autocars', AutocarController::class);
     Route::resource('societes', SocieteController::class);
