@@ -16,9 +16,7 @@
         </div>
     </div>
     <!-- /Breadcrumb -->
-{{-- @php
-    $voyage = 
-@endphp --}}
+
     <!-- Page Wrapper -->
     <div class="content content-two">
         <div class="container">
@@ -33,15 +31,8 @@
                                     <h5 class="mb-0"> Secure Checkout</h5>
                                 </div>
                                 <div class="card-body">
-                                    <input type="date" class="form-control" name="date_reservation" value="{{ date('Y-m-d') }}" required>
-                                    <div class="mb-3">
-                                        <label class="form-label">Price</label>
-                                        <input type="number" class="form-control" name="prix" value={{55}} required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Frais</label>
-                                        <input type="number" class="form-control" name="frais" required>
-                                    </div>
+                                    <input type="date" class="form-control" name="date_reservation" value="{{ date('Y-m-d') }}" hidden>
+
 
 
                                     <input type="number" class="form-control" name="user_id" value="{{ auth()->user()->id }}" hidden>
@@ -89,7 +80,7 @@
                                                         <option value="{{ $ville->id }}">{{ $ville->ville }}</option>
                                                     @endforeach
                                                 </select> --}}
-                                                <h1 value="{{$SelectedVoyage->ville_depart_id}}" readonly>{{$v_d->ville}}  =====></h1>
+                                                <h1 ><input type="number" name="ville_depart_id" value="{{$v_d->id}}" hidden>{{$v_d->ville}}  =====></h1>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Arrival City</label>
@@ -98,8 +89,15 @@
                                                         <option value="{{ $ville->id }}">{{ $ville->ville }}</option>
                                                     @endforeach
                                                 </select> --}}
-                                                <h1 value="{{$SelectedVoyage->ville_arrivee_id}}" readonly>=====> {{$v_a->ville}}</h1>
+                                                <h1><input type="number" name="ville_arrivee_id" value="{{$v_a->id}}" hidden>=====> {{$v_a->ville}}</h1>
 
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Frais</label>
+                                                <input type="number" class="form-control" name="frais" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <h1>Price: <input type="number" name="prix" value="{{$SelectedVoyage->prix}}" hidden>{{$SelectedVoyage->prix}}Dh</h1>
                                             </div>
                                         </div>
                                     </div>
@@ -338,17 +336,17 @@
                             <!-- Flight Info Section -->
                             <div class="pb-3 border-bottom">
                                 <div class="mb-3 review-img">
-                                    <img src="{{ asset('assets/img/flight/flight-large-01.jpg') }}" alt="Img" class="img-fluid rounded-3">
+                                    <img src="{{ asset($autocar->image) }}" alt="Img" class="img-fluid rounded-3">
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
-                                        <h6 class="mb-2">Antonov An-32 - Economy Class</h6>
+                                        {{-- <h6 class="mb-2">Antonov An-32 - Economy Class</h6> --}}
                                         <p class="fs-14">
                                             <span class="badge badge-warning text-dark fs-13 fw-medium me-2">5.0</span>
-                                            (400 Reviews)
+                                            (600 Reviews)
                                         </p>
                                     </div>
-                                    <h6 class="fs-14 fw-normal text-gray-9">$200</h6>
+                                    <h6 class="fs-14 fw-normal text-gray-9">{{$SelectedVoyage->prix}}Dh</h6>
                                 </div>
                             </div>
                 
@@ -367,14 +365,14 @@
                                     <h6 class="fs-16">Travel Time</h6>
                                     <p class="fs-16">2hrs 30min</p>
                                 </div>
-                                <div class="d-flex align-items-center details-info">
+                                {{-- <div class="d-flex align-items-center details-info">
                                     <h6 class="fs-16">Adults</h6>
                                     <p class="fs-16">2</p>
                                 </div>
                                 <div class="d-flex align-items-center details-info">
                                     <h6 class="fs-16">Children</h6>
                                     <p class="fs-16">2</p>
-                                </div>
+                                </div> --}}
                                 <div class="d-flex align-items-center details-info">
                                     <h6 class="fs-16">No of Seats</h6>
                                     <p class="fs-16">4</p>
