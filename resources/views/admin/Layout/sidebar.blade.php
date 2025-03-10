@@ -77,21 +77,27 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="{{ route('equipements.index') }}" class="nav-link">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Equipements</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="{{ route('autocarequipements.index') }}" class="nav-link">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>AutoCar_Equipements</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="{{ route('autocaroptions.index') }}" class="nav-link">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Autocar_Options</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('options.index') }}" class="nav-link">
+                  <i class="nav-icon bi bi-circle"></i>
+                  <p>Options</p>
                 </a>
               </li>
             </ul>

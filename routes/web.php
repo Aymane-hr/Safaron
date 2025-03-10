@@ -14,7 +14,7 @@ use App\Http\Controllers\ReservationController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/ex', function () {
     $v = Voyage::all();
@@ -49,6 +49,11 @@ Route::middleware('auth')->group(function () {
         Route::resource("villes", VilleController::class);
         Route::resource('type_voyages', TypeVoyageController::class);
         Route::resource('modeReglements', ModeReglementController::class);
+        Route::resource('autocaroptions', AutocarOptionController::class);
+        Route::resource('autocarequipements', AutocarEquipementController::class);
+        Route::resource('options', OptionController::class);
+        Route::resource('equipements', EquipementController::class);
+
     });
 
 
