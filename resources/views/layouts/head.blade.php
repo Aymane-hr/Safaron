@@ -6,11 +6,11 @@
     <meta name="robots" content="index, follow">
 
     <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/img/apple-touch-icon.png')}}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets\img\admin\logo.png')}}">
 
     <!-- Favicon -->
-    <link rel="icon" href="{{asset('assets/img/favicon.png')}}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{asset('assets/img/favicon.png')}}" type="image/x-icon">
+    <link rel="icon" href="{{asset('assets\img\admin\logo.png')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset('assets\img\admin\logo.png')}}" type="image/x-icon">
 
     <!-- Theme Settings Js -->
 	<script src="{{asset('assets/js/theme-script.js')}}" type="beceb56a46d34ee0b957492c-text/javascript"></script>

@@ -158,7 +158,7 @@
                                     <div class="place-item mb-4">
                                         <div class="place-img">
                                             <div class=" nav-center">
-                                                        <img src="{{ $voyage->autocar->image }}" class="img-fluid"
+                                                        <img src="{{ asset('storage/' . $voyage->autocar->image)  }}" class="img-fluid"
                                                             alt="img">
                                             </div>
                                             {{-- <div class="fav-item">
@@ -183,7 +183,7 @@
                                                             <img src="assets/img/icons/airindia.svg"
                                                                 class="rounded-circle" alt="icon">
                                                         </span> --}}
-                                                        <p class="fs-14 mb-0 me-2">{{ $voyage->autocar->societe->raison_social }}</p>
+                                                        <p class="fs-14 mb-0 me-2">matricule :  {{ $voyage->autocar->matricule }}</p>
                                                     </div>
                                                 </div>
                                                 {{-- <div class="d-flex align-items-center">
@@ -281,9 +281,22 @@
                                             </div>
                                         </div>
                                         <div id="accordion-flight" class="accordion-collapse collapse show">
+                                            @php
+                                                $societes = App\Models\Societe::all();
+                                            @endphp
+                                        
                                             <div class="accordion-body">
                                                 <div class="more-content">
-                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                    @foreach ($societes as $societe)
+                                                        <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                            <input class="form-check-input ms-0 mt-0" name="flight1"
+                                                                type="checkbox" id="flight1">
+                                                            <label class="form-check-label ms-2" for="flight1">
+                                                            {{$societe->raison_social}}
+                                                            </label>
+                                                        </div>
+                                                     @endforeach
+                                                    {{-- <div class="form-check d-flex align-items-center ps-0 mb-2">
                                                         <input class="form-check-input ms-0 mt-0" name="flight1"
                                                             type="checkbox" id="flight1">
                                                         <label class="form-check-label ms-2" for="flight1">
@@ -303,7 +316,7 @@
                                                         <label class="form-check-label ms-2" for="flight3">
                                                             Sahary
                                                         </label>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                                 <a href="javascript:void(0);" class="more-view fw-medium fs-14">Regardez plus
                                                     </a>
@@ -352,7 +365,19 @@
                                         <div id="accordion-cabin" class="accordion-collapse collapse show">
                                             <div class="accordion-body">
                                                 <div class="more-content">
+                                                    @php
+                                                $typesDesVoyages = App\Models\TypeVoyage::all();
+                                                @endphp
+                                                @foreach ($typesDesVoyages as $typeDesVoyage)
                                                     <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="cabin1"
+                                                            type="checkbox" id="cabin1">
+                                                        <label class="form-check-label ms-2" for="cabin1">
+                                                            {{$typeDesVoyage->type_voyage}}
+                                                        </label>
+                                                    </div>
+                                                    @endforeach
+                                                    {{-- <div class="form-check d-flex align-items-center ps-0 mb-2">
                                                         <input class="form-check-input ms-0 mt-0" name="cabin1"
                                                             type="checkbox" id="cabin1">
                                                         <label class="form-check-label ms-2" for="cabin1">
@@ -365,7 +390,7 @@
                                                         <label class="form-check-label ms-2" for="cabin2">
                                                             Premium compfort
                                                         </label>
-                                                    </div>
+                                                    </div> --}}
                                                    
                                                 </div>
                                                 <a href="javascript:void(0);" class="more-view fw-medium fs-14">...
@@ -374,7 +399,7 @@
                                         </div>
                                     </div>
                                   
-                                    <div class="accordion-item border-bottom p-3">
+                                    {{-- <div class="accordion-item border-bottom p-3">
                                         <div class="accordion-header">
                                             <div class="accordion-button p-0" data-bs-toggle="collapse"
                                                 data-bs-target="#accordion-brand" aria-expanded="true"
@@ -446,7 +471,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </form>
                         </div>
