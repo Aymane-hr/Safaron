@@ -384,12 +384,7 @@
             reservedSeats=@json($reservedSeats);
             selectedCheckbox.parentElement.parentElement.classList.toggle('seat-selected');
             console.log(selectedCheckbox.checked);
-            if(selectedCheckbox.checked){
-                selectedCheckbox.checked = false;
-            }else{
-                selectedCheckbox.checked = true;
-            }
-            console.log(selectedCheckbox.checked);
+          
             const checkboxes = document.querySelectorAll('input[type="checkbox"]');
             checkboxes.forEach(checkbox => {
                 const seatNumber = Number(checkbox.id.split('-')[1]);
