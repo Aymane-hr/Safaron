@@ -19,7 +19,7 @@ use App\Models\AutocarOption;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/ex', function () {
     $v = Voyage::all();
