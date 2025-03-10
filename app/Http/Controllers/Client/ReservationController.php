@@ -33,9 +33,13 @@ class ReservationController extends Controller
         $mode_reglements = Mode_reglement::all();
         return view('client.reservations.create',compact('villes','type_voyages','autocars','mode_reglements','SelectedVoyage','v_d','v_a','autocar'));
     }
-    public function store(Request $request)
+    public function store(StoreReservationRequest $request)
     {
         // $pr = $request->prix * $request->num_siege;
+        // $request->validate(
+        //     ['num_siege'=>'required|integer|min:1|max:30'],
+        //     // ['num_siege.max'=>'required|min:1|max:30']
+        // );
         $request->validated();
         Reservation::create($request->all());
         return redirect()->route('dashboard');

@@ -28,18 +28,14 @@
                         <div class="container mt-5">
                             <div class="card shadow-lg">
                                 <div class="card-header bg-primary text-white">
-                                    <h5 class="mb-0"> Secure Checkout</h5>
+                                    <h5 class="mb-0">Checkout</h5>
                                 </div>
                                 <div class="card-body">
                                     <input type="date" class="form-control" name="date_reservation"
                                         value="{{ date('Y-m-d') }}" hidden>
 
-
-
                                     <input type="number" class="form-control" name="user_id"
                                         value="{{ auth()->user()->id }}" hidden>
-
-
 
                                     <!-- Contact Info -->
                                     <div class="mb-4">
@@ -58,20 +54,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Traveler Info -->
-                                    {{-- <div class="mb-4">
-                                        <h6 class="text-primary"> Traveler Info</h6>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label class="form-label">First Name</label>
-                                                <input type="text" class="form-control" value="{{ auth()->user()->first_name }}" readonly>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Last Name</label>
-                                                <input type="text" class="form-control" value="{{ auth()->user()->last_name }}" readonly>
-                                            </div>
-                                        </div>
-                                    </div> --}}
+
 
                                     <!-- Travel Details -->
                                     <div class="mb-4">
@@ -79,22 +62,14 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label class="form-label">Departure City</label>
-                                                {{-- <select class="form-select" name="ville_depart_id" required>
-                                                    @foreach ($villes as $ville)
-                                                        <option value="{{ $ville->id }}">{{ $ville->ville }}</option>
-                                                    @endforeach
-                                                </select> --}}
+
                                                 <h1><input type="number" name="ville_depart_id"
                                                         value="{{ $v_d->id }}" hidden>{{ $v_d->ville }} =====>
                                                 </h1>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label">Arrival City</label>
-                                                {{-- <select class="form-select" name="ville_arrivee_id" required>
-                                                    @foreach ($villes as $ville)
-                                                        <option value="{{ $ville->id }}">{{ $ville->ville }}</option>
-                                                    @endforeach
-                                                </select> --}}
+
                                                 <h1><input type="number" name="ville_arrivee_id"
                                                         value="{{ $v_a->id }}" hidden>=====> {{ $v_a->ville }}
                                                 </h1>
@@ -105,7 +80,6 @@
                                                     hidden value="0">
                                             </div>
                                             <div class="mb-3">
-                                                {{-- <h1 >Price:{{$SelectedVoyage->prix}}Dh</h1> --}}
                                                 <input type="number" name="prix" id="prix"
                                                     value="{{ $SelectedVoyage->prix }}" hidden>
                                             </div>
@@ -114,32 +88,17 @@
 
                                     <!-- Date & Time -->
                                     <div class="mb-4">
-                                        <h6 class="text-primary"> Date & Time</h6>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label class="form-label">Departure Date</label>
-                                                <input type="date" class="form-control" name="date_depart"
-                                                    id="date_depart" value="{{ $SelectedVoyage->date_depart }}"
-                                                    readonly>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Arrival Date</label>
-                                                <input type="date" class="form-control" name="date_arrivee"
-                                                    id="date_arrivee" value="{{ $SelectedVoyage->date_arrivee }}"
-                                                    readonly>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Departure Time</label>
-                                                <input type="time" class="form-control" name="heure_depart"
-                                                    id="heure_depart" value="{{ $SelectedVoyage->heure_depart }}"
-                                                    readonly>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Arrival Time</label>
-                                                <input type="time" class="form-control" name="heure_arrivee"
-                                                    id="heure_arrivee" value="{{ $SelectedVoyage->heure_arrivee }}"
-                                                    readonly>
-                                            </div>
+
+                                        <div class="row" hidden>
+                                            <input type="date" class="form-control" name="date_depart"
+                                                id="date_depart" value="{{ $SelectedVoyage->date_depart }}" readonly>
+                                            <input type="date" class="form-control" name="date_arrivee"
+                                                id="date_arrivee" value="{{ $SelectedVoyage->date_arrivee }}" readonly>
+                                            <input type="time" class="form-control" name="heure_depart"
+                                                id="heure_depart" value="{{ $SelectedVoyage->heure_depart }}" readonly>
+                                            <input type="time" class="form-control" name="heure_arrivee"
+                                                id="heure_arrivee" value="{{ $SelectedVoyage->heure_arrivee }}"
+                                                readonly>
                                         </div>
                                     </div>
 
@@ -152,7 +111,7 @@
                                                 <input type="number" id="N_Seat1" class="form-control"
                                                     name="num_siege">
                                                 @error('num_siege')
-                                                    {{ $message }}
+                                                    <span style="color: red">{{ $message }}</span>
                                                 @enderror
                                             </div>
                                             <div class="col-md-6">
@@ -170,11 +129,7 @@
                                                 <label class="form-label">Autocar</label><br>
                                                 <img src="{{ asset('storage/' . $autocar->image) }}" alt=""
                                                     width="50" height="50">
-                                                {{-- <select class="form-select" name="autocar_id" required>
-                                                    @foreach ($autocars as $autocar)
-                                                        <option value="{{ $autocar->id }}">{{ $autocar->matricule }}</option>
-                                                    @endforeach
-                                                </select> --}}
+
                                                 <input type="number" name="autocar_id" value="{{ $autocar->id }}"
                                                     hidden>
                                             </div>
@@ -191,14 +146,12 @@
                                         </div>
                                     </div>
 
-
                                     <!-- Payment Details -->
                                     <div class="card payment-details">
                                         <div class="card-header bg-primary text-white">
                                             <h5>Payment Details</h5>
                                         </div>
                                         <div class="card-body">
-                                            <!-- Payment Method Selection -->
                                             <div
                                                 class="d-flex align-items-center justify-content-between flex-wrap mb-4">
                                                 <div class="d-flex align-items-center flex-wrap payment-form">
@@ -227,7 +180,6 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Credit Card Details -->
                                             <div class="credit-card-details">
                                                 <div class="mb-3">
                                                     <h6 class="fs-16 fw-bold">Payment With Credit Card</h6>
@@ -281,9 +233,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- /Credit Card -->
 
-                                            <!-- PayPal Details -->
                                             <div class="paypal-details">
                                                 <div class="mb-3">
                                                     <h6 class="fs-16 fw-bold">Payment With PayPal</h6>
@@ -315,9 +265,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- /PayPal -->
 
-                                            <!-- Stripe Details -->
                                             <div class="stripe-details">
                                                 <div class="mb-3">
                                                     <h6 class="fs-16 fw-bold">Payment With Stripe</h6>
@@ -349,12 +297,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- /Stripe -->
 
-                                            <!-- Confirm and Pay Button -->
-                                            {{-- <div class="d-flex align-items-center justify-content-end flex-wrap gap-2 mt-4">
-                                <button type="submit" class="btn btn-primary btn-lg">Confirm & Pay</button>
-                            </div> --}}
                                         </div>
                                     </div>
                                     <!-- Submit Button -->
@@ -367,9 +310,6 @@
                             </div>
                         </div>
                     </form>
-
-
-
 
                 </div>
 
@@ -388,7 +328,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <!-- Flight Info Section -->
+                            <!-- Voyage Info Section -->
                             <div class="pb-3 border-bottom">
                                 <div class="mb-3 review-img">
                                     <img src="{{ asset('storage/' . $autocar->image) }}" alt="Img"
@@ -396,7 +336,6 @@
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
-                                        {{-- <h6 class="mb-2">Antonov An-32 - Economy Class</h6> --}}
                                         <p class="fs-14">
                                             <span class="badge badge-warning text-dark fs-13 fw-medium me-2">5.0</span>
                                             (600 Reviews)
@@ -417,18 +356,7 @@
                                     <h6 class="fs-16">Arrival</h6>
                                     <p class="fs-16" id="date_arrivee1"></p>
                                 </div>
-                                {{-- <div class="d-flex align-items-center details-info">
-                                    <h6 class="fs-16">Travel Time</h6>
-                                    <p class="fs-16">2hrs 30min</p>
-                                </div> --}}
-                                {{-- <div class="d-flex align-items-center details-info">
-                                    <h6 class="fs-16">Adults</h6>
-                                    <p class="fs-16">2</p>
-                                </div>
-                                <div class="d-flex align-items-center details-info">
-                                    <h6 class="fs-16">Children</h6>
-                                    <p class="fs-16">2</p>
-                                </div> --}}
+
                                 <div class="d-flex align-items-center details-info">
                                     <h6 class="fs-16">Number of Seats</h6>
                                     <p class="fs-16" id="N_Seat"></p>
@@ -446,18 +374,12 @@
                                     <h6 class="fs-16">Sub Total</h6>
                                     <p class="fs-16">{{ $SelectedVoyage->prix }}Dh</p>
                                 </div>
-                                {{-- <div class="d-flex align-items-center justify-content-between mb-3">
-                                    <h6 class="fs-16">Tax <span class="text-gray-6">(10%)</span></h6>
-                                    <p class="fs-16">$85</p>
-                                </div> --}}
+
                                 <div class="d-flex align-items-center justify-content-between mb-3">
                                     <h6 class="fs-16">Frais</h6>
                                     <p class="fs-16" id="Frais">0Dh</p>
                                 </div>
-                                {{-- <div class="d-flex align-items-center justify-content-between mb-3">
-                                    <h6 class="fs-16">Discount <span class="text-gray-6">(10%)</span></h6>
-                                    <p class="fs-16">-$20</p>
-                                </div> --}}
+
                             </div>
 
                             <!-- Amount to Pay Section -->
