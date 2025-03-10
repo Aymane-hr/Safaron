@@ -10510,7 +10510,7 @@ footer.footer-three .footer-bottom .policy-links li a:hover {
 }
 
 .breadcrumb-bg-05 {
-  background: url("../img/bg/breadcrumb-05.jpg") no-repeat;
+  background: url("../img/bg/bus/bus-bg-1.jpeg") no-repeat;
   background-size: cover;
   background-position: center;
 }
@@ -11521,15 +11521,29 @@ footer.footer-three .footer-bottom .policy-links li a:hover {
   overflow: hidden;
 }
 .place-item .place-img {
-  border-radius: 10px 10px 0 0;
-  overflow: hidden;
-  position: relative;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    position: relative;
+    height: 200px; /* Adjust based on your needs */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .place-item .place-img img {
-  border-radius: 10px 10px 0 0;
-  -webkit-transition: all 0.3s ease-out 0s;
-  -ms-transition: all 0.3s ease-out 0s;
-  transition: all 0.3s ease-out 0s;
+    border-radius: 10px 10px 0 0;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+.img-fluid{
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain; /* Ensures the image maintains its aspect ratio */
 }
 .place-item .place-img .fav-item {
   display: -webkit-box;
@@ -12011,12 +12025,18 @@ footer.footer-three .footer-bottom .policy-links li a:hover {
 }
 
 .client-img {
-  text-align: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px; /* Adjust based on your needs */
 }
 .client-img img {
-  width: auto !important;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
   height: auto;
-  margin: 0 auto;
+  object-fit: contain; /* Ensures the image maintains its aspect ratio */
 }
 
 .video-wrap {
@@ -12933,7 +12953,7 @@ footer.footer-three .footer-bottom .policy-links li a:hover {
   36.home-04
 ============================*/
 .hero-section-four {
-  background-image: url("../img/banner/flight-banner.jpg");
+  background-image: url("../img/banner/bus/travel-bus.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top;
@@ -13892,6 +13912,17 @@ footer.footer-three .footer-bottom .policy-links li a:hover {
   padding: 0 16px;
   z-index: 9;
   position: relative;
+}
+.showVoyageSociete{
+    margin: 30px;
+    color: #CF3425;
+    font-family: 'Poppins', sans-serif;
+    /* padding: 20px;  */
+}
+.showVoyageSociet h4{
+    font-weight: bold;
+    color: inherit;
+    margin: 0; 
 }
 
 .authentication-card .card-header {

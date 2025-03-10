@@ -1306,7 +1306,7 @@
     <div class="container">
         <div class="client-sec">
             <div class="section-header text-center  wow fadeInDown">
-                <h6 class="text-white">We are working with 50+ Clients</h6>
+                <h6 class="text-white">Et AR travaille avec plus de 50 clients</h6>
             </div>
             <div class="owl-carousel client-slider">
                 @foreach ($societes as $societe)

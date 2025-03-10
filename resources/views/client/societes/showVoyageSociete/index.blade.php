@@ -1,13 +1,12 @@
 <x-app-layout>
     <div class="container">
-        <h1>Voyages for {{ $societe->raison_social }} Transport</h1>
+        <h1 class="showVoyageSociete">Voyages pour {{ $societe->raison_social }} Transport : </h1>
         <div class="row">
             @if ($voyages->isEmpty())
-            <div class="col-12 flex justify-center items-center">
-                <div class="text-black text-center" style="font-family: 'Poppins', sans-serif;">
-                    <h4 class="font-bold" style="color: #CF3425;">No voyages found.</h4>
+                <div >
+                    <h4 >Aucun voyage trouvé.</h4>
                 </div>
-            </div>
+ 
 
 
             @else
@@ -17,9 +16,7 @@
                             <div class="card-body">
                                 <div class="place-item mb-4">
                                     <div class="place-img">
-                                        <a href="flight-details.html">
                                             <img src="{{ asset('storage/' . $voyage->image) }}" class="img-fluid" alt="img">
-                                        </a>
                                     </div>
                                     <div class="place-content">
                                         <div class="flight-loc d-flex align-items-center justify-content-between mb-2">
@@ -34,7 +31,7 @@
 
                                         <div class="d-flex align-items-center mb-2">
 
-                                            <p class="fs-14 mb-0">{{ $voyage->raison_social }}</p>
+                                            <p class="fs-14 mb-0">matricule de bus : {{ $voyage->matricule }}</p>
                                             <p class="fs-14 d-inline-flex align-items-center mb-0">
                                                 <i class="fa-solid fa-circle fs-6 text-primary mx-2"></i>
                                             </p>
@@ -46,7 +43,7 @@
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between border-top pt-3">
                                             <h6 class="text-primary">
-                                                <span class="fs-14 fw-normal text-default">price </span>{{ $voyage->prix }}
+                                                <span class="fs-14 fw-normal text-default">prix </span>{{ $voyage->prix }}
                                             </h6>
                                         </div>
                                     </div>
