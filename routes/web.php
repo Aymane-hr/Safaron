@@ -10,12 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocieteController;
 use App\Http\Controllers\TypeVoyageController;
 use App\Http\Controllers\ModeReglementController;
-use App\Http\Controllers\Client\ReservationController;
-use App\Http\Controllers\EquipementController;
-use App\Http\Controllers\AutocarOptionController;
-use App\Http\Controllers\OptionController;
-use App\Http\Controllers\AutocarEquipementController;
-use App\Models\AutocarOption;
+use App\Http\Controllers\ReservationController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -41,7 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/detail/voyage', [VoyageController::class, 'detail'])->name('voyage.detail');
     Route::get('/recherche', [VoyageController::class, 'rechercher'])->name('voyages.rechercher');
-    Route::post('/client/create/reservation', [App\Http\Controllers\Client\ReservationController::class, 'create'])->name('client.create.reservation');
+    Route::get('/client/create/reservation', [App\Http\Controllers\Client\ReservationController::class, 'create'])->name('client.create.reservation');
     Route::get('/client/societes/{societe}/showVoyageSociete', [SocieteController::class, 'showVoyageSociete'])->name('client.societes.showVoyageSociete.index');
     Route::post('/client/store', [App\Http\Controllers\Client\ReservationController::class, 'store'])->name('client.store');
 
@@ -61,7 +56,20 @@ Route::middleware('auth')->group(function () {
 
     });
 
+
+
+
+
+    // Reservation details
+    Route::get('/client/reservations/{reservation?}', [ReservationController::class, 'index'])->name('client.reservations.show');
+    Route::post('/client/reservations', [ReservationController::class, 'store'])->name('client.reservations.store');
+    // Route::get('/client/reservations/{reservation}/edit', [ReservationController::class, 'edit'])->name('client.reservations.edit');
+    // Route::patch('/client/reservations/{reservation}', [ReservationController::class, 'update'])->name('client.reservations.update');
+    // Route::delete('/client/reservations/{reservation}', [ReservationController::class, 'destroy'])->name('client.reservations.destroy');
+
 });
+
+
 
 require __DIR__.'/auth.php';
 

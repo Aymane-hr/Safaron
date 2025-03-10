@@ -22,11 +22,11 @@ class StoreReservationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'num_siege' => 'required|integer|min:1|max:30'
+
         ];
     }
     public function messages()
     {
-        return['num_siege.max' => 'maximun 30'];
+        return[];
     }
 }

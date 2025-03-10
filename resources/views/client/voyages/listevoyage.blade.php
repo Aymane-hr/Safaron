@@ -28,7 +28,7 @@
                     <div class="banner-form">
                         <form method="GET" action="{{ route('voyages.rechercher') }}">
                             @csrf
-                            
+
                             <div class="d-flex align-items-center justify-content-between flex-wrap mb-2">
                                 <h6 class="fw-medium fs-16 mb-2">Rechercher un voyage</h6>
                             </div>
@@ -44,7 +44,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-            
+
                                         <!-- Ville d’arrivée -->
                                         <div class="form-item ps-2 ps-sm-3">
                                             <label class="form-label fs-14 text-default mb-1">À</label>
@@ -54,33 +54,33 @@
                                             @endforeach
                                             </select>
                                         </div>
-            
+
                                         <!-- Date de départ -->
                                         <div class="form-item">
                                             <label class="form-label fs-14 text-default mb-1">Départ</label>
                                             <input type="date" class="form-control" name="date_depart">
                                         </div>
-            
+
                                         <!-- Date d’arrivée -->
                                         <div class="form-item round-trip">
                                             <label class="form-label fs-14 text-default mb-1">Retour</label>
                                             <input type="date" class="form-control" name="date_arrivee">
                                         </div>
-            
+
                                         {{-- <!-- Nombre de passagers -->
                                         <div class="form-item">
                                             <label class="form-label fs-14 text-default mb-1">Passagers</label>
                                             <input type="number" class="form-control" name="nombre_personnes" min="1" value="1">
                                         </div> --}}
                                     </div>
-            
+
                                     <!-- Bouton Rechercher -->
                                     <button type="submit" class="btn btn-primary search-btn rounded">Rechercher</button>
                                 </div>
                             </div>
                         </form>
                     </div>
-            
+
                 </div>
             </div>
             <!-- /Flight Search -->
@@ -155,6 +155,7 @@
                             <div class="col-md-12">
                                 <!-- Flight List -->
                                 @foreach ($voyages as $voyage)
+                                <a href="{{ route('client.reservations.show', $voyage->id) }}">
                                     <div class="place-item mb-4">
                                         <div class="place-img">
                                             <div class=" nav-center">
@@ -220,6 +221,8 @@
                                             </div>
                                         </div>
                                     </div>
+                                </a>
+
                                 @endforeach
                                 <!-- /Flight List -->
                             </div>
@@ -271,7 +274,7 @@
                                 </div>
                                 <div class="accordion accordion-list">
                                     <div class="accordion-item border-bottom p-3">
-            
+
                                     <div class="accordion-item border-bottom p-3">
                                         <div class="accordion-header">
                                             <div class="accordion-button p-0" data-bs-toggle="collapse"
@@ -284,7 +287,7 @@
                                             @php
                                                 $societes = App\Models\Societe::all();
                                             @endphp
-                                        
+
                                             <div class="accordion-body">
                                                 <div class="more-content">
                                                     @foreach ($societes as $societe)
@@ -391,14 +394,14 @@
                                                             Premium compfort
                                                         </label>
                                                     </div> --}}
-                                                   
+
                                                 </div>
                                                 <a href="javascript:void(0);" class="more-view fw-medium fs-14">...
                                                     </a>
                                             </div>
                                         </div>
                                     </div>
-                                  
+
                                     {{-- <div class="accordion-item border-bottom p-3">
                                         <div class="accordion-header">
                                             <div class="accordion-button p-0" data-bs-toggle="collapse"
@@ -479,7 +482,7 @@
                 </div>
                 <!-- /Sidebar -->
 
-                
+
 
             </div>
         </div>
