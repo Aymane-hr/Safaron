@@ -67,8 +67,8 @@ Route::middleware('auth')->group(function () {
 
 
     // Reservation details
-    Route::get('/client/reservations/{reservation?}', [ReservationController::class, 'index'])->name('client.reservations.show');
-    Route::post('/client/reservations', [ReservationController::class, 'store'])->name('client.reservations.store');
+    Route::get('/client/reservations/{reservation?}', [App\Http\Controllers\Client\ReservationController::class, 'index'])->name('client.reservations.show');
+    Route::post('/client/reservations', [App\Http\Controllers\Client\ReservationController::class, 'store'])->name('client.reservations.store');
     // Route::get('/client/reservations/{reservation}/edit', [ReservationController::class, 'edit'])->name('client.reservations.edit');
     // Route::patch('/client/reservations/{reservation}', [ReservationController::class, 'update'])->name('client.reservations.update');
     // Route::delete('/client/reservations/{reservation}', [ReservationController::class, 'destroy'])->name('client.reservations.destroy');
