@@ -29,7 +29,7 @@
                         <form class="">
                             <div class="d-flex align-items-center justify-content-between flex-wrap mb-2">
                             
-                               <h6 class="fw-medium fs-16 mb-2">REchercher une voyage</h6>
+                               <h6 class="fw-medium fs-16 mb-2">Rechercher une voyage</h6>
                             </div>
                             <div class="normal-trip">
                                 <div class="d-lg-flex">
@@ -294,7 +294,7 @@
                                                             <img src="assets/img/icons/airindia.svg"
                                                                 class="rounded-circle" alt="icon">
                                                         </span> --}}
-                                                        <p class="fs-14 mb-0 me-2">{{ $voyage->autocar->societe->raison_social }}</p>
+                                                        <p class="fs-14 mb-0 me-2">matricule :  {{ $voyage->autocar->matricule }}</p>
                                                     </div>
                                                 </div>
                                                 {{-- <div class="d-flex align-items-center">
