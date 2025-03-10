@@ -11,6 +11,11 @@ use App\Http\Controllers\SocieteController;
 use App\Http\Controllers\TypeVoyageController;
 use App\Http\Controllers\ModeReglementController;
 use App\Http\Controllers\Client\ReservationController;
+use App\Http\Controllers\EquipementController;
+use App\Http\Controllers\AutocarOptionController;
+use App\Http\Controllers\OptionController;
+use App\Http\Controllers\AutocarEquipementController;
+use App\Models\AutocarOption;
 
 Route::get('/', function () {
     return view('welcome');
@@ -49,6 +54,11 @@ Route::middleware('auth')->group(function () {
         Route::resource("villes", VilleController::class);
         Route::resource('type_voyages', TypeVoyageController::class);
         Route::resource('modeReglements', ModeReglementController::class);
+        Route::resource('autocaroptions', AutocarOptionController::class);
+        Route::resource('autocarequipements', AutocarEquipementController::class);
+        Route::resource('options', OptionController::class);
+        Route::resource('equipements', EquipementController::class);
+
     });
 
 });
