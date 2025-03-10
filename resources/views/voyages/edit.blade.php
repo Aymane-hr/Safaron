@@ -21,7 +21,7 @@
             <select name="ville_depart_id" id="ville_depart_id" class="form-select" required>
                 @foreach($villes as $ville)
                     <option value="{{ $ville->id }}" {{ $voyage->ville_depart_id == $ville->id ? 'selected' : '' }}>
-                        {{ $ville->nom }}
+                        {{ $ville->ville }}
                     </option>
                 @endforeach
             </select>
@@ -38,7 +38,7 @@
             <select name="ville_arrivee_id" id="ville_arrivee_id" class="form-select" required>
                 @foreach($villes as $ville)
                     <option value="{{ $ville->id }}" {{ $voyage->ville_arrivee_id == $ville->id ? 'selected' : '' }}>
-                        {{ $ville->nom }}
+                        {{ $ville->ville }}
                     </option>
                 @endforeach
             </select>
@@ -72,7 +72,7 @@
             <select name="type_voyage_id" id="type_voyage_id" class="form-select" required>
                 @foreach($types_voyage as $type)
                     <option value="{{ $type->id }}" {{ $voyage->type_voyage_id == $type->id ? 'selected' : '' }}>
-                        {{ $type->nom }}
+                        {{ $type->type_voyage }}
                     </option>
                 @endforeach
             </select>

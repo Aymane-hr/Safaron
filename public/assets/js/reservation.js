@@ -17,15 +17,19 @@ Travel_Type.onchange = () => {
 
     if (Travel_Type.value == 1) {
         Frais.innerHTML = 0 + 'Dh'
-        Amount.innerHTML = Number(document.getElementById('prix').value) + 'Dh'
+        // Amount.innerHTML = parseInt(Frais.innerHTML) + Number(document.getElementById('prix').value) + 'Dh'
+        document.getElementById('Type_v').innerHTML = 'comfort'
     }
     else if (Travel_Type.value == 2) {
         Frais.innerHTML = 50 + 'Dh'
         Frais1.value = parseInt(Frais.innerHTML)
-        Amount.innerHTML = parseFloat(Frais.innerHTML) + Number(document.getElementById('prix').value) + 'Dh'
+        // Amount.innerHTML = parseFloat(Frais.innerHTML) + Number(document.getElementById('prix').value) + 'Dh'
         // console.log(Travel_Type.value)
         document.getElementById('prix').value = parseFloat(Amount.innerHTML);
+        document.getElementById('Type_v').innerHTML = 'premium'
     }
+    Amount.innerHTML = parseFloat(Frais.innerHTML) + Number(document.getElementById('prix').value) + 'Dh'
+
 }
 
 let date_depart = document.getElementById('date_depart').value;

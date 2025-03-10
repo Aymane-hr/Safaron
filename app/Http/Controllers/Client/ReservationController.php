@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreReservationRequest;
 use App\Models\autocar;
 use App\Models\Mode_reglement;
 use App\Models\Reservation;
@@ -15,8 +16,8 @@ use Illuminate\Support\Facades\DB;
 class ReservationController extends Controller
 {
     public function create(Request $request){
-        $SelectedVoyage = DB::table('voyages')->find(5); //replace 1 by voyage id selected
-        // dd($SelectedVoyage->ville_depart_id);
+        $SelectedVoyage = DB::table('voyages')->find(6); //replace 1 by voyage id selected
+        // dd($SelectedVoyage);
 
         $autocar = DB::table('autocars')->find($SelectedVoyage->autocar_id);
         // dd($autocar->image); 
@@ -35,6 +36,7 @@ class ReservationController extends Controller
     public function store(Request $request)
     {
         // $pr = $request->prix * $request->num_siege;
+        $request->validated();
         Reservation::create($request->all());
         return redirect()->route('dashboard');
 

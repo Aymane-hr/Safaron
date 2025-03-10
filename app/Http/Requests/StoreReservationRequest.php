@@ -11,7 +11,7 @@ class StoreReservationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StoreReservationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'num_siege' => 'required|min:1|max:30'
         ];
+    }
+    public function messages()
+    {
+        return['num_siege.max' => 'maximun 30'];
     }
 }
