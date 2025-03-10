@@ -24,7 +24,7 @@ Route::get('/ex', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/voyages/list', function () {
+Route::get('/voyages/list/', function () {
     $voyages = Voyage::all();
     return view('client.voyages.listevoyage', compact('voyages'));
 })->name('voyages.list');
@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/detail/voyage', [VoyageController::class, 'detail'])->name('voyage.detail');
+    Route::get('/recherche', [VoyageController::class, 'rechercher'])->name('voyages.rechercher');
     Route::post('/client/create/reservation', [App\Http\Controllers\Client\ReservationController::class, 'create'])->name('client.create.reservation');
     Route::get('/client/societes/{societe}/showVoyageSociete', [SocieteController::class, 'showVoyageSociete'])->name('client.societes.showVoyageSociete.index');
 

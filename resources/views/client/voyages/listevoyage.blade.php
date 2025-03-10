@@ -26,173 +26,62 @@
             <div class="card">
                 <div class="card-body">
                     <div class="banner-form">
-                        <form class="">
-                            <div class="d-flex align-items-center justify-content-between flex-wrap mb-2">
+                        <form method="GET" action="{{ route('voyages.rechercher') }}">
+                            @csrf
                             
-                               <h6 class="fw-medium fs-16 mb-2">REchercher une voyage</h6>
+                            <div class="d-flex align-items-center justify-content-between flex-wrap mb-2">
+                                <h6 class="fw-medium fs-16 mb-2">Rechercher un voyage</h6>
                             </div>
                             <div class="normal-trip">
                                 <div class="d-lg-flex">
-                                    <div class="d-flex  form-info">
-                                        <div class="form-item dropdown">
-                                            <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                                                aria-expanded="false" role="menu">
-                                                <label class="form-label fs-14 text-default mb-1">De</label>
-                                                <h5>fes</h5>
-                                            </div>
-                                            <div class="dropdown-menu dropdown-md p-0">
-                                                <div class="input-search p-3 border-bottom">
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Search Location">
-                                                        <span class="input-group-text px-2 border-start-0"><i
-                                                                class="isax isax-search-normal">fes</i></span>
-                                                    </div>
-                                                </div>
-                                                
-                                                <ul>
-                                                    <li class="border-bottom">
-                                                        <a class="dropdown-item" href="javascript:void(0);">
-                                                            <h6 class="fs-16 fw-medium" placeholder="ville de depart"></h6>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                    <div class="d-flex form-info">
+                                        <!-- Ville de départ -->
+                                        <div class="form-item">
+                                            <label class="form-label fs-14 text-default mb-1">De</label>
+                                            <select class="form-control" name="ville_depart_id">
+                                                @foreach(App\Models\Ville::all() as $ville)
+                                                    <option value="{{ $ville->id }}">{{ $ville->ville }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                        <div class="form-item dropdown ps-2 ps-sm-3">
-                                            <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                                                aria-expanded="false" role="menu">
-                                                <label class="form-label fs-14 text-default mb-1">A</label>
-                                                <h5>Casa</h5>
-                                                
-                                                <span
-                                                    class="way-icon badge badge-primary rounded-pill translate-middle">
-                                                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                                                </span>
-                                            </div>
-                                            <div class="dropdown-menu dropdown-md p-0">
-                                                <div class="input-search p-3 border-bottom">
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Search Location">
-                                                        <span class="input-group-text px-2 border-start-0"><i
-                                                                class="isax isax-search-normal"></i></span>
-                                                    </div>
-                                                </div>
-                                                <ul>
-                                                    <li class="border-bottom">
-                                                        <a class="dropdown-item" href="javascript:void(0);">
-                                                            <h6 class="fs-16 fw-medium">ville de retour</h6>
-                                                           
-                                                        </a>
-                                                    </li>
-                                            
-                                                </ul>
-                                            </div>
+            
+                                        <!-- Ville d’arrivée -->
+                                        <div class="form-item ps-2 ps-sm-3">
+                                            <label class="form-label fs-14 text-default mb-1">À</label>
+                                            <select class="form-control" name="ville_arrivee_id">
+                                                @foreach(App\Models\Ville::all() as $ville)
+                                                <option value="{{ $ville->id }}">{{ $ville->ville }}</option>
+                                            @endforeach
+                                            </select>
                                         </div>
+            
+                                        <!-- Date de départ -->
                                         <div class="form-item">
                                             <label class="form-label fs-14 text-default mb-1">Départ</label>
-                                            <input type="text" class="form-control datetimepicker"
-                                                value="21-10-2024">
-                                            <p class="fs-12 mb-0">Monday</p>
+                                            <input type="date" class="form-control" name="date_depart">
                                         </div>
-                                        <div class="form-item round-drip">
+            
+                                        <!-- Date d’arrivée -->
+                                        <div class="form-item round-trip">
                                             <label class="form-label fs-14 text-default mb-1">Retour</label>
-                                            <input type="text" class="form-control datetimepicker"
-                                                value="23-10-2024">
-                                            <p class="fs-12 mb-0">Wednesday</p>
+                                            <input type="date" class="form-control" name="date_arrivee">
                                         </div>
-                                        <div class="form-item dropdown">
-                                            <div data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                                                aria-expanded="false" role="menu">
-                                                <label class="form-label fs-14 text-default mb-1"> Passagers
-                                                    </label>
-                                                <h5>4 <span class="fw-normal fs-14">Persons</span></h5>
-                                                <p class="fs-12 mb-0">1 Adulte</p>
-                                            </div>
-                                            <div class="dropdown-menu dropdown-menu-end dropdown-xl">
-                                                <h5 class="mb-3">Les passagers</h5>
-                                                <div class="mb-3 border br-10 info-item pb-1">
-                                                    <h6 class="fs-16 fw-medium mb-2">Passagers</h6>
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="mb-3">
-                                                                <label class="form-label text-gray-9 mb-2">Adultes <span
-                                                                        class="text-default fw-normal">( 12+ ans
-                                                                        )</span></label>
-                                                                <div class="custom-increment">
-                                                                    <div class="input-group">
-                                                                        <span class="input-group-btn float-start">
-                                                                            <button type="button"
-                                                                                class="quantity-left-minus btn btn-light btn-number"
-                                                                                data-type="minus" data-field="">
-                                                                                <span><i
-                                                                                        class="isax isax-minus"></i></span>
-                                                                            </button>
-                                                                        </span>
-                                                                        <input type="text" name="quantity"
-                                                                            class=" input-number" value="01">
-                                                                        <span class="input-group-btn float-end">
-                                                                            <button type="button"
-                                                                                class="quantity-right-plus btn btn-light btn-number"
-                                                                                data-type="plus" data-field="">
-                                                                                <span><i
-                                                                                        class="isax isax-add"></i></span>
-                                                                            </button>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="mb-3">
-                                                                <label class="form-label text-gray-9 mb-2">Enfants
-                                                                    <span class="text-default fw-normal">( 2-12 Yrs
-                                                                        )</span></label>
-                                                                <div class="custom-increment">
-                                                                    <div class="input-group">
-                                                                        <span class="input-group-btn float-start">
-                                                                            <button type="button"
-                                                                                class="quantity-left-minus btn btn-light btn-number"
-                                                                                data-type="minus" data-field="">
-                                                                                <span><i
-                                                                                        class="isax isax-minus"></i></span>
-                                                                            </button>
-                                                                        </span>
-                                                                        <input type="text" name="quantity"
-                                                                            class=" input-number" value="01">
-                                                                        <span class="input-group-btn float-end">
-                                                                            <button type="button"
-                                                                                class="quantity-right-plus btn btn-light btn-number"
-                                                                                data-type="plus" data-field="">
-                                                                                <span><i
-                                                                                        class="isax isax-add"></i></span>
-                                                                            </button>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="d-flex justify-content-end">
-                                                    <a href="javascript:void(0);"
-                                                        class="btn btn-light btn-sm me-2">Valider</a>
-                                                    <button type="submit"
-                                                        class="btn btn-primary btn-sm">Supprimer</button>
-                                                </div>
-                                            </div>
-                                        </div>
+            
+                                        {{-- <!-- Nombre de passagers -->
+                                        <div class="form-item">
+                                            <label class="form-label fs-14 text-default mb-1">Passagers</label>
+                                            <input type="number" class="form-control" name="nombre_personnes" min="1" value="1">
+                                        </div> --}}
                                     </div>
+            
+                                    <!-- Bouton Rechercher -->
                                     <button type="submit" class="btn btn-primary search-btn rounded">Rechercher</button>
                                 </div>
                             </div>
-             
                         </form>
                     </div>
-                </div>
+            
+                </div>
             </div>
             <!-- /Flight Search -->
 
