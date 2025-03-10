@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 class ReservationController extends Controller
 {
     public function create(Request $request){
-        $SelectedVoyage = DB::table('voyages')->find(6); //replace 1 by voyage id selected
+        $SelectedVoyage = DB::table('voyages')->find(1); //replace 1 by voyage id selected
         // dd($SelectedVoyage);
 
         $autocar = DB::table('autocars')->find($SelectedVoyage->autocar_id);
@@ -41,8 +41,9 @@ class ReservationController extends Controller
         //     // ['num_siege.max'=>'required|min:1|max:30']
         // );
         $request->validated();
+        // dd($request->all());
         Reservation::create($request->all());
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('success',"reservation ajouter avec succe");
 
     }
 }
