@@ -35,6 +35,8 @@ return new class extends Migration
             $table->foreign('autocar_id')->references('id')->on('autocars');
             $table->unsignedBigInteger('type_voyage_id');
             $table->foreign('type_voyage_id')->references('id')->on('type_voyages');
+            $table->unsignedBigInteger('voyage_id');
+            $table->foreign('voyage_id')->references('id')->on('voyages');
             $table->timestamps();
         });
 
