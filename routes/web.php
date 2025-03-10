@@ -4,13 +4,17 @@ use App\Models\Voyage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VilleController;
+use App\Http\Controllers\OptionController;
 use App\Http\Controllers\VoyageController;
 use App\Http\Controllers\AutocarController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocieteController;
+use App\Http\Controllers\EquipementController;
 use App\Http\Controllers\TypeVoyageController;
-use App\Http\Controllers\ModeReglementController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\AutocarOptionController;
+use App\Http\Controllers\ModeReglementController;
+use App\Http\Controllers\AutocarEquipementController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -53,6 +57,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('autocarequipements', AutocarEquipementController::class);
         Route::resource('options', OptionController::class);
         Route::resource('equipements', EquipementController::class);
+        route::get('/reservation/admin/list', [App\Http\Controllers\ReservationController::class, 'indexAdmin'])->name('reservation.admin.index');
+        route::get('/reservation/admin/{reservation}/show', [App\Http\Controllers\ReservationController::class, 'show'])->name('reservation.admin.show');
 
     });
 

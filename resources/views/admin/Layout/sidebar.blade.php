@@ -53,7 +53,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link @if (request()->routeIs('reservations.*')) active @endif">
+                <a href="{{ route('reservation.admin.index') }}" class="nav-link @if (request()->routeIs('reservation.admin.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Reservations</p>
                 </a>

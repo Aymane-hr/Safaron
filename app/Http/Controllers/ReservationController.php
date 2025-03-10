@@ -15,10 +15,10 @@ class ReservationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($id)
+    public function indexAdmin()
     {
-        $voyage=Voyage::find($id);
-        return view('client.reservations.index', compact('voyage'));
+        $reservations=Reservation::paginate(10);
+        return view('admin.reservations.index', compact('reservations'));
     }
 
     /**
@@ -88,7 +88,7 @@ class ReservationController extends Controller
      */
     public function show(Reservation $reservation)
     {
-        //
+        return view('admin.reservations.show', compact('reservation'));
     }
 
     /**
