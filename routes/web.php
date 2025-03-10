@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/detail/voyage', [VoyageController::class, 'detail'])->name('voyage.detail');
     Route::post('/client/create/reservation', [App\Http\Controllers\Client\ReservationController::class, 'create'])->name('client.create.reservation');
     Route::get('/client/societes/{societe}/showVoyageSociete', [SocieteController::class, 'showVoyageSociete'])->name('client.societes.showVoyageSociete.index');
+    Route::post('/client/store', [App\Http\Controllers\Client\ReservationController::class, 'store'])->name('client.store');
 
     // ======= Admin routes =======
     Route::middleware('admin')->group(function () {
