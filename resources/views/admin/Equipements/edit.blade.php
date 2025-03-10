@@ -5,8 +5,8 @@
 @section('content')
 <div class="container-fluid py-4">
     <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-8">
-            <div class="card shadow-lg border-0 rounded-lg">
+        <div class="col-lg-6 col-md-8 col-sm-12">
+            <div class="card border-0 rounded-3 shadow-sm">
                 <div class="card-header bg-warning text-white">
                     <h3 class="mb-0 text-center fw-bold">Modifier l'Équipement</h3>
                 </div>
@@ -19,7 +19,7 @@
 
                         <!-- Nom de l'équipement -->
                         <div class="mb-4">
-                            <label for="equipement" class="form-label fw-bold">Nom de l'équipement:</label>
+                            <label for="equipement" class="form-label fw-bold fs-5">Nom de l'équipement:</label>
                             <input
                                 type="text"
                                 class="form-control form-control-lg @error('equipement') is-invalid @enderror"
@@ -34,12 +34,12 @@
                             @enderror
                         </div>
 
-                        <!-- Boutons -->
+                        <!-- Buttons -->
                         <div class="d-flex justify-content-between mt-4">
-                            <a href="{{ route('equipements.index') }}" class="btn btn-secondary btn-lg">
+                            <a href="{{ route('equipements.index') }}" class="btn btn-secondary btn-sm py-3 px-2">
                                 <i class="bi bi-arrow-left me-2"></i> Retour
                             </a>
-                            <button type="submit" class="btn btn-warning btn-lg">
+                            <button type="submit" class="btn btn-warning btn-sm py-3 px-2">
                                 <i class="bi bi-pencil-square me-2"></i> Enregistrer
                             </button>
                         </div>

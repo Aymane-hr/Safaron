@@ -6,22 +6,8 @@
 
     <h1 class="mb-4 text-center text-primary fw-bold">📌 Liste des options</h1>
 
-    <!-- Display Flash Messages -->
-    @if(session('success'))
-        <script>
-            window.onload = function() {
-                showToast('success', '{{ session("success") }}');
-            };
-        </script>
-    @endif
 
-    @if(session('error'))
-        <script>
-            window.onload = function() {
-                showToast('error', '{{ session("error") }}');
-            };
-        </script>
-    @endif
+
 
     <!-- Bouton pour ajouter une nouvelle option -->
     <div class="d-flex justify-content-end mb-3">
@@ -37,7 +23,10 @@
         </div>
         <div class="card-body">
             @if($options->isEmpty())
-                <p class="text-muted text-center">🚀 Aucune option disponible.</p>
+                <div class="alert alert-info text-center py-4" role="alert">
+                    <i class="bi bi-info-circle-fill me-2"></i>
+                    🚀 Aucune option disponible. Ajoutez-en une maintenant !
+                </div>
             @else
                 <div class="table-responsive">
                     <table class="table table-hover align-middle text-center">
@@ -51,7 +40,7 @@
                         <tbody>
                             @foreach ($options as $option)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ ($options->currentPage() - 1) * $options->perPage() + $loop->iteration }}</td>
                                     <td class="fw-bold">{{ $option->option }}</td>
                                     <td>
                                         <a href="{{ route('options.edit', $option->id) }}" class="btn btn-warning btn-sm shadow">
@@ -107,6 +96,5 @@
             @endif
         </div>
     </div>
-
 
 @endsection
