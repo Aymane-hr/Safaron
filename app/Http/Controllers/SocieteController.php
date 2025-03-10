@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Societe;
 use App\Http\Requests\StoreSocieteRequest;
 use App\Http\Requests\UpdateSocieteRequest;
+use Illuminate\Support\Facades\DB;
 
 class SocieteController extends Controller
 {
@@ -70,7 +71,7 @@ class SocieteController extends Controller
         }
         $societe->update($formFields);
 
-        return redirect()->route("societes.index")->with("update", "votre societe est bien modifier");
+        return redirect()->route("societes.index")->with("success", "votre societe est bien modifier");
     }
 
     /**
@@ -79,6 +80,32 @@ class SocieteController extends Controller
     public function destroy(Societe $societe)
     {
         $societe->delete();
-        return redirect()->route("societes.index")->with("destroy", "votre societe est bien supprimer");
+        return redirect()->route("societes.index")->with("success", "votre societe est bien supprimer");
     }
+    public function showVoyageSociete(Societe $societe)
+    {
+        $voyages = DB::table('societes as s')
+            ->join('autocars as a', 's.id', '=', 'a.societe_id')
+            ->join('voyages as v', 'a.id', '=', 'v.autocar_id')
+            ->join('villes as vd', 'v.ville_depart_id', '=', 'vd.id')
+            ->join('villes as va', 'v.ville_arrivee_id', '=', 'va.id')
+            ->join('type_voyages as tv', 'v.type_voyage_id', '=', 'tv.id')
+            ->select(
+                's.*', // Select all columns from societes table
+                'a.*', // Select all columns from autocars table
+                'v.*', // Select all columns from voyages table
+                'vd.ville as departure_city',
+                'va.ville as arrival_city',
+                'tv.*' // Select all columns from type_voyages table
+            )
+            ->where('s.id', $societe->id) // Ensuring only voyages for the given societe are fetched
+            ->get();
+
+        return view('client.societes.showVoyageSociete.index', compact('societe', 'voyages'));
+    }
+
+
+
+
+
 }

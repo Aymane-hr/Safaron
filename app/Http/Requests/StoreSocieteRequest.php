@@ -29,7 +29,7 @@ class StoreSocieteRequest extends FormRequest
             'nom_contact' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
             'ice' => ['required', 'string', 'max:15'],
-            'logo' => ['nullable', 'image', 'mimes:png'],
+            'logo' => ['nullable', 'image', 'mimes:png,svg'],
         ];
     }
     public function messages(): array
@@ -44,7 +44,7 @@ class StoreSocieteRequest extends FormRequest
             'email.email' => 'L\'adresse email n\'est pas valide.',
             'ice.required' => 'Le champ ICE est obligatoire.',
             'logo.image' => 'Le logo doit être une image.',
-            'logo.mimes' => 'Les formats valides pour le logo sont png.',
+            'logo.mimes' => 'Les formats valides pour le logo sont png, svg.',
 
         ];
     }

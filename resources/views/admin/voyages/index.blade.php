@@ -44,7 +44,7 @@
                         <a href="{{ route('voyages.edit', $voyage->id) }}" class="btn btn-warning btn-sm">
                             <i class="bi bi-pencil"></i>
                         </a>
-                        <form action="{{ route('voyages.destroy', $voyage->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('voyages.destroy', $voyage->id) }}" onsubmit="confirmDelete(event, this)" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">

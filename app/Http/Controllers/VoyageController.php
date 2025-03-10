@@ -14,7 +14,7 @@ class VoyageController extends Controller
     public function index()
     {
         $voyages = Voyage::paginate(10);
-        return view('voyages.index', compact('voyages'));
+        return view('admin.voyages.index', compact('voyages'));
     }
 
     /**
@@ -22,7 +22,7 @@ class VoyageController extends Controller
      */
     public function create()
     {
-        return view('voyages.create');
+        return view('admin.voyages.create');
     }
 
     /**
@@ -42,7 +42,7 @@ class VoyageController extends Controller
      */
     public function show(Voyage $voyage)
     {
-        return view('voyages.show', compact('voyage'));
+        return view('admin.voyages.show', compact('voyage'));
     }
 
     /**
@@ -50,7 +50,7 @@ class VoyageController extends Controller
      */
     public function edit(Voyage $voyage)
     {
-        return view('voyages.edit', compact('voyage'));
+        return view('admin.voyages.edit', compact('voyage'));
     }
 
     /**

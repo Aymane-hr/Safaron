@@ -49,5 +49,25 @@
 <x-alert type="success" message="{{ session('success') }}" />
 @endif
 
+<script>
+    function confirmDelete(event, form) {
+        event.preventDefault(); // Prevents the form from submitting immediately
+
+        Swal.fire({
+            title: 'Êtes-vous sûr de vouloir supprimer?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Oui, supprimer!',
+            cancelButtonText: 'Annuler'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit(); // Submits the form if confirmed
+            }
+        });
+    }
+</script>
+
 
 <!--end::OverlayScrollbars Configure-->
