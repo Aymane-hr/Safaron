@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreReservationRequest extends FormRequest
+class AutocarOptionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +22,8 @@ class StoreReservationRequest extends FormRequest
     public function rules(): array
     {
         return [
-
+            'autocar_id' => 'required|exists:autocars,id',
+            'option_id' => 'required|exists:options,id',
         ];
-    }
-    public function messages()
-    {
-        return[];
     }
 }

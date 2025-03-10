@@ -1,59 +1,11 @@
-{{-- <x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout> --}}
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <!-- Meta Tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Your App Name</title>
+    <title>Connexion - Votre nom d'application</title>
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('assets\img\admin\logo.png') }}" type="image/x-icon">
@@ -86,8 +38,8 @@
                         <div class="card authentication-card">
                             <div class="card-header">
                                 <div class="text-center">
-                                    <h5 class="mb-1">Sign In</h5>
-                                    <p>Sign in to Start Manage Your Account</p>
+                                    <h5 class="mb-1">Se connecter</h5>
+                                    <p>Se connecter pour manager votre compte</p>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -96,13 +48,13 @@
 
                                     <!-- Email Field -->
                                     <div class="mb-3">
-                                        <label class="form-label">Email</label>
+                                        <label class="form-label">Adresse e-mail</label>
                                         <div class="input-icon">
                                             <span class="input-icon-addon">
                                                 <i class="isax isax-message"></i>
                                             </span>
                                             <input type="email" class="form-control form-control-lg" name="email"
-                                                placeholder="Enter Email" required autofocus>
+                                                placeholder="Entrer votre adresse e-mail" value="{{ old('email') }}" required autofocus>
 
                                         </div>
                                         <!-- Email Error Message -->
@@ -111,13 +63,13 @@
 
                                     <!-- Password Field -->
                                     <div class="mb-3">
-                                        <label class="form-label">Password</label>
+                                        <label class="form-label">Mot de passe</label>
                                         <div class="input-icon">
                                             <span class="input-icon-addon">
                                                 <i class="isax isax-lock"></i>
                                             </span>
                                             <input type="password" class="form-control form-control-lg pass-input"
-                                                name="password" placeholder="Enter Password" required>
+                                                name="password" placeholder="Entrer votre mot de passe" required>
                                             <span class="input-icon-addon toggle-password">
                                                 <i class="isax isax-eye-slash"></i>
                                             </span>
@@ -136,11 +88,12 @@
                                                     id="remembers_me">
                                                 <label class="form-check-label ms-2 text-gray-9 fs-14"
                                                     for="remembers_me">
-                                                    Remember Me
+                                                    Se souvenir de moi
                                                 </label>
                                             </div>
                                             <a href="{{ route('password.request') }}"
-                                                class="link-primary fw-medium fs-14 mb-2">Forgot Password?</a>
+                                                class="link-primary fw-medium fs-14 mb-2">Mot de passe oublié ?
+                                            </a>
                                         </div>
                                     </div>
 
@@ -148,14 +101,14 @@
                                     <div class="mb-3">
                                         <button type="submit"
                                             class="btn btn-xl btn-primary d-flex align-items-center justify-content-center w-100">
-                                            Login
+                                            Se connecter
                                         </button>
                                     </div>
 
                                     <!-- Sign Up Link -->
                                     <div class="d-flex justify-content-center">
-                                        <p class="fs-14">Don't you have an account? <a href="{{ route('register') }}"
-                                                class="link-primary fw-medium">Sign up</a></p>
+                                        <p class="fs-14">Vous n'avez pas de compte? <a href="{{ route('register') }}"
+                                                class="link-primary fw-medium">S'inscrire</a></p>
                                     </div>
                                 </form>
                             </div>
@@ -165,7 +118,7 @@
             </div>
         </div>
         <div class="coprright-footer">
-            <p class="fs-14">Copyright &copy; {{ date('Y') }}. All Rights Reserved, <a href="#"
+            <p class="fs-14">Copyright &copy; {{ date('Y') }}. Tous les droits réservés, <a href="#"
                     class="text-primary fw-medium">Safar</a></p>
         </div>
     </div>
@@ -188,3 +141,4 @@
 </body>
 
 </html>
+

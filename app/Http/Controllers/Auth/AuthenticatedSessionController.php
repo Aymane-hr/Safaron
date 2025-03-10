@@ -25,17 +25,17 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-       
+
         $request->authenticate();
 
         $request->session()->regenerate();
         $user = Auth::user();
         // dd(vars: $user->isadmin);
         if($user->isadmin == 1){
-            return redirect()->intended(route('admin', absolute: false));
+            return redirect()->intended(route('admin', absolute: false))->with('success', 'Conection réussie');
         }else{
 
-            return redirect()->intended(route('welcome', absolute: false));
+            return redirect()->intended(route('home', absolute: false))->with('success', 'Conection réussie');
         }
     }
 
@@ -50,6 +50,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/')->with('success', 'Deconnection réussie');
     }
 }
