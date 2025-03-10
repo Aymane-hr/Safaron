@@ -383,11 +383,16 @@
             // resetCheckboxes();
             reservedSeats=@json($reservedSeats);
             selectedCheckbox.parentElement.parentElement.classList.toggle('seat-selected');
-            selectedCheckbox.checked = true;
+            console.log(selectedCheckbox.checked);
+            if(selectedCheckbox.checked){
+                selectedCheckbox.checked = false;
+            }else{
+                selectedCheckbox.checked = true;
+            }
+            console.log(selectedCheckbox.checked);
             const checkboxes = document.querySelectorAll('input[type="checkbox"]');
             checkboxes.forEach(checkbox => {
                 const seatNumber = Number(checkbox.id.split('-')[1]);
-                console.log(checkbox !== selectedCheckbox, selectedCheckbox.checked);
                 if (checkbox !== selectedCheckbox && !reservedSeats.includes(seatNumber) ) {
                     checkbox.parentElement.parentElement.classList.remove('seat-selected')
                     checkbox.checked = false;
@@ -397,7 +402,7 @@
 
         function resetCheckboxes() {
         reservedSeats=@json($reservedSeats);
-        nbr_siege=@json($nbr_siege);     console.log(reservedSeats,nbr_siege);
+        nbr_siege=@json($nbr_siege); 
             const checkboxes = document.querySelectorAll('input[type="checkbox"]');
            for(let i=1;i<=nbr_siege;i++){
             if(reservedSeats.includes(i)){

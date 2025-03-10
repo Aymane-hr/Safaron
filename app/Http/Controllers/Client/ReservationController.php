@@ -59,12 +59,11 @@ class ReservationController extends Controller
 
         try {
             DB::beginTransaction();
-
             // 2) Create a Reservation
             //    - Map columns from $voyage
             //    - Use the first seat from $request->seats[0] (or loop if multiple)
             $reservation = Reservation::create([
-                'num_siege'         => $request->seats[0],
+                'num_siege'         => $request->seats[0] ,
                 'user_id'           => auth()->user()->id,
                 'mode_reglement_id' => $request->mode_reglement_id,
 
