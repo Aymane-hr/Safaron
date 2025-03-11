@@ -37,7 +37,7 @@ class ReservationController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         // 1) Find the Voyage
         $voyage = Voyage::findOrFail($request->voyage_id);
 
