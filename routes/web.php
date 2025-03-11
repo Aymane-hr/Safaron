@@ -49,6 +49,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/client/create/reservation', [App\Http\Controllers\Client\ReservationController::class, 'create'])->name('client.create.reservation');
     Route::post('/client/store', [App\Http\Controllers\Client\ReservationController::class, 'store'])->name('client.store');
 
+    Route::get('/client/profile/reservations', [App\Http\Controllers\Client\Profile\ReservationController::class, 'index'])->name('client.profile.reservations.index');
+    Route::get('/client/profile/dashboard', [App\Http\Controllers\Client\Profile\DashboardController::class, 'index'])->name('client.profile.dashboard.index');
+
+
     // ======= Admin routes =======
     Route::middleware('admin')->group(function () {
         Route::get('/admin', function () {return view('admin.Layout.app');})->name('admin');
