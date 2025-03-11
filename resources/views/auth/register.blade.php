@@ -9,7 +9,7 @@
             <div class="w-100 overflow-hidden position-relative flex-wrap d-block vh-100">
                 <div class="row justify-content-center align-items-center vh-100 overflow-auto flex-wrap ">
                     <div class="col-xxl-4 col-lg-6 col-md-6 col-11 mx-auto">
-                        <div class="p-4 text-center">
+                        <div class="p-4 d-flex  justify-content-center">
                             <img src="{{ asset('assets/img/admin/logo.png') }}" style="width: 100px" alt="logo" class="img-fluid">
                         </div>
                         <div class="card authentication-card">
