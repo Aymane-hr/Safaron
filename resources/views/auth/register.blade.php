@@ -1,56 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription - Safar</title>
-
-    <meta name="description"
-        content="Créez votre compte DreamsTour. Un modèle HTML Bootstrap 5 pour les agences de voyage et les plateformes de réservation.">
-    <meta name="keywords"
-        content="modèle de réservation de voyage, DreamsTour, inscription, template Bootstrap 5, modèle HTML, agence de voyage, réservation de vol, réservation d'hôtel, réservation de tour, package de vacances, site web d'agence de voyage">
-    <meta name="author" content="Dreams Technologies">
-    <meta name="robots" content="index, follow">
-
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/apple-touch-icon.png') }}">
-
-    <!-- Favicon -->
-    <link rel="icon" href="{{ asset('assets/img/favicon.png') }}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}" type="image/x-icon">
-
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-
-    <!-- Main.css -->
-    <link rel="stylesheet" href="{{ asset('assets/css/meanmenu.css') }}">
-
-    <!-- Tabler Icon CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/plugins/tabler-icons/tabler-icons.css') }}">
-
-    <!-- Fontawesome Icon CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/all.min.css') }}">
-
-    <!-- Owlcarousel CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/plugins/owlcarousel/owl.carousel.min.css') }}">
-
-    <!-- Rangeslider CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/plugins/ion-rangeslider/css/ion.rangeSlider.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/plugins/ion-rangeslider/css/ion.rangeSlider.min.css') }}">
-
-    <!-- Iconsax CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/iconsax.css') }}">
-
-    <!-- Datepicker CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}">
-
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-
-</head>
-
-<body class="bg-light-200">
+    <x-guest-layout>
 
     <!-- Main Wrapper -->
     <div class="main-wrapper authentication-wrapper">
@@ -143,40 +92,9 @@
             <!-- /Register -->
 
         </div>
-        <div class="coprright-footer">
-            <p class="fs-14">Copyright &copy; 2025. Tous droits réservés, <a href="javascript:void(0);" class="text-primary fw-medium">Safar</a>
-            </p>
-        </div>
+
     </div>
     <!-- /Main Wrapper -->
 
-    <!-- Cursor -->
-    <div class="xb-cursor tx-js-cursor">
-        <div class="xb-cursor-wrapper">
-            <div class="xb-cursor--follower xb-js-follower"></div>
-        </div>
-    </div>
-    <!-- /Cursor -->
-
-    <!-- Jquery JS -->
-    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
-
-    <!-- Bootstrap JS -->
-    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-
-    <!-- Wow JS -->
-    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
-
-    <!-- MeanMenu Js -->
-    <script src="{{ asset('assets/js/jquery.meanmenu.min.js') }}"></script>
-
-    <!-- Datepicker Core JS -->
-    <script src="{{ asset('assets/plugins/moment/moment.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
-
-    <!-- cursor JS -->
-    <script src="{{ asset('assets/js/cursor.js') }}"></script>
-
-    <!-- Script JS -->
-    <script src="{{ asset('assets/js/script.js') }}"></script>
+    </x-guest-layout>
 
