@@ -1,48 +1,44 @@
-// console.log('reservation');
-
-let Frais = document.getElementById('Frais');
-let Frais1 = document.getElementById('Frais1');
+let Frais = document.getElementById('Frais')
 let Travel_Type = document.getElementById('Travel_Type')
 let Amount = document.getElementById('Amount')
+let prixInput = document.getElementById('prix')
 
-let N_Seat = document.getElementById('N_Seat')
-let N_Seat1 = document.getElementById('N_Seat1')
+let N_Seat = document.getElementById('N_Seat');
+let N_Seat1 = document.getElementById('N_Seat1');
+
+let basePrice = parseFloat(prixInput.value) || 0
 
 N_Seat1.onchange = () => {
-    N_Seat.innerHTML = N_Seat1.value
-}
-
+    N_Seat.innerHTML = N_Seat1.value;
+};
 
 Travel_Type.onchange = () => {
+    let fraisValue = 0;
 
-    if (Travel_Type.value == 1) {
-        Frais.innerHTML = 0 + 'Dh'
-        Amount.innerHTML = parseFloat(Frais.innerHTML) + Number(document.getElementById('prix').value) + 'Dh'        
-        document.getElementById('Type_v').innerHTML = 'comfort'
-        document.getElementById('prix').value = parseFloat(Amount.innerHTML);
-
+    if (Travel_Type.value == "1") {
+        fraisValue = 50;
+        document.getElementById('Type_v').innerHTML = 'Comfort';
+    } 
+    else if (Travel_Type.value == "2") {
+        fraisValue = 100
+        document.getElementById('Type_v').innerHTML = 'Premium';
     }
-    else if (Travel_Type.value == 2) {
-        Frais.innerHTML = 50 + 'Dh'
-        Frais1.value = parseInt(Frais.innerHTML)
-        Amount.innerHTML = parseFloat(Frais.innerHTML) + Number(document.getElementById('prix').value) + 'Dh'
-        // console.log(Travel_Type.value)
-        document.getElementById('Type_v').innerHTML = 'premium'
-        document.getElementById('prix').value = parseFloat(Amount.innerHTML);
 
-    }
-    // console.log(document.getElementById('prix').value)
-}
+    Frais.innerHTML = fraisValue + 'Dh';
 
+    let totalAmount = basePrice + fraisValue
 
+    Amount.innerHTML = totalAmount + 'Dh'
+    prixInput.value = totalAmount
+};
 
-let date_depart = document.getElementById('date_depart').value;
-let date_arrivee = document.getElementById('date_arrivee').value;
-let heure_depart = document.getElementById('heure_depart').value;
-let heure_arrivee = document.getElementById('heure_arrivee').value;
+let date_depart = document.getElementById('date_depart')
+let date_arrivee = document.getElementById('date_arrivee')
+let heure_depart = document.getElementById('heure_depart')
+let heure_arrivee = document.getElementById('heure_arrivee')
 
+document.getElementById('date_depart1').innerHTML =
+    new Date(date_depart.value).toDateString() + ' At ' + heure_depart.value;
 
-document.getElementById('date_depart1').innerHTML = new Date(date_depart).toDateString() + ' At ' + heure_depart
-document.getElementById('date_arrivee1').innerHTML = new Date(date_arrivee).toDateString() + ' At ' + heure_arrivee
-
-// console.log(heure_depart)
+document.getElementById('date_arrivee1').innerHTML =
+    new Date(date_arrivee.value).toDateString() + ' At ' + heure_arrivee.value;

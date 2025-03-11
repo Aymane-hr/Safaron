@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 class ReservationController extends Controller
 {
     public function create(Request $request){
-        $SelectedVoyage = DB::table('voyages')->find(6); //replace 1 by voyage id selected
+        $SelectedVoyage = DB::table('voyages')->find(2); //replace 1 by voyage id selected
         // dd($SelectedVoyage);
 
         $autocar = DB::table('autocars')->find($SelectedVoyage->autocar_id);
