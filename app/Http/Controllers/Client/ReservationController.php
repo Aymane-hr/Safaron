@@ -24,7 +24,7 @@ class ReservationController extends Controller
         return view('client.reservations.index', compact('voyage', 'equipements'));
     }
     public function create(Request $request){
-        $SelectedVoyage = DB::table('voyages')->find(1); //replace 1 by voyage id selected
+        $SelectedVoyage = DB::table('voyages')->find(6); //replace 1 by voyage id selected
         // dd($SelectedVoyage);
 
         $autocar = DB::table('autocars')->find($SelectedVoyage->autocar_id);
