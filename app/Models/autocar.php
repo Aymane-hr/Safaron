@@ -12,9 +12,14 @@ class autocar extends Model
     public function societe(){
         return $this->belongsTo(Societe::class);
     }
-    
+
     public function voyages(){
         return $this->hasMany(Voyage::class);
+    }
+
+    public function equipements()
+    {
+        return $this->belongsToMany(Equipement::class, 'autocar_equipements', 'autocar_id', 'equipement_id');
     }
 
 }

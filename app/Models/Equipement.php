@@ -10,5 +10,11 @@ class Equipement extends Model
     protected $guarded = ['id'];
     public function autocars()
     {
-        return $this->hasMany(Autocar::class);}
+        return $this->hasMany(Autocar::class);
+    }
+
+    public function autocarEquipements()
+    {
+        return $this->belongsToMany(Autocar::class, 'autocar_equipements', 'equipement_id', 'autocar_id');
+    }
 }

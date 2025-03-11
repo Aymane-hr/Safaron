@@ -33,12 +33,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-12">
-                    <h2 class="breadcrumb-title mb-2">Flight Details</h2>
+                    <h2 class="breadcrumb-title mb-2">Détails de voyage</h2>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center mb-0">
                             <li class="breadcrumb-item"><a href="index-2.html"><i class="isax isax-home5"></i></a></li>
-                            <li class="breadcrumb-item">Flight</li>
-                            <li class="breadcrumb-item active" aria-current="page">Flight Details</li>
+                            <li class="breadcrumb-item">Voyage</li>
+                            <li class="breadcrumb-item active" aria-current="page">Détails de l'voyage</li>
                         </ol>
                     </nav>
                 </div>
@@ -77,53 +77,66 @@
                         <div class="card-body pb-1">
                             <h5 class="d-flex align-items-center fs-18 mb-3">
                                 <span class="avatar avatar-md rounded-circle bg-primary me-2"><i
-                                        class="isax isax-airplane5"></i></span>
-                                Flight Information
+                                        class="isax isax-bus5"></i></span>
+                                Informations de voyage
                             </h5>
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 col-sm-6">
                                     <div class="mb-3">
-                                        <h6 class="mb-1">Launched On</h6>
-                                        <p>25 May 2025 </p>
+                                        <h6 class="mb-1">Date de départ</h6>
+                                        <p>{{ $voyage->date_depart }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6">
                                     <div class="mb-3">
-                                        <h6 class="mb-1">Length</h6>
-                                        <p>35 M</p>
+                                        <h6 class="mb-1">Date d'arrivée</h6>
+                                        <p>{{ $voyage->date_arrivee }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6">
                                     <div class="mb-3">
-                                        <h6 class="mb-1">Staffs</h6>
-                                        <p>200</p>
+                                        <h6 class="mb-1">Heure de départ</h6>
+                                        <p>{{ $voyage->heure_depart }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6">
                                     <div class="mb-3">
-                                        <h6 class="mb-1">Beam</h6>
-                                        <p>200 ft</p>
+                                        <h6 class="mb-1">Heure d'arrivée</h6>
+                                        <p>{{ $voyage->heure_arrivee }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6">
                                     <div class="mb-3">
-                                        <h6 class="mb-1">Weight</h6>
-                                        <p>8000 grt</p>
+                                        <h6 class="mb-1">Ville de départ</h6>
+                                        <p>{{ $voyage->villeDepart->ville }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6">
                                     <div class="mb-3">
-                                        <h6 class="mb-1">Dining Crew</h6>
-                                        <p>12</p>
+                                        <h6 class="mb-1">Ville d'arrivée</h6>
+                                        <p>{{ $voyage->villeArrivee->ville }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6">
                                     <div class="mb-3">
-                                        <h6 class="mb-1">Speed</h6>
-                                        <p>80.6 knots</p>
+                                        <h6 class="mb-1">Autocar</h6>
+                                        <p>ID: {{ $voyage->autocar_id }}</p>
+                                    </div>
+                                </div>
+                                {{-- <div class="col-lg-3 col-md-4 col-sm-6">
+                                    <div class="mb-3">
+                                        <h6 class="mb-1">Type de voyage</h6>
+                                        <p>{{ $voyage->type_voyage }}</p>
+                                    </div>
+                                </div> --}}
+                                <div class="col-lg-3 col-md-4 col-sm-6">
+                                    <div class="mb-3">
+                                        <h6 class="mb-1">Prix</h6>
+                                        <p>{{ $voyage->prix }} DH</p>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <div class="accordion custom-accordion accordion-shadow-none">
@@ -131,7 +144,7 @@
                             <div class="accordion-header">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#accordion_collapse_three" aria-expanded="true">
-                                    Amenities
+                                    Équipements
                                 </button>
                             </div>
                             <div id="accordion_collapse_three" class="accordion-collapse collapse show">
@@ -139,116 +152,12 @@
                                     <div class="row">
                                         <div class="col-lg-4 col-md-6">
                                             <div class="mb-3">
-                                                <h6 class="mb-2">Dining Options</h6>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Room Service</p>
-                                                </div>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Cafés and Bakeries</p>
-                                                </div>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Specialty Restaurants</p>
-                                                </div>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Buffet Restaurants</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <h6 class="mb-2">Entertainment</h6>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Live Shows</p>
-                                                </div>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Movie Theaters</p>
-                                                </div>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Nightclubs & Bars</p>
-                                                </div>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Casino</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <h6 class="mb-2">Sports & Fitness</h6>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Pools</p>
-                                                </div>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Fitness Centers</p>
-                                                </div>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Sports Courts</p>
-                                                </div>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Rock Climbing Walls</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <h6 class="mb-2">Wellness & Relaxation</h6>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Spas</p>
-                                                </div>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Thermal Suites</p>
-                                                </div>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Adult-Only Retreats</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <h6 class="mb-2">Family & Kids</h6>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Kids' Clubs</p>
-                                                </div>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Arcades</p>
-                                                </div>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Water Parks</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                <h6 class="mb-2">Accommodations</h6>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Cabins</p>
-                                                </div>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Private Balconies</p>
-                                                </div>
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                    <p>Concierge and Butler Service</p>
-                                                </div>
+                                                @foreach($equipements as $equipement)
+                                                    <div class="d-flex align-items-center mb-2">
+                                                        <i class="isax isax-verify text-primary me-2 fs-16"></i>
+                                                        <p>{{ $equipement->equipement }}</p>
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
@@ -273,7 +182,7 @@
                                 <span class="btn btn-outline-light flex-fill"><span class="icon-rotate-down me-2"><i
                                             class="isax isax-airplane"></i></span>{{ $voyage->villeArrivee->ville }}</span>
                             </div>
-                            <h5 class="fs-18 mb-3">Check Availability</h5>
+                            <h5 class="fs-18 mb-3">Vérifier la disponibilité</h5>
                             <div class="banner-form">
                                 <form action="{{ route('client.reservations.store') }}" method="POST"
                                     class="form-info border-0">
@@ -326,7 +235,7 @@
                                     <div class="card shadow-none mb-3">
                                         <div class="card-body p-3 pb-0">
                                             <div class="border-bottom pb-2 mb-2">
-                                                <h6 onclick="resetCheckboxes()">Seat Selection</h6>
+                                                <h6 onclick="resetCheckboxes()">Sélection de siège</h6>
                                             </div>
                                             <div class="row">
                                                 @php
@@ -350,7 +259,7 @@
                                                                     @if (in_array($i, $reservedSeats)) disabled @endif
                                                                     class="d-none" value="{{ $i }}"
                                                                     onclick="toggleCheckboxes(this);"
-                                                                    
+
                                                                     >
                                                                 <i class="fa fa-bus-alt"></i>
                                                                 <small class="ms-1">{{ $i }}</small>
@@ -366,7 +275,7 @@
                                     <!-- Submit Button -->
                                     <button type="submit"
                                         class="btn btn-primary btn-lg search-btn ms-0 w-100 mb-3 fs-14">
-                                        Book Now
+                                        Réserver Maintenant
                                     </button>
                                 </form>
 
@@ -384,7 +293,7 @@
             reservedSeats=@json($reservedSeats);
             selectedCheckbox.parentElement.parentElement.classList.toggle('seat-selected');
             console.log(selectedCheckbox.checked);
-          
+
             const checkboxes = document.querySelectorAll('input[type="checkbox"]');
             checkboxes.forEach(checkbox => {
                 const seatNumber = Number(checkbox.id.split('-')[1]);
@@ -397,7 +306,7 @@
 
         function resetCheckboxes() {
         reservedSeats=@json($reservedSeats);
-        nbr_siege=@json($nbr_siege); 
+        nbr_siege=@json($nbr_siege);
             const checkboxes = document.querySelectorAll('input[type="checkbox"]');
            for(let i=1;i<=nbr_siege;i++){
             if(reservedSeats.includes(i)){
@@ -408,7 +317,7 @@
             checkbox.checked = false;
             checkbox.parentElement.parentElement.classList.remove('seat-selected');
            }
-    
+
         }
     </script>
 </x-app-layout>
