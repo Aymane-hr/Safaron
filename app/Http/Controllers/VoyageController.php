@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Models\Voyage;
+use App\Models\Ville;
 use App\Http\Requests\StoreVoyageRequest;
 use App\Http\Requests\UpdateVoyageRequest;
 
@@ -14,7 +15,7 @@ class VoyageController extends Controller
     public function index()
     {
         $voyages = Voyage::paginate(10);
-        return view('voyages.index', compact('voyages'));
+        return view('admin.voyages.index', compact('voyages'));
     }
 
     /**
@@ -22,7 +23,7 @@ class VoyageController extends Controller
      */
     public function create()
     {
-        return view('voyages.create');
+        return view('admin.voyages.create');
     }
 
     /**
@@ -42,7 +43,7 @@ class VoyageController extends Controller
      */
     public function show(Voyage $voyage)
     {
-        return view('voyages.show', compact('voyage'));
+        return view('admin.voyages.show', compact('voyage'));
     }
 
     /**
@@ -50,7 +51,7 @@ class VoyageController extends Controller
      */
     public function edit(Voyage $voyage)
     {
-        return view('voyages.edit', compact('voyage'));
+        return view('admin.voyages.edit', compact('voyage'));
     }
 
     /**
@@ -73,4 +74,53 @@ class VoyageController extends Controller
         $voyage->delete();
         return redirect()->route("voyages.index")->with("destroy", "Votre voyage a été supprimé avec succès.");
     }
+    public function rechercher(Request $request)
+{
+    // dd($request->all());
+    // $voyages = Voyage::query();
+
+    $voyages=Voyage::where(function($query) use ($request){
+        $query->where('ville_depart_id', $request->ville_depart_id)
+        ->where('ville_arrivee_id', $request->ville_arrivee_id)
+        ->where('date_depart', $request->date_depart)
+        ->where('date_arrivee', $request->date_arrivee);
+    })->get();
+
+
+
+    // Filtrer par ville de départ
+    // if ($request->filled('ville_depart_id')) {
+    //     $voyages->where('ville_depart_id', $request->ville_depart_id);
+    // }
+
+
+
+    // // Filtrer par ville d’arrivée
+    // if ($request->filled('ville_arrivee_id')) {
+    //     $voyages->where('ville_arrivee_id', $request->ville_arrivee_id);
+    // }
+
+    // // Filtrer par date de départ
+    // if ($request->filled('date_depart')) {
+    //     $voyages->whereDate('date_depart', $request->date_depart);
+    // }
+
+    // // Filtrer par date d’arrivée
+    // if ($request->filled('date_arrivee')) {
+    //     $voyages->whereDate('date_arrivee', $request->date_arrivee);
+    // }
+
+    // Vérifier s'il y a assez de places disponibles
+    // if ($request->filled('nombre_personnes')) {
+    //     $voyages->whereHas('autocar', function ($query) use ($request) {
+    //         $query->where('nbr_siege', '>=', $request->nombre_personnes);
+    //     });
+    // }
+
+    // Exécuter la requête et récupérer les résultats
+    // $voyages = $voyages->get();
+    $villes = Ville::all();
+
+    return view('client.voyages.listevoyage', compact('voyages'));
+} 
 }

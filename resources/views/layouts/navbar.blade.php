@@ -405,24 +405,24 @@
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end p-3">
                                         <li>
-                                            <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="dashboard.html">Dashboard</a>
+                                            <a href="{{route('client.profile.dashboard.index')}}" class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="dashboard.html">Dashboard</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="customer-hotel-booking.html">My Booking</a>
+                                            <a href="{{route('client.profile.reservations.index')}}" class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="customer-hotel-booking.html">Mes reservations</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="my-profile.html">My Profile</a>
+                                            <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="my-profile.html">Mon profil</a>
                                         </li>
                                         <li>
                                             <hr class="dropdown-divider my-2">
                                         </li>
                                         <li>
-                                            <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="profile-settings.html">Settings</a>
+                                            <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="profile-settings.html">Paramètres</a>
                                         </li>
                                         <li>
                                             <form method="POST" action="{{ route('logout') }}">
                                                 @csrf
-                                                <button type="submit" class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="login.html">Logout</button>
+                                                <button type="submit" class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="login.html">Déconnexion</button>
                                             </form>
                                         </li>
                                     </ul>

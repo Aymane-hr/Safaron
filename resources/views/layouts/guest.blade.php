@@ -13,18 +13,69 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+
+
+
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('assets\img\admin\logo.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('assets\img\admin\logo.png') }}" type="image/x-icon">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/all.min.css') }}">
+
+    <!-- Iconsax CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/iconsax.css') }}">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     </head>
     <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+
+            <div >
                 {{ $slot }}
             </div>
-        </div>
+
+
+            <div class="coprright-footer">
+                <p class="fs-14">Copyright &copy; 2025. Tous droits réservés, <a href="javascript:void(0);" class="text-primary fw-medium">Safar</a>
+                </p>        </div>
+    <!-- Scripts -->
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/script.js') }}"></script>
+
+    
+       <!-- Toggle Password Visibility -->
+       {{-- <script>
+        document.querySelector('.toggle-password').addEventListener('click', function() {
+            const passwordInput = document.querySelector('.pass-input');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.querySelector('i').classList.toggle('isax-eye');
+            this.querySelector('i').classList.toggle('isax-eye-slash');
+        });
+    </script> --}}
+
+
+    <script>
+        document.querySelectorAll('.toggle-password').forEach(function(toggle) {
+            toggle.addEventListener('click', function() {
+                // Find the closest input field relative to the clicked toggle button
+                const passwordInput = this.closest('.input-icon').querySelector('.pass-input');
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+
+                // Toggle the eye icon
+                this.querySelector('i').classList.toggle('isax-eye');
+                this.querySelector('i').classList.toggle('isax-eye-slash');
+            });
+        });
+    </script>
     </body>
 </html>
