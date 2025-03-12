@@ -19,11 +19,11 @@
                                 <div class="row g-3">
                                     <div class="col-lg-4">
                                         <h6 class="fs-14">Départ</h6>
-                                        <p class="text-gray-6 fs-16">{{ $reservation->villeDepart->nom }} - {{ $reservation->date_depart }} à {{ $reservation->heure_depart }}</p>
+                                        <p class="text-gray-6 fs-16">{{ $reservation->villeDepart->ville }} - {{ $reservation->date_depart }} à {{ $reservation->heure_depart }}</p>
                                     </div>
                                     <div class="col-lg-4">
                                         <h6 class="fs-14">Arrivée</h6>
-                                        <p class="text-gray-6 fs-16">{{ $reservation->villeArrivee->nom }} - {{ $reservation->date_arrivee }} à {{ $reservation->heure_arrivee }}</p>
+                                        <p class="text-gray-6 fs-16">{{ $reservation->villeArrivee->ville }} - {{ $reservation->date_arrivee }} à {{ $reservation->heure_arrivee }}</p>
                                     </div>
                                     <div class="col-lg-4">
                                         <h6 class="fs-14">Numéro de siège</h6>

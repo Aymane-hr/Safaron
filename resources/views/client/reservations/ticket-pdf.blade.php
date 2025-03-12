@@ -56,8 +56,8 @@
         <div class="ticket-info">
             <p class="info-item"><strong>Nom :</strong> {{ auth()->user()->name }}</p>
             <p class="info-item"><strong>ID du billet :</strong> {{ $reservation->id }}</p>
-            <p class="info-item"><strong>Départ :</strong> {{ $reservation->departure_city }}</p>
-            <p class="info-item"><strong>Arrivée :</strong> {{ $reservation->arrival_city }}</p>
+            <p class="info-item"><strong>Départ :</strong> {{ $reservation->villeDepart->ville }}</p>
+            <p class="info-item"><strong>Arrivée :</strong> {{ $reservation->villeArrivee->ville }}</p>
             <p class="info-item"><strong>Date et heure :</strong> {{ $reservation->date_depart }} à {{ $reservation->heure_depart }}</p>
             <p class="info-item"><strong>Siège :</strong> {{ $reservation->num_siege }}</p>
             <p class="info-item"><strong>Prix :</strong> {{ $reservation->price }} DH</p>

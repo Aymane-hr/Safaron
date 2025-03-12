@@ -133,11 +133,11 @@
                                         <td>{{$reservation->prix}}</td>
                                         <td>{{$reservation->date_reservation}}</td>
                                         <td>
-                                            <span class="badge badge-info rounded-pill d-inline-flex align-items-center fs-10"><i class="fa-solid fa-circle fs-5 me-1"></i>Upcoming</span>
+                                            <span class="badge badge-success rounded-pill d-inline-flex align-items-center fs-10"><i class="fa-solid fa-circle fs-5 me-1"></i>Confirmé</span>
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#upcoming"><i class="isax isax-eye"></i></a>
+                                                <a href="{{route('ticket.show', $reservation->id)}}"><i class="isax isax-eye"></i></a>
                                             </div>
                                         </td>
                                     </tr>
