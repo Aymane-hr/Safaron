@@ -18,18 +18,21 @@ class ReservationController extends Controller
     public function index($id)
     {
         $voyage=Voyage::find($id);
-        return view('client.reservations.index', compact('voyage'));
+        // dd($voyage);
+        $equipements = $voyage->autocar->equipements;
+
+        return view('client.reservations.index', compact('voyage', 'equipements'));
     }
     public function create(Request $request){
         $SelectedVoyage = DB::table('voyages')->find(6); //replace 1 by voyage id selected
         // dd($SelectedVoyage);
 
         $autocar = DB::table('autocars')->find($SelectedVoyage->autocar_id);
-        // dd($autocar->image); 
+        // dd($autocar->image);
 
 
-        $v_d = DB::table('villes')->find($SelectedVoyage->ville_depart_id); 
-        $v_a = DB::table('villes')->find($SelectedVoyage->ville_arrivee_id); 
+        $v_d = DB::table('villes')->find($SelectedVoyage->ville_depart_id);
+        $v_a = DB::table('villes')->find($SelectedVoyage->ville_arrivee_id);
         // dd($voyage);
         $villes = Ville::all();
         $type_voyages = TypeVoyage::all();
@@ -60,7 +63,7 @@ class ReservationController extends Controller
         try {
             DB::beginTransaction();
 
-            
+
 
             // 2) Create a Reservation
             //    - Map columns from $voyage

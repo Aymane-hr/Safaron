@@ -33,4 +33,9 @@ class Reservation extends Model
     {
         return $this->belongsTo(ModeReglement::class);
     }
+
+    public function autocar()
+    {
+        return $this->belongsTo(Autocar::class);
+    }
 }
