@@ -49,8 +49,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/client/create/reservation', [App\Http\Controllers\Client\ReservationController::class, 'create'])->name('client.create.reservation');
     Route::post('/client/store', [App\Http\Controllers\Client\ReservationController::class, 'store'])->name('client.store');
 
+    Route::get('/ticket/{id}', [App\Http\Controllers\Client\ReservationController::class, 'show'])->name('ticket.show');
+    Route::get('/ticket/{id}/download', [App\Http\Controllers\Client\ReservationController::class, 'download'])->name('ticket.download');
+
     Route::get('/client/profile/reservations', [App\Http\Controllers\Client\Profile\ReservationController::class, 'index'])->name('client.profile.reservations.index');
     Route::get('/client/profile/dashboard', [App\Http\Controllers\Client\Profile\DashboardController::class, 'index'])->name('client.profile.dashboard.index');
+
 
 
     // ======= Admin routes =======
