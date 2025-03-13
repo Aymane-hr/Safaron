@@ -7,7 +7,7 @@
             <div class="profile-content rounded-pill">
                 <div class="d-flex align-items-center justify-content-between">
                     <div class=" d-flex align-items-center justify-content-center">
-                        <img src="assets/img/users/user-01.jpg" alt="image" class="img-fluid avatar avatar-lg rounded-circle me-1">
+                        <img src="{{asset('assets/img/users/user-01.jpg')}}" alt="image" class="img-fluid avatar avatar-lg rounded-circle me-1">
                         <div>
                             <h6 class="fs-16">{{ $name }}</h6>
                             <span class="fs-14 text-gray-6">Depuis le 10 mai</span>
@@ -15,7 +15,7 @@
                     </div>
                     <div>
                         <div class="d-flex align-items-center justify-content-center">
-                            <a href="profile-settings.html" class="p-1 rounded-circle btn btn-light d-flex align-items-center justify-content-center"></a>
+                            <a href="{{ route('client.profile.parametres.index') }}" class="p-1 rounded-circle btn btn-light d-flex align-items-center justify-content-center"></a>
                         </div>
                     </div>
                 </div>
@@ -36,26 +36,8 @@
                         <i class="isax isax-calendar-tick5"></i>
                         <span>Mes reservations</span>
                     </a>
-                    {{-- <ul>
-                        <li>
-                            <a href="flight-booking.html" class="fs-14 d-inline-flex align-items-center active">Vols</a>
-                        </li>
-                        <li>
-                            <a href="customer-hotel-booking.html" class="fs-14 d-inline-flex align-items-center ">H
-                        </li>
-                        <li>
-                            <a href="customer-car-booking.html" class="fs-14 d-inline-flex align-items-center ">Voitures</a>
-                        </li>
-                        <li>
-                            <a href="customer-cruise-booking.html" class="fs-14 d-inline-flex align-items-center ">Croisi
-                        </li>
-                        <li>
-                            <a href="customer-tour-booking.html" class="fs-14 d-inline-flex align-items-center ">Visites</a>
-                        </li>
-
-                    </ul> --}}
                 </li>
-                <li>
+                {{-- <li>
                     <a href="review.html" class="d-flex align-items-center">
                         <i class="isax isax-magic-star5"></i> Mes Avis
                     </a>
@@ -80,30 +62,30 @@
                     <a href="payment.html" class="d-flex align-items-center">
                         <i class="isax isax-money-recive5"></i> Paiements
                     </a>
-                </li>
+                </li> --}}
                 <li>
                     <span class="fs-14 text-gray-3 fw-medium mb-2">Compte</span>
                 </li>
                 <li>
-                    <a href="my-profile.html" class="d-flex align-items-center">
+                    <a href="{{ route('client.profile.monprofile.index') }}" class="d-flex align-items-center @if(request()->routeIs('client.profile.monprofile.*')) active @endif">
                         <i class="isax isax-profile-tick5"></i> Mon Profile
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <div class="message-content">
                         <a href="notification.html" class="d-flex align-items-center">
                             <i class="isax isax-notification-bing5"></i> Notifications
                         </a>
                         <span class="msg-count bg-purple rounded-circle">05</span>
                     </div>
-                </li>
+                </li> --}}
                 <li>
-                    <a href="profile-settings.html" class="d-flex align-items-center">
+                    <a href="{{ route('client.profile.parametres.index') }}" class="d-flex align-items-center @if(request()->routeIs('client.profile.parametres.*')) active @endif">
                         <i class="isax isax-setting-25"></i> Paramètres
                     </a>
                 </li>
                 <li>
-                    <a href="index-2.html" class="d-flex align-items-center pb-0">
+                    <a href="{{ route('logout') }}" class="d-flex align-items-center pb-0">
                         <i class="isax isax-logout-15"></i> Déconnexion
                     </a>
                 </li>

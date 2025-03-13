@@ -411,13 +411,13 @@
                                             <a href="{{route('client.profile.reservations.index')}}" class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="customer-hotel-booking.html">Mes reservations</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="my-profile.html">Mon profil</a>
+                                            <a href="{{ route('client.profile.monprofile.index') }}" class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="my-profile.html">Mon profil</a>
                                         </li>
                                         <li>
                                             <hr class="dropdown-divider my-2">
                                         </li>
                                         <li>
-                                            <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="profile-settings.html">Paramètres</a>
+                                            <a href="{{ route('client.profile.parametres.index') }}" class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="profile-settings.html">Paramètres</a>
                                         </li>
                                         <li>
                                             <form method="POST" action="{{ route('logout') }}">

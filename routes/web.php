@@ -54,6 +54,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/client/profile/reservations', [App\Http\Controllers\Client\Profile\ReservationController::class, 'index'])->name('client.profile.reservations.index');
     Route::get('/client/profile/dashboard', [App\Http\Controllers\Client\Profile\DashboardController::class, 'index'])->name('client.profile.dashboard.index');
+    Route::get('/client/profile/parametres', [App\Http\Controllers\Client\Profile\ParametreController::class, 'index'])->name('client.profile.parametres.index');
+    Route::get('/client/profile/monprofile', [App\Http\Controllers\Client\Profile\MonprofileController::class, 'index'])->name('client.profile.monprofile.index');
 
 
 
