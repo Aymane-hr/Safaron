@@ -60,8 +60,8 @@
             <p class="info-item"><strong>Arrivée :</strong> {{ $reservation->villeArrivee->ville }}</p>
             <p class="info-item"><strong>Date et heure :</strong> {{ $reservation->date_depart }} à {{ $reservation->heure_depart }}</p>
             <p class="info-item"><strong>Siège :</strong> {{ $reservation->num_siege }}</p>
-            <p class="info-item"><strong>Prix :</strong> {{ $reservation->price }} DH</p>
-            <p class="info-item"><strong>Mode de paiement :</strong> {{ $reservation->payment_method }}</p>
+            <p class="info-item"><strong>Prix :</strong> {{ $reservation->prix }} DH</p>
+            <p class="info-item"><strong>Mode de paiement :</strong> {{ $reservation->modeReglement->mode_reglement }}</p>
         </div>
 
         <div class="footer">
