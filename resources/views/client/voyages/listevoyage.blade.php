@@ -94,12 +94,12 @@
                     <div class="d-flex align-items-center justify-content-between flex-wrap">
                         <h6 class="mb-3">Trouvez votre voyages</h6>
                         <div class="d-flex align-items-center flex-wrap">
-                            <div class="list-item d-flex align-items-center mb-3">
+                            {{-- <div class="list-item d-flex align-items-center mb-3">
                                 <a href="flight-grid.html" class="list-icon me-2"><i
                                         class="isax isax-grid-1"></i></a>
                                 <a href="flight-list.html" class="list-icon active me-2"><i
                                         class="isax isax-firstline"></i></a>
-                            </div>
+                            </div> --}}
                             {{--<div class="dropdown mb-3">
                                 <a href="javascript:void(0);" class="dropdown-toggle py-2" data-bs-toggle="dropdown"
                                     aria-expanded="false">
