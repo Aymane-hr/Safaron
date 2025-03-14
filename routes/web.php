@@ -30,7 +30,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/voyages/list/', function () {
-    $voyages = Voyage::all();
+    $voyages = Voyage::paginate(8);
     return view('client.voyages.listevoyage', compact('voyages'));
 })->name('voyages.list');
 
