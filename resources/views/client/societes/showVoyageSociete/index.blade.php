@@ -6,7 +6,7 @@
                 <div >
                     <h4 >Aucun voyage trouvé.</h4>
                 </div>
- 
+
 
 
             @else
@@ -56,3 +56,28 @@
         </div>
     </div>
 </x-app-layout>
+{{-- <x-app-list-voyages :voyages="$voyages" :societe="$societe" >
+    @if ($voyages->isEmpty())
+    <div >
+        <h4 >Aucun voyage trouvé.</h4>
+    </div>
+    <div id="accordion-cabin" class="accordion-collapse collapse show">
+        <div class="accordion-body">
+            <div class="more-content">
+
+                @foreach ($voyages as $voyage)                <div class="form-check d-flex align-items-center ps-0 mb-2">
+                    <input class="form-check-input ms-0 mt-0" name="cabin1"
+                        type="checkbox" id="cabin1">
+                    <label class="form-check-label ms-2" for="cabin1">
+                        {{$voyage->type_voyage}}
+                    </label>
+                </div>
+                @endforeach
+
+
+            </div>
+            <a href="javascript:void(0);" class="more-view fw-medium fs-14">...
+                </a>
+        </div>
+    </div>
+</x-app-list-voyages> --}}
