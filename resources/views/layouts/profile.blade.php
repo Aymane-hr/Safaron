@@ -15,8 +15,8 @@
     <div class="container">
 
         <div class="row">
-            <x-profile-sidebar name="hamid"></x-profile-sidebar>
-            {{ $slot }}
+        <x-profile-sidebar :name="auth()->user()->name"></x-profile-sidebar>
+        {{ $slot }}
         </div>
 
     </div>

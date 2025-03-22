@@ -10,7 +10,8 @@ class MonprofileController extends Controller
 {
 
     public function index(){
-        return view('client.profile.monprofile.index');
+        $user = auth()->user(); 
+        return view('client.profile.monprofile.index', compact('user'));
     }
 
 }

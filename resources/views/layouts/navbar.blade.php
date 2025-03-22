@@ -400,7 +400,8 @@
                                 <div class="dropdown profile-dropdown">
                                     <a href="javascript:void(0);" class="d-flex align-items-center" data-bs-toggle="dropdown">
                                         <span class="avatar avatar-md">
-                                            <img src="{{asset('assets/img/users/user-05.jpg')}}" alt="Img" class="img-fluid rounded-circle border border-white border-4">
+                                        <img src="{{ Storage::url('profile_images/' . basename(auth()->user()->image)) }}"
+                                         alt="image"  class="img-fluid rounded-circle border border-white border-4">
                                         </span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end p-3">

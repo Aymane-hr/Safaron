@@ -54,10 +54,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/client/profile/reservations', [App\Http\Controllers\Client\Profile\ReservationController::class, 'index'])->name('client.profile.reservations.index');
     Route::get('/client/profile/dashboard', [App\Http\Controllers\Client\Profile\DashboardController::class, 'index'])->name('client.profile.dashboard.index');
-    Route::get('/client/profile/parametres', [App\Http\Controllers\Client\Profile\ParametreController::class, 'index'])->name('client.profile.parametres.index');
     Route::get('/client/profile/monprofile', [App\Http\Controllers\Client\Profile\MonprofileController::class, 'index'])->name('client.profile.monprofile.index');
+    Route::get('/client/profile/parametres', [App\Http\Controllers\Client\Profile\ParametreController::class, 'index'])->name('client.profile.parametres.index');
+    Route::put('/client/profile/parametres', [App\Http\Controllers\Client\Profile\ParametreController::class, 'update'])->name('client.profile.parametres.update');
+    Route::get('/client/profile/parametres/dropprofileimage', [App\Http\Controllers\Client\Profile\ParametreController::class, 'removeprofileimage'])->name('client.profile.parametres.removeImage');
 
-
+    Route::delete('/profile/delete-image', [App\Http\Controllers\Client\Profile\ParametreController::class, 'deleteProfileImage'])
+    ->name('profile.delete-image');
 
     // ======= Admin routes =======
     Route::middleware('admin')->group(function () {

@@ -7,10 +7,12 @@
             <div class="profile-content rounded-pill">
                 <div class="d-flex align-items-center justify-content-between">
                     <div class=" d-flex align-items-center justify-content-center">
-                        <img src="{{asset('assets/img/users/user-01.jpg')}}" alt="image" class="img-fluid avatar avatar-lg rounded-circle me-1">
+                        <img src="{{ Storage::url('profile_images/' . basename(auth()->user()->image)) }}"
+                         alt="image" class="img-fluid avatar avatar-lg rounded-circle me-1">
                         <div>
                             <h6 class="fs-16">{{ $name }}</h6>
-                            <span class="fs-14 text-gray-6">Depuis le 10 mai</span>
+                            <span class="fs-14 text-gray-6">Depuis le {{ auth()->user()->created_at->format('d M Y') }}
+                            </span>
                         </div>
                     </div>
                     <div>
