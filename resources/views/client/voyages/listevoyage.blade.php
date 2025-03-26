@@ -1,4 +1,5 @@
 <x-app-layout>
+    
     <!-- Breadcrumb -->
     <div class="breadcrumb-bar breadcrumb-bg-05 text-center">
         <div class="container">
@@ -235,9 +236,7 @@
                                                         @endforeach
 
                                                     </div>
-                                                    <a href="javascript:void(0);"
-                                                        class="more-view fw-medium fs-14">Regardez plus
-                                                    </a>
+                                                  
                                                 </div>
                                             </div>
                                         </div>
@@ -268,9 +267,7 @@
                                                         @endforeach
 
                                                     </div>
-                                                    <a href="javascript:void(0);"
-                                                        class="more-view fw-medium fs-14">...
-                                                    </a>
+                                               
                                                 </div>
                                             </div>
                                         </div>
@@ -301,9 +298,7 @@
 
 
                                                     </div>
-                                                    <a href="javascript:void(0);"
-                                                        class="more-view fw-medium fs-14">...
-                                                    </a>
+                                                 
                                                 </div>
                                             </div>
                                         </div>
