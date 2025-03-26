@@ -15,7 +15,7 @@ class VoyageController extends Controller
      */
     public function index()
     {
-        $voyages = Voyage::paginate(5);
+        $voyages = Voyage::paginate(3);
         return view('admin.voyages.index', compact('voyages'));
     }
 

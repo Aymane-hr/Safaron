@@ -167,6 +167,7 @@
                                     <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
                                 </a>
                             </li> --}}
+                         
                             {{ $voyages->links() }}
                             {{-- <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
                             <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
@@ -189,7 +190,7 @@
                     <div class="card filter-sidebar mb-4 mb-lg-0">
                         <div class="card-header d-flex align-items-center justify-content-between">
                             <h5>Filtrer</h5>
-                            <a href="javascript:void(0);" class="fs-14 link-primary">Annuller</a>
+                          
                         </div>
                         <div class="card-body p-0">
                             <form action="https://dreamstour.dreamstechnologies.com/html/search.html">
