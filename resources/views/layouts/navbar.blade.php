@@ -400,7 +400,8 @@
                                 <div class="dropdown profile-dropdown">
                                     <a href="javascript:void(0);" class="d-flex align-items-center" data-bs-toggle="dropdown">
                                         <span class="avatar avatar-md">
-                                            <img src="{{asset('assets/img/users/user-05.jpg')}}" alt="Img" class="img-fluid rounded-circle border border-white border-4">
+                                        <img src="{{ Storage::url('profile_images/' . basename(auth()->user()->image)) }}"
+                                         alt="image"  class="img-fluid rounded-circle border border-white border-4">
                                         </span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end p-3">
@@ -411,13 +412,13 @@
                                             <a href="{{route('client.profile.reservations.index')}}" class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="customer-hotel-booking.html">Mes reservations</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="my-profile.html">Mon profil</a>
+                                            <a href="{{ route('client.profile.monprofile.index') }}" class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="my-profile.html">Mon profil</a>
                                         </li>
                                         <li>
                                             <hr class="dropdown-divider my-2">
                                         </li>
                                         <li>
-                                            <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="profile-settings.html">Paramètres</a>
+                                            <a href="{{ route('client.profile.parametres.index') }}" class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="profile-settings.html">Paramètres</a>
                                         </li>
                                         <li>
                                             <form method="POST" action="{{ route('logout') }}">

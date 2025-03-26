@@ -22,7 +22,7 @@ class TypeVoyageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type_voyage' => 'required|regex:/^[a-zA-Z]+$/|max:255|min:3',
+             'type_voyage' => 'required|regex:/^[a-zA-Z\s]+$/|max:255|min:3',
         ];
     }
     public function messages()

@@ -36,15 +36,15 @@
                                 <div class="row g-3">
                                     <div class="col-lg-4">
                                         <h6 class="fs-14">Mode de règlement</h6>
-                                        <p class="text-gray-6 fs-16">{{ $reservation->modeReglement->nom }}</p>
+                                        <p class="text-gray-6 fs-16">{{ $reservation->modeReglement->mode_reglement }}</p>
                                     </div>
                                     <div class="col-lg-4">
                                         <h6 class="fs-14">Frais</h6>
-                                        <p class="text-gray-6 fs-16">{{ number_format($reservation->frais, 2) }} €</p>
+                                        <p class="text-gray-6 fs-16">{{ number_format($reservation->frais, 2) }} DH</p>
                                     </div>
                                     <div class="col-lg-4">
                                         <h6 class="fs-14">Total Payé</h6>
-                                        <p class="text-gray-6 fs-16">{{ number_format($reservation->prix + $reservation->frais, 2) }} €</p>
+                                        <p class="text-gray-6 fs-16">{{ number_format($reservation->prix + $reservation->frais, 2) }} DH</p>
                                     </div>
                                 </div>
                             </div>
