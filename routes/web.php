@@ -78,6 +78,13 @@ Route::middleware('auth')->group(function () {
         route::get('/reservation/admin/list', [App\Http\Controllers\ReservationController::class, 'indexAdmin'])->name('reservation.admin.index');
         route::get('/reservation/admin/{reservation}/show', [App\Http\Controllers\ReservationController::class, 'show'])->name('reservation.admin.show');
 
+      
+
+Route::get('/filter-voyages', [VoyageController::class, 'filter'])->name('voyages.filter');
+
+Route::get('/filter-multiple', [VoyageController::class, 'filter_sidebar'])->name('voyages.filtermultiple');
+Route::get('/filter-search', [VoyageController::class, 'search'])->name('voyages.search');
+
     });
 
 

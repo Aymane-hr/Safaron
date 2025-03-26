@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\Voyage;
 use App\Models\Ville;
@@ -14,7 +15,7 @@ class VoyageController extends Controller
      */
     public function index()
     {
-        $voyages = Voyage::paginate(10);
+        $voyages = Voyage::paginate(5);
         return view('admin.voyages.index', compact('voyages'));
     }
 
@@ -74,53 +75,85 @@ class VoyageController extends Controller
         $voyage->delete();
         return redirect()->route("voyages.index")->with("destroy", "Votre voyage a été supprimé avec succès.");
     }
-    public function rechercher(Request $request)
-{
-    // dd($request->all());
-    // $voyages = Voyage::query();
 
-    $voyages=Voyage::where(function($query) use ($request){
-        $query->where('ville_depart_id', $request->ville_depart_id)
-        ->where('ville_arrivee_id', $request->ville_arrivee_id)
-        ->where('date_depart', $request->date_depart)
-        ->where('date_arrivee', $request->date_arrivee);
-    })->get();
+    public function filter(Request $request)
+    {
+        $query = Voyage::query();
+
+        dd($request->all());
 
 
+        // Filter by departure city
+        if ($request->has('ville_depart') && !empty($request->ville_depart)) {
+            $query->where('ville_depart_id', $request->ville_depart);
+        }
 
-    // Filtrer par ville de départ
-    // if ($request->filled('ville_depart_id')) {
-    //     $voyages->where('ville_depart_id', $request->ville_depart_id);
-    // }
+        // Filter by arrival city
+        if ($request->has('ville_arrivee') && !empty($request->ville_arrivee)) {
+            $query->where('ville_arrivee_id', $request->ville_arrivee);
+        }
+
+        // Filter by date
+        if ($request->has('date_depart') && !empty($request->date_depart) && $request->date_depart != null) {
+            $query->whereDate('date_depart', '=', $request->date_depart);
+        }
+
+        if ($request->has('date_arrivee') && !empty($request->date_arrivee) && $request->date_arrivee != null) {
+            $query->whereDate('date_arrivee', '=', $request->date_arrivee);
+        }
+
+        $voyages = $query->get();
 
 
+        return response()->json([
+            'voyages' => view('client.voyages.partials.list-voyage', compact('voyages'))->render()
+        ]);
+    }
 
-    // // Filtrer par ville d’arrivée
-    // if ($request->filled('ville_arrivee_id')) {
-    //     $voyages->where('ville_arrivee_id', $request->ville_arrivee_id);
-    // }
+    public function filter_sidebar(Request $request)
+    {
+        $query = Voyage::query();
 
-    // // Filtrer par date de départ
-    // if ($request->filled('date_depart')) {
-    //     $voyages->whereDate('date_depart', $request->date_depart);
-    // }
+        // dd($request->all(),$request->has('type_voyages') && count($request->type_voyages) > 0);
 
-    // // Filtrer par date d’arrivée
-    // if ($request->filled('date_arrivee')) {
-    //     $voyages->whereDate('date_arrivee', $request->date_arrivee);
-    // }
 
-    // Vérifier s'il y a assez de places disponibles
-    // if ($request->filled('nombre_personnes')) {
-    //     $voyages->whereHas('autocar', function ($query) use ($request) {
-    //         $query->where('nbr_siege', '>=', $request->nombre_personnes);
-    //     });
-    // }
+        if ($request->has('type_voyages') && count($request->type_voyages) > 0) {
+            $query->whereIn('type_voyage_id', $request->type_voyages);
+        }
+        if ($request->has('societes') && count($request->societes) > 0) {
+            $query->whereHas('autocar', function ($q) use ($request) {
+                $q->whereIn('societe_id', $request->societes);
+            });
+        }
 
-    // Exécuter la requête et récupérer les résultats
-    // $voyages = $voyages->get();
-    $villes = Ville::all();
+        if ($request->has('equipements') && count($request->equipements) > 0) {
+            $query->whereHas('autocar.equipements', function ($q) use ($request) {
+                $q->whereIn('equipements.id', $request->equipements);
+            });
+        }
+        $voyages = $query->get();
 
-    return view('client.voyages.listevoyage', compact('voyages'));
-} 
+
+        return response()->json([
+            'voyages' => view('client.voyages.partials.list-voyage', compact('voyages'))->render()
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $query = Voyage::query();
+
+        // dd($request->all());
+
+
+        if ($request->has('societes')) {
+            $query->whereHas('autocar.societe', function ($q) use ($request) {
+                $q->where('raison_social', 'like', '%' . $request->societes . '%');
+            });
+        }
+        $voyages = $query->get();
+        return response()->json([
+            'voyages' => view('client.voyages.partials.list-voyage', compact('voyages'))->render()
+        ]);
+    }
 }

@@ -26,19 +26,19 @@
             <div class="card">
                 <div class="card-body">
                     <div class="banner-form">
-                        <form method="GET" action="{{ route('voyages.rechercher') }}">
-                            @csrf
+                      
 
                             <div class="d-flex align-items-center justify-content-between flex-wrap mb-2">
                                 <h6 class="fw-medium fs-16 mb-2">Rechercher un voyage</h6>
                             </div>
                             <div class="normal-trip">
-                                <div class="d-lg-flex">
-                                    <div class="d-flex form-info">
+                                <div class="d-lg-flex align-items-end">
+                                    <div class="d-flex form-info flex-wrap gap-3">
                                         <!-- Ville de départ -->
                                         <div class="form-item">
                                             <label class="form-label fs-14 text-default mb-1">De</label>
-                                            <select class="form-control" name="ville_depart_id">
+                                            <select class="form-control select2" id="ville_depart_id" name="ville_depart_id" style="width: 100%;">
+                                                <option value="" disabled selected>Choisir une ville</option>
                                                 @foreach (App\Models\Ville::all() as $ville)
                                                     <option value="{{ $ville->id }}">{{ $ville->ville }}</option>
                                                 @endforeach
@@ -46,9 +46,10 @@
                                         </div>
 
                                         <!-- Ville d’arrivée -->
-                                        <div class="form-item ps-2 ps-sm-3">
+                                        <div class="form-item">
                                             <label class="form-label fs-14 text-default mb-1">À</label>
-                                            <select class="form-control" name="ville_arrivee_id">
+                                            <select class="form-control select2" id="ville_arrivee_id" name="ville_arrivee_id" style="width: 100%;">
+                                                <option value="" disabled selected>Choisir une ville</option>
                                                 @foreach (App\Models\Ville::all() as $ville)
                                                     <option value="{{ $ville->id }}">{{ $ville->ville }}</option>
                                                 @endforeach
@@ -57,29 +58,25 @@
 
                                         <!-- Date de départ -->
                                         <div class="form-item">
-                                            <label class="form-label fs-14 text-default mb-1">Départ</label>
-                                            <input type="date" class="form-control" name="date_depart">
+                                            <label for="date_depart" class="form-label fs-14 text-default mb-1">Départ</label>
+                                            <input type="date" class="form-control" id="date_depart" name="date_depart">
                                         </div>
 
                                         <!-- Date d’arrivée -->
-                                        <div class="form-item round-trip">
-                                            <label class="form-label fs-14 text-default mb-1">Retour</label>
-                                            <input type="date" class="form-control" name="date_arrivee">
-                                        </div>
-
-                                        {{-- <!-- Nombre de passagers -->
                                         <div class="form-item">
-                                            <label class="form-label fs-14 text-default mb-1">Passagers</label>
-                                            <input type="number" class="form-control" name="nombre_personnes" min="1" value="1">
-                                        </div> --}}
+                                            <label for="date_arrivee" class="form-label fs-14 text-default mb-1">Retour</label>
+                                            <input type="date" class="form-control" id="date_arrivee" name="date_arrivee">
+                                        </div>
                                     </div>
 
                                     <!-- Bouton Rechercher -->
-                                    <button type="submit"
-                                        class="btn btn-primary search-btn rounded">Rechercher</button>
+                                    <div class="form-item ms-lg-3 mt-3 mt-lg-0">
+                                        <button type="submit" id="rechercher" class="btn btn-primary search-btn rounded px-4">Rechercher</button>
+                                    </div>
                                 </div>
                             </div>
-                        </form>
+
+                          
                     </div>
 
 
@@ -154,82 +151,9 @@
                     </div>
                     <div class="hotel-list">
                         <div class="row justify-content-center">
-                            <div class="col-md-12">
+                            <div  id="voyages" class="col-md-12">
                                 <!-- Flight List -->
-                                @foreach ($voyages as $voyage)
-                                    <a href="{{ route('client.reservations.show', $voyage->id) }}">
-                                        <div class="place-item mb-4">
-                                            <div class="place-img">
-                                                <div class=" nav-center">
-                                                    <img src="{{ asset('storage/' . $voyage->autocar->image) }}"
-                                                        class="img-fluid" alt="img">
-                                                </div>
-                                                {{-- <div class="fav-item">
-                                                <div class="d-flex align-items-center">
-                                                    <a href="javascript:void(0);" class="fav-icon me-2 selected">
-                                                        <i class="isax isax-heart5"></i>
-                                                    </a>
-                                                    <span class="badge bg-indigo">Cheapest</span>
-                                                </div>
-                                                <span
-                                                    class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium rounded">5.0</span>
-                                            </div> --}}
-                                            </div>
-                                            <div class="place-content">
-                                                <div
-                                                    class="d-flex justify-content-between align-items-center flex-wrap row-gap-2 mb-3">
-                                                    <div>
-                                                        <h5 class="text-truncate mb-1"><a
-                                                            >{{ $voyage->autocar->societe->raison_social }}</a>
-                                                        </h5>
-                                                        <div class="d-flex">
-                                                            {{-- <span class="avatar avatar-sm me-2">
-                                                            <img src="assets/img/icons/airindia.svg"
-                                                                class="rounded-circle" alt="icon">
-                                                        </span> --}}
-                                                            <p class="fs-14 mb-0 me-2">matricule :
-                                                                {{ $voyage->autocar->matricule }}</p>
-                                                        </div>
-                                                    </div>
-                                                    {{-- <div class="d-flex align-items-center">
-                                                    <span class="badge bg-outline-success fs-10 fw-medium  me-2">20
-                                                        Seats Left</span>
-                                                    <a href="javascript:void(0);" class="avatar avatar-sm">
-                                                        <img src="assets/img/users/user-08.jpg" class="rounded-circle"
-                                                            alt="img">
-                                                    </a>
-                                                </div> --}}
-                                                </div>
-                                                {{-- <p class=" fs-14 mb-3">Experience top-notch service, in-flight amenities,
-                                                and smooth takeoffs for a stress-free journey.</p> --}}
-                                                <div
-                                                    class="flight-loc d-flex align-items-center justify-content-between mb-3">
-                                                    <span
-                                                        class="loc-name d-inline-flex justify-content-center align-items-center w-100"><i
-                                                            class="isax isax-airplane rotate-45 me-2"></i>{{ $voyage->villeDepart->ville }}</span>
-                                                    <a href="javascript:void(0);"
-                                                        class="arrow-icon flex-shrink-0 mx-2"><i
-                                                            class="isax isax-arrow-2"></i></a>
-                                                    <span
-                                                        class="loc-name d-inline-flex justify-content-center align-items-center w-100"><i
-                                                            class="isax isax-airplane rotate-135 me-2"></i>{{ $voyage->villeArrivee->ville }}</span>
-                                                </div>
-                                                <div
-                                                    class="d-flex align-items-center justify-content-between border-top flex-wrap gap-2 pt-3">
-                                                    <div class="date-info p-2">
-                                                        <p class="d-flex align-items-center"><i
-                                                                class="isax isax-calendar-2 me-2"></i>{{ $voyage->date_depart }}
-                                                            - {{ $voyage->date_arrivee }}</p>
-                                                    </div>
-                                                    <h6 class="text-primary"><span
-                                                            class="fs-14 fw-normal text-default">Prix
-                                                        </span>{{ number_format($voyage->prix, 2, ',', '') }} DH</h6>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                @endforeach
+                            @include('client.voyages.partials.list-voyage', ['voyages' => $voyages])
                                 <!-- /Flight List -->
                             </div>
                         </div>
@@ -275,7 +199,7 @@
                                         <span class="input-icon-addon">
                                             <i class="isax isax-search-normal"></i>
                                         </span>
-                                        <input type="text" class="form-control"
+                                        <input  oninput="search(this)"  type="text" class="form-control"
                                             placeholder="Rechercher par nom de societe">
                                     </div>
                                 </div>
@@ -301,7 +225,7 @@
                                                         @foreach ($societes as $societe)
                                                             <div
                                                                 class="form-check d-flex align-items-center ps-0 mb-2">
-                                                                <input class="form-check-input ms-0 mt-0"
+                                                                <input onchange="filter()"   data-id="{{ $societe->id }}" class="form-check-input ms-0 mt-0 societes"
                                                                     name="flight1" type="checkbox" id="flight1">
                                                                 <label class="form-check-label ms-2" for="flight1">
                                                                     {{ $societe->raison_social }}
@@ -334,7 +258,7 @@
                                                         @foreach ($equipements as $equipement)
                                                             <div
                                                                 class="form-check d-flex align-items-center ps-0 mb-2">
-                                                                <input class="form-check-input ms-0 mt-0"
+                                                                <input onchange="filter()"  data-id="{{ $equipement->id }}" class="form-check-input ms-0 mt-0 equipements"
                                                                     name="cabin1" type="checkbox" id="cabin1">
                                                                 <label class="form-check-label ms-2" for="cabin1">
                                                                     {{ $equipement->equipement }}
@@ -366,7 +290,7 @@
                                                         @foreach ($typesDesVoyages as $typeDesVoyage)
                                                             <div
                                                                 class="form-check d-flex align-items-center ps-0 mb-2">
-                                                                <input class="form-check-input ms-0 mt-0"
+                                                                <input onchange="filter()"  data-id="{{ $typeDesVoyage->id }}" class="form-check-input ms-0 mt-0 type-voyages"
                                                                     name="cabin1" type="checkbox" id="cabin1">
                                                                 <label class="form-check-label ms-2" for="cabin1">
                                                                     {{ $typeDesVoyage->type_voyage }}
@@ -468,4 +392,82 @@
             </div>
         </div>
     </div>
+
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#rechercher').click(function () {
+                let ville_depart = $('#ville_depart_id').val();
+                let ville_arrivee = $('#ville_arrivee_id').val();
+                let date_depart = $('#date_depart').val();
+                let date_arrivee = $('#date_arrivee').val();
+
+                $.ajax({
+                    url: "{{ route('voyages.filter') }}",
+                    type: "GET",
+                    data: {
+                        ville_depart: ville_depart,
+                        ville_arrivee: ville_arrivee,
+                        date_depart: date_depart,
+                        date_arrivee: date_arrivee
+                    },
+                    success: function (response) {
+                        $('#voyages').html(response.voyages);
+                    }
+                });
+            });
+
+
+            window.filter = function() {
+                societes = [];
+                equipements = [];
+                type_voyages = [];
+                $('.societes').each(function(){
+                    if(this.checked){
+                        societes.push($(this).data('id'));
+                    }
+                });
+                $('.equipements').each(function(){
+                    if(this.checked){
+                        equipements.push($(this).data('id'));
+                    }
+                });
+                $('.type-voyages').each(function(){
+                    if(this.checked){
+                        type_voyages.push($(this).data('id'));
+                    }
+                });
+                $.ajax({
+                    url: "{{ route('voyages.filtermultiple') }}",
+                    type: "GET",
+                    data: {
+                        societes: societes,
+                        equipements: equipements,
+                        type_voyages: type_voyages
+                    },
+                    success: function(response) {
+                        $('#voyages').html(response.voyages);
+                    }
+                });
+            }
+
+            window.search = function(elem) {
+                societes = $(elem).val();
+                $.ajax({
+                    url: "{{ route('voyages.search') }}",
+                    type: "GET",
+                    data: {
+                        societes: societes,
+                    },
+                    success: function(response) {
+                        $('#voyages').html(response.voyages);
+                    }
+                });
+            }
+        });
+   
+    </script>
 </x-app-layout>
