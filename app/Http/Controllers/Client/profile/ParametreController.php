@@ -42,16 +42,7 @@ class ParametreController extends Controller
         }
     
          
-         if ($request->has('dlt_profile') && $request->dlt_profile == 1) {
-            // if dlt checked 
-            if ($user->image && $user->image !== 'default.jpg' && Storage::exists('public/profile_images/' . $user->image)) {
-                Storage::delete('public/profile_images/' . $user->image); 
-            }
-            $data['image'] = 'default.jpg'; 
-        }
-    
-        $user->fill($data);
-    
+        
     
         $user->fill($data);
     
