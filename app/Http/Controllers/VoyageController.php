@@ -102,6 +102,13 @@ class VoyageController extends Controller
             $query->whereDate('date_depart', $request->date_depart);
         }
 
+        // Filter by options
+        if ($request->has('options') && is_array($request->options) && count($request->options) > 0) {
+            $query->whereHas('autocar.options', function($q) use ($request) {
+                $q->whereIn('options.id', $request->options);
+            });
+        }
+
         $voyages = $query->get();
 
         return response()->json([

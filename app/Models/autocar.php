@@ -22,4 +22,8 @@ class autocar extends Model
         return $this->belongsToMany(Equipement::class, 'autocar_equipements', 'autocar_id', 'equipement_id');
     }
 
+    public function options()
+    {
+        return $this->belongsToMany(Option::class, 'autocar_options', 'autocar_id', 'option_id');
+    }
 }

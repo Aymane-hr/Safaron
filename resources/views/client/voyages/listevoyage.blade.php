@@ -238,24 +238,24 @@
                                                 <div class="accordion-button p-0" data-bs-toggle="collapse"
                                                     data-bs-target="#accordion-flight" aria-expanded="true"
                                                     aria-controls="accordion-flight" role="button">
-                                                    <i class="isax isax-airplane4 me-2 text-primary"></i> Nom des
-                                                    societes
+                                                    <i class="isax isax-setting-2 me-2 text-primary"></i> 
+                                                    Options
                                                 </div>
                                             </div>
                                             <div id="accordion-flight" class="accordion-collapse collapse show">
                                                 @php
-                                                    $societes = App\Models\Societe::all();
+                                                    $options = App\Models\Option::all();
                                                 @endphp
 
                                                 <div class="accordion-body">
                                                     <div class="more-content">
-                                                        @foreach ($societes as $societe)
+                                                        @foreach ($options as $option)
                                                             <div
                                                                 class="form-check d-flex align-items-center ps-0 mb-2">
-                                                                <input onchange="filter()"   data-id="{{ $societe->id }}" class="form-check-input ms-0 mt-0 societes"
-                                                                    name="flight1" type="checkbox" id="flight1">
-                                                                <label class="form-check-label ms-2" for="flight1">
-                                                                    {{ $societe->raison_social }}
+                                                                <input data-id="{{ $option->id }}" class="form-check-input ms-0 mt-0 options"
+                                                                    name="option_{{ $option->id }}" type="checkbox" id="option_{{ $option->id }}">
+                                                                <label class="form-check-label ms-2" for="option_{{ $option->id }}">
+                                                                    {{ $option->option }}
                                                                 </label>
                                                             </div>
                                                         @endforeach
@@ -455,6 +455,35 @@
                 const searchText = $(this).val();
                 const target = $(this).data('target');
                 filterVilles(searchText, target);
+            });
+
+            // Gestionnaire d'événements pour les options
+            $('.options').on('change', function() {
+                let selectedOptions = [];
+                $('.options:checked').each(function() {
+                    selectedOptions.push($(this).data('id'));
+                });
+
+                console.log('Options sélectionnées:', selectedOptions); // Debug
+
+                $.ajax({
+                    url: "{{ route('voyages.filter') }}",
+                    type: "GET",
+                    data: {
+                        options: selectedOptions,
+                        ville_depart: $('#ville_depart_id').val(),
+                        ville_arrivee: $('#ville_arrivee_id').val(),
+                        date_depart: $('#date_depart').val()
+                    },
+                    success: function(response) {
+                        $('#voyages').html(response.voyages);
+                        console.log('Réponse reçue:', response); // Debug
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Erreur lors du filtrage:', error);
+                        console.log('Détails de l\'erreur:', xhr.responseText); // Debug
+                    }
+                });
             });
 
             // Empêcher la soumission normale du formulaire
