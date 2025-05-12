@@ -40,7 +40,7 @@
                                         <div class="d-flex form-info">
                                             <div class="form-item dropdown">
                                                 <div data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="menu">
-                                                    <label class="form-label fs-14 text-default mb-1">From</label>
+                                                    <label class="form-label fs-14 text-default mb-1">De</label>
                                                     <input type="text" class="form-control" placeholder="Ville de départ">
                                                     <input type="hidden" id="ville_depart_id" name="ville_depart_id">
                                                 </div>
@@ -62,12 +62,10 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                             <span class="d-flex align-items-center justify-content-center">
-                                                 <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                                            </span>
+                                                 
                                             <div class="form-item dropdown ps-2 ps-sm-3">
                                                 <div data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="menu">
-                                                    <label class="form-label fs-14 text-default mb-1">To</label>
+                                                    <label class="form-label fs-14 text-default mb-1">à</label>
                                                     <input type="text" class="form-control" placeholder="Ville d'arrivée">
                                                     <input type="hidden" id="ville_arrivee_id" name="ville_arrivee_id">
                                                    
