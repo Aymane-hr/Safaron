@@ -10,6 +10,13 @@ use App\Http\Requests\UpdateVoyageRequest;
 
 class VoyageController extends Controller
 {
+    public function listVoyages()
+    {
+        $villes = Ville::all();
+        $voyages = Voyage::paginate(8);
+        return view('client.voyages.listevoyage', compact('villes', 'voyages'));
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -80,30 +87,22 @@ class VoyageController extends Controller
     {
         $query = Voyage::query();
 
-        dd($request->all());
-
-
         // Filter by departure city
-        if ($request->has('ville_depart') && !empty($request->ville_depart)) {
+        if ($request->filled('ville_depart')) {
             $query->where('ville_depart_id', $request->ville_depart);
         }
 
         // Filter by arrival city
-        if ($request->has('ville_arrivee') && !empty($request->ville_arrivee)) {
+        if ($request->filled('ville_arrivee')) {
             $query->where('ville_arrivee_id', $request->ville_arrivee);
         }
 
-        // Filter by date
-        if ($request->has('date_depart') && !empty($request->date_depart) && $request->date_depart != null) {
-            $query->whereDate('date_depart', '=', $request->date_depart);
-        }
-
-        if ($request->has('date_arrivee') && !empty($request->date_arrivee) && $request->date_arrivee != null) {
-            $query->whereDate('date_arrivee', '=', $request->date_arrivee);
+        // Filter by departure date
+        if ($request->filled('date_depart')) {
+            $query->whereDate('date_depart', $request->date_depart);
         }
 
         $voyages = $query->get();
-
 
         return response()->json([
             'voyages' => view('client.voyages.partials.list-voyage', compact('voyages'))->render()

@@ -29,10 +29,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/voyages/list/', function () {
-    $voyages = Voyage::paginate(8);
-    return view('client.voyages.listevoyage', compact('voyages'));
-})->name('voyages.list');
+Route::get('/voyages/list/', [VoyageController::class, 'listVoyages'])->name('voyages.list');
 
 
 Route::get('/client/societes/{societe}/showVoyageSociete', [SocieteController::class, 'showVoyageSociete'])->name('client.societes.showVoyageSociete.index');
