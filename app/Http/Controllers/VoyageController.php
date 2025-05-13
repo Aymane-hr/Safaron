@@ -162,4 +162,28 @@ class VoyageController extends Controller
             'voyages' => view('client.voyages.partials.list-voyage', compact('voyages'))->render()
         ]);
     }
+    public function clientIndex(Request $request)
+    {
+        $query = Voyage::query();
+
+        if ($request->filled('ville_depart')) {
+            $query->where('ville_depart_id', $request->ville_depart);
+        }
+
+        if ($request->filled('ville_arrivee')) {
+            $query->where('ville_arrivee_id', $request->ville_arrivee);
+        }
+
+        if ($request->filled('date_depart')) {
+            $query->whereDate('date_depart', $request->date_depart);
+        }
+
+        $voyages = $query->paginate(10);
+
+        return view('client.voyages.listevoyage', [
+            'voyages' => $voyages,
+            'villes' => Ville::all(),
+        ]);
+    }
 }
+

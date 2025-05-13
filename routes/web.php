@@ -31,8 +31,8 @@ Route::get('/dashboard', function () {
 
 Route::get('/voyages/list/', [VoyageController::class, 'listVoyages'])->name('voyages.list');
 
-
 Route::get('/client/societes/{societe}/showVoyageSociete', [SocieteController::class, 'showVoyageSociete'])->name('client.societes.showVoyageSociete.index');
+
 
 // Routes publiques pour le filtrage
 Route::get('/filter-voyages', [VoyageController::class, 'filter'])->name('voyages.filter');
@@ -46,7 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/detail/voyage', [VoyageController::class, 'detail'])->name('voyage.detail');
     Route::get('/recherche', [VoyageController::class, 'rechercher'])->name('voyages.rechercher');
-    
+    Route::get('/client/voyages', [VoyageController::class, 'clientIndex'])->name('voyages.client.index');
+
     // Réservations
     Route::get('/client/create/reservation', [App\Http\Controllers\Client\ReservationController::class, 'create'])->name('client.create.reservation');
     Route::post('/client/store', [App\Http\Controllers\Client\ReservationController::class, 'store'])->name('client.store');
