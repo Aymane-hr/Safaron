@@ -17,7 +17,8 @@ use App\Http\Controllers\ModeReglementController;
 use App\Http\Controllers\AutocarEquipementController;
 
 Route::get('/', function () {
-    return view('welcome');
+    $voyages = Voyage::all();
+    return view('welcome',compact('voyages'));
 })->name('home');
 
 Route::get('/ex', function () {
