@@ -1364,7 +1364,7 @@
                 <div class="col-xl-6 col-lg-10 text-center wow fadeInUp" data-wow-delay="0.2s">
                     <div class="section-header section-header-four mb-4 text-center">
                         <h2 class="mb-2"><span>Focusing</span> on Unique Experiences.</h2>
-                        <p class="sub-title">Connecting Needs with Offers for the Professional Flight Services, Book your next flight appointment with ease.</p>
+                        <p class="sub-title">Connecting Needs with Offers for Professional Travel Services in Morocco — Book your next trip with ease.</p>
                     </div>
                 </div>
             </div>
