@@ -1249,7 +1249,8 @@
                 <div class="col-xl-5 col-lg-10 text-center wow fadeInUp" data-wow-delay="0.2s">
                     <div class="section-header section-header-four text-center">
                         <h2 class="mb-2"><span>Popular</span> Locations</h2>
-                        <p class="sub-title">Connecting Needs with Offers for the Professional Flight Services, Book your next flight appointment with ease.</p>
+                        <p class="sub-title">Connecting Needs with Offers for Professional Travel Services Book your next trip with ease.
+</p>
                     </div>
                 </div>
             </div>
@@ -1259,8 +1260,8 @@
                 <!-- Destination Item-->
                 <div class="col-lg-3 col-sm-6">
                     <div class="location-wrap wow fadeInDown">
-                        <img src="assets/img/destination/destination-15.jpg" alt="img">
-                        <span class="loc-name bg-white">Denmark</span>
+                        <img src="{{ asset('assets\img\citys\360_F_190951678_ecT0d63mDdPO5GnbNE7q02fofcmrIRem.jpg') }}" alt="img">
+                        <span class="loc-name bg-white">Fes</span>
                         <a href="flight-grid.html" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
                     </div>
                 </div>
@@ -1269,8 +1270,8 @@
                 <!-- Destination Item-->
                 <div class="col-lg-3 col-sm-6">
                     <div class="location-wrap wow fadeInDown">
-                        <img src="assets/img/destination/destination-16.jpg" alt="img">
-                        <span class="loc-name bg-white">Belgium</span>
+                        <img src="{{ asset('assets\img\citys\istockphoto-2158130578-612x612.jpg') }}" alt="img">
+                        <span class="loc-name bg-white">Casablanca</span>
                         <a href="flight-grid.html" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
                     </div>
                 </div>
@@ -1279,8 +1280,8 @@
                 <!-- Destination Item-->
                 <div class="col-lg-3 col-sm-6">
                     <div class="location-wrap wow fadeInDown">
-                        <img src="assets/img/destination/destination-17.jpg" alt="img">
-                        <span class="loc-name bg-white">Barcelona</span>
+                        <img src="{{ asset('assets\img\citys\360_F_415148494_49dcXHrLBKS8eu2mjPWbHjG5CpLKgMva.jpg') }}" alt="img">
+                        <span class="loc-name bg-white">Rabat</span>
                         <a href="flight-grid.html" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
                     </div>
                 </div>
@@ -1289,8 +1290,8 @@
                 <!-- Destination Item-->
                 <div class="col-lg-3 col-sm-6">
                     <div class="location-wrap wow fadeInDown">
-                        <img src="assets/img/destination/destination-18.jpg" alt="img">
-                        <span class="loc-name bg-white">Mexico</span>
+                        <img src="{{ asset('assets\img\citys\360_F_230277502_lVnQnE39sAc3PDf6NqjU9Ei3eNQoreYS.jpg') }}" alt="img">
+                        <span class="loc-name bg-white">Tanger</span>
                         <a href="flight-grid.html" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
                     </div>
                 </div>
@@ -1299,8 +1300,8 @@
                 <!-- Destination Item-->
                 <div class="col-lg-4 col-sm-6">
                     <div class="location-wrap wow fadeInDown">
-                        <img src="assets/img/destination/destination-19.jpg" alt="img">
-                        <span class="loc-name bg-white">Indonesia</span>
+                        <img src="{{ asset('assets\img\citys\istockphoto-638948336-612x612.jpg') }}" alt="img">
+                        <span class="loc-name bg-white">Marrakech</span>
                         <a href="flight-grid.html" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
                     </div>
                 </div>
@@ -1309,8 +1310,8 @@
                 <!-- Destination Item-->
                 <div class="col-lg-4 col-sm-6">
                     <div class="location-wrap wow fadeInDown">
-                        <img src="assets/img/destination/destination-20.jpg" alt="img">
-                        <span class="loc-name bg-white">Romania</span>
+                        <img src="{{ asset('assets\img\citys\Yassine-Benkirane-16-1920x898-1-696x326.png') }}" alt="img">
+                        <span class="loc-name bg-white">Laayoun</span>
                         <a href="flight-grid.html" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
                     </div>
                 </div>
@@ -1319,8 +1320,8 @@
                 <!-- Destination Item-->
                 <div class="col-lg-4 col-sm-6">
                     <div class="location-wrap wow fadeInDown">
-                        <img src="assets/img/destination/destination-21.jpg" alt="img">
-                        <span class="loc-name bg-white">India</span>
+                        <img src="{{ asset('assets\img\citys\Ville-Oujda-Maroc.jpg') }}" alt="img">
+                        <span class="loc-name bg-white">Oujda</span>
                         <a href="flight-grid.html" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
                     </div>
                 </div>
@@ -1632,7 +1633,7 @@
 
             </div>
             <div class="text-center view-all wow fadeInUp">
-                <a href="flight-grid.html" class="btn btn-dark">View All Flights<i class="isax isax-arrow-right-3 ms-2"></i></a>
+                <a href="{{ route('voyages.list') }}" class="btn btn-dark">View All Voyages<i class="isax isax-arrow-right-3 ms-2"></i></a>
             </div>
         </div>
     </section>
