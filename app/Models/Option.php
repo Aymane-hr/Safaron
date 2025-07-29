@@ -12,6 +12,6 @@ class Option extends Model
 
     public function autocars()
     {
-        return $this->hasMany(Autocar::class);
+        return $this->belongsToMany(Autocar::class, 'autocar_options', 'option_id', 'autocar_id');
     }
 }

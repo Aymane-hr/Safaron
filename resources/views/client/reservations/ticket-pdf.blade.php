@@ -49,6 +49,9 @@
 <body>
 
     <div class="ticket-container">
+        <div class="logo-container">
+            <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('assets/img/safarLogo.png'))) }}" style="height: 50px;">
+        </div>
         <div class="header">
             <h2>Billet de Voyage</h2>
         </div>
