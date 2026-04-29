@@ -8,7 +8,7 @@
                     <h2 class="breadcrumb-title mb-2">les voyages</h2>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center mb-0">
-                            <li class="breadcrumb-item"><a href="index-2.html"><i class="isax isax-home5"></i></a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="isax isax-home5"></i></a></li>
                             <li class="breadcrumb-item">les voyages</li>
                             <li class="breadcrumb-item active" aria-current="page">liste des voyages</li>
                         </ol>

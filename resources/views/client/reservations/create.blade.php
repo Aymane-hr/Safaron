@@ -7,7 +7,7 @@
                     <h2 class="breadcrumb-title mb-2">Voyage Booking</h2>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center mb-0">
-                            <li class="breadcrumb-item"><a href="index-2.html"><i class="isax isax-home5"></i></a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="isax isax-home5"></i></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Voyage Booking</li>
                         </ol>
                     </nav>

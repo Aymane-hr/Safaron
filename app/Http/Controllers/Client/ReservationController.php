@@ -9,7 +9,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\TypeVoyage;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
-use App\Models\Mode_reglement;
+use App\Models\ModeReglement;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreReservationRequest;
@@ -39,7 +39,7 @@ class ReservationController extends Controller
         $type_voyages = TypeVoyage::all();
         // dd($type_voyages);
         $autocars = autocar::all();
-        $mode_reglements = Mode_reglement::all();
+        $mode_reglements = ModeReglement::all();
         return view('client.reservations.create',compact('villes','type_voyages','autocars','mode_reglements','SelectedVoyage','v_d','v_a','autocar'));
     }
     // public function store(StoreReservationRequest $request)
@@ -67,6 +67,11 @@ class ReservationController extends Controller
                 DB::rollBack();
                 return back()->with('error', 'Veuillez choisir au moins un siège');
 
+            }
+
+            if(!$request->mode_reglement_id){
+                DB::rollBack();
+                return back()->with('error', 'Veuillez choisir un mode de règlement');
             }
 
             // 2) Create a Reservation
@@ -103,9 +108,7 @@ class ReservationController extends Controller
             // return redirect()->back()->with('success', 'Reservation created successfully!');
         } catch (\Exception $e) {
             DB::rollBack();
-            dd($e->getMessage());
-            // Handle the error as you wish
-            return redirect()->back()->with('error', $e->getMessage());
+            return redirect()->back()->with('error', 'Une erreur est survenue lors de la réservation : ' . $e->getMessage());
         }
     }
 
@@ -118,7 +121,7 @@ class ReservationController extends Controller
     public function download($id)
 {
     $reservation = Reservation::findOrFail($id);
-    $pdf = PDF::loadView('client.reservations.ticket-pdf', compact('reservation'))
+    $pdf = Pdf::loadView('client.reservations.ticket-pdf', compact('reservation'))
               ->setPaper('a5', 'landscape'); // Set A5 size in landscape mode
 
     return $pdf->download('ticket-'.$reservation->id.'.pdf');

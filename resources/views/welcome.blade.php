@@ -61,7 +61,7 @@
                                     <div class="d-lg-flex">
                                         <div class="d-flex form-info">
                                             <div class="form-item dropdown">
-                                                <select name="categorie_id" class="form-control">
+                                                <select name="ville_depart" class="form-control">
                                                     <option value="">Choisir une ville de départ</option>
                                                     @foreach (App\Models\Ville::all() as $ville)
                                                     <option value="{{ $ville->id }}">{{ $ville->ville}}</option>
@@ -69,7 +69,7 @@
                                                 </select>
                                             </div>
                                             <div class="form-item dropdown ps-2 ps-sm-3">
-                                                <select name="categorie_id" class="form-control">
+                                                <select name="ville_arrivee" class="form-control">
                                                     <option value="">Choisir une ville d'arrivée</option>
                                                     @foreach (App\Models\Ville::all() as $ville)
                                                     <option value="{{ $ville->id }}">{{ $ville->ville}}</option>
@@ -1261,8 +1261,9 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="location-wrap wow fadeInDown">
                         <img src="{{ asset('assets\img\citys\360_F_190951678_ecT0d63mDdPO5GnbNE7q02fofcmrIRem.jpg') }}" alt="img">
-                        <span class="loc-name bg-white">Fes</span>
-                        <a href="flight-grid.html" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
+                        <span class="loc-name bg-white">Fès</span>
+                        @php $villeFes = \App\Models\Ville::where('ville', 'like', '%Fès%')->first(); @endphp
+                        <a href="{{ $villeFes ? route('voyages.client.index', ['ville_arrivee' => $villeFes->id]) : '#' }}" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
                     </div>
                 </div>
                 <!-- /Destination Item-->
@@ -1272,7 +1273,8 @@
                     <div class="location-wrap wow fadeInDown">
                         <img src="{{ asset('assets\img\citys\istockphoto-2158130578-612x612.jpg') }}" alt="img">
                         <span class="loc-name bg-white">Casablanca</span>
-                        <a href="flight-grid.html" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
+                        @php $villeCasa = \App\Models\Ville::where('ville', 'like', '%Casablanca%')->first(); @endphp
+                        <a href="{{ $villeCasa ? route('voyages.client.index', ['ville_arrivee' => $villeCasa->id]) : '#' }}" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
                     </div>
                 </div>
                 <!-- /Destination Item-->
@@ -1282,7 +1284,8 @@
                     <div class="location-wrap wow fadeInDown">
                         <img src="{{ asset('assets\img\citys\360_F_415148494_49dcXHrLBKS8eu2mjPWbHjG5CpLKgMva.jpg') }}" alt="img">
                         <span class="loc-name bg-white">Rabat</span>
-                        <a href="flight-grid.html" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
+                        @php $villeRabat = \App\Models\Ville::where('ville', 'like', '%Rabat%')->first(); @endphp
+                        <a href="{{ $villeRabat ? route('voyages.client.index', ['ville_arrivee' => $villeRabat->id]) : '#' }}" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
                     </div>
                 </div>
                 <!-- /Destination Item-->
@@ -1292,7 +1295,8 @@
                     <div class="location-wrap wow fadeInDown">
                         <img src="{{ asset('assets\img\citys\360_F_230277502_lVnQnE39sAc3PDf6NqjU9Ei3eNQoreYS.jpg') }}" alt="img">
                         <span class="loc-name bg-white">Tanger</span>
-                        <a href="flight-grid.html" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
+                        @php $villeTanger = \App\Models\Ville::where('ville', 'like', '%Tanger%')->first(); @endphp
+                        <a href="{{ $villeTanger ? route('voyages.client.index', ['ville_arrivee' => $villeTanger->id]) : '#' }}" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
                     </div>
                 </div>
                 <!-- /Destination Item-->
@@ -1302,7 +1306,8 @@
                     <div class="location-wrap wow fadeInDown">
                         <img src="{{ asset('assets\img\citys\istockphoto-638948336-612x612.jpg') }}" alt="img">
                         <span class="loc-name bg-white">Marrakech</span>
-                        <a href="flight-grid.html" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
+                        @php $villeMarrakech = \App\Models\Ville::where('ville', 'like', '%Marrakech%')->first(); @endphp
+                        <a href="{{ $villeMarrakech ? route('voyages.client.index', ['ville_arrivee' => $villeMarrakech->id]) : '#' }}" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
                     </div>
                 </div>
                 <!-- /Destination Item-->
@@ -1312,7 +1317,8 @@
                     <div class="location-wrap wow fadeInDown">
                         <img src="{{ asset('assets\img\citys\Yassine-Benkirane-16-1920x898-1-696x326.png') }}" alt="img">
                         <span class="loc-name bg-white">Laayoun</span>
-                        <a href="flight-grid.html" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
+                        @php $villeLaayoun = \App\Models\Ville::where('ville', 'like', '%Laayoun%')->first(); @endphp
+                        <a href="{{ $villeLaayoun ? route('voyages.client.index', ['ville_arrivee' => $villeLaayoun->id]) : '#' }}" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
                     </div>
                 </div>
                 <!-- /Destination Item-->
@@ -1322,7 +1328,8 @@
                     <div class="location-wrap wow fadeInDown">
                         <img src="{{ asset('assets\img\citys\Ville-Oujda-Maroc.jpg') }}" alt="img">
                         <span class="loc-name bg-white">Oujda</span>
-                        <a href="flight-grid.html" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
+                        @php $villeOujda = \App\Models\Ville::where('ville', 'like', '%Oujda%')->first(); @endphp
+                        <a href="{{ $villeOujda ? route('voyages.client.index', ['ville_arrivee' => $villeOujda->id]) : '#' }}" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
                     </div>
                 </div>
                 <!-- /Destination Item-->

@@ -11,10 +11,10 @@
                     <div class="offcanvas-detail">
                         <div class="offcanvas-head">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <a href="index-2.html" class="black-logo-responsive">
+                                <a href="{{ route('home') }}" class="black-logo-responsive">
                                     <img src="assets/img/logo-dark.svg" alt="logo-img">
                                 </a>
-                                <a href="index-2.html" class="white-logo-responsive">
+                                <a href="{{ route('home') }}" class="white-logo-responsive">
                                     <img src="assets/img/logo.svg" alt="logo-img">
                                 </a>
                                 <div class="offcanvas-close">
@@ -81,11 +81,11 @@
             <div class="header-nav">
                 <div class="main-menu-wrapper">
                     <div class="navbar-logo">
-                        <a class="logo-white header-logo" href="index-2.html">
+                        <a class="logo-white header-logo" href="{{ route('home') }}">
                             {{-- <img src="{{asset('assets/img/logo.svg')}}" class="logo" alt="Logo"> --}}
                             <img src="{{ asset('assets/img/admin/logo.png') }}" style="width: 100px" class="logo" alt="Logo">
                         </a>
-                        <a class="logo-dark header-logo" href="index-2.html">
+                        <a class="logo-dark header-logo" href="{{ route('home') }}">
                             <img src="{{ asset('assets/img/admin/logo-dark.png') }}" style="width: 100px" class="logo" alt="Logo">
                         </a>
                     </div>
@@ -106,10 +106,10 @@
                                                         <div class="col-lg-2">
                                                             <div class="single-demo">
                                                                 <div class="demo-img">
-                                                                    <a href="index-2.html"><img src="assets/img/menu/home-01.jpg" class="img-fluid" alt="img"></a>
+                                                                    <a href="{{ route('home') }}"><img src="assets/img/menu/home-01.jpg" class="img-fluid" alt="img"></a>
                                                                 </div>
                                                                 <div class="demo-info">
-                                                                    <a href="index-2.html">All Bookings</a>
+                                                                    <a href="{{ route('home') }}">All Bookings</a>
                                                                 </div>
                                                             </div>
                                                         </div>
