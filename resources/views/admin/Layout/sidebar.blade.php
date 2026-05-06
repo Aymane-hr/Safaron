@@ -29,6 +29,12 @@
               data-accordion="false"
             >
               <li class="nav-item">
+                <a href="{{ route('admin') }}" class="nav-link @if (request()->routeIs('admin')) active @endif">
+                  <i class="nav-icon bi bi-speedometer2"></i>
+                  <p>Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="" class="nav-link">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Users</p>
