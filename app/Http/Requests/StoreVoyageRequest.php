@@ -32,6 +32,7 @@ class StoreVoyageRequest extends FormRequest
                 'autocar_id' => 'required|exists:autocars,id',
                 'type_voyage_id' => 'required|exists:type_voyages,id',
                 'prix' => 'required|numeric|min:0',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
          ];
         
     }

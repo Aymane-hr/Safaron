@@ -1,4 +1,4 @@
-<x-app-layout>
+php artisan serve <x-app-layout>
     <!-- Breadcrumb -->
     <div class="breadcrumb-bar breadcrumb-bg-05 text-center">
         <div class="container">

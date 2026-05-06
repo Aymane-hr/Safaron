@@ -14,12 +14,18 @@ use App\Http\Controllers\TypeVoyageController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\AutocarOptionController;
 use App\Http\Controllers\ModeReglementController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\AutocarEquipementController;
 
 Route::get('/', function () {
-    $voyages = Voyage::all();
+    $voyages = Voyage::withCount('reservations')->get();
     return view('welcome',compact('voyages'));
 })->name('home');
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
+Route::post('/wishlist/toggle/{voyage}', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
 
 Route::get('/ex', function () {
     $v = Voyage::all();

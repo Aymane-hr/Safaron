@@ -33,10 +33,13 @@ class User extends Authenticatable
         'isadmin',
     ];
     
-public function getProfileImagePathAttribute()
-{
-    return $this->image ? asset('storage/profile_images/' . $this->image) : asset('default_profile.png');
-}
+    public function getProfileImagePathAttribute()
+    {
+        if ($this->image && file_exists(public_path('storage/profile_images/' . basename($this->image)))) {
+            return asset('storage/profile_images/' . basename($this->image));
+        }
+        return asset('assets/img/users/user-01.jpg');
+    }
 
 
 
@@ -69,5 +72,10 @@ public function getProfileImagePathAttribute()
     public function reservations()
     {
         return $this->hasMany(Reservation::class);
+    }
+
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class);
     }
 }

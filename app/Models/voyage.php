@@ -31,4 +31,9 @@ class Voyage extends Model
     {
         return $this->belongsTo(TypeVoyage::class);
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }

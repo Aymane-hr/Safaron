@@ -11560,7 +11560,7 @@ footer.footer-three .footer-bottom .policy-links li a:hover {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 9;
+  z-index: 11;
 }
 .place-item .place-img .fav-item .badge {
   font-size: 13px;
@@ -11592,6 +11592,10 @@ footer.footer-three .footer-bottom .policy-links li a:hover {
   content: "";
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 28.82%, rgba(0, 0, 0, 0.5) 100%);
 }
 .place-item .place-content {

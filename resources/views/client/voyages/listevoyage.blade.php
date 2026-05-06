@@ -505,7 +505,6 @@
                 });
             }
         });
-   
     </script>
 
     <style>
@@ -543,6 +542,29 @@
         /* Optionnel : ajuster la taille de l'icône */
         .form-info > span i {
             font-size: 22px;
+        }
+        /* Voyage Card Styles */
+        .place-item {
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .place-item:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+        .place-img {
+            height: 200px;
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+        .place-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     </style>
 </x-app-layout>

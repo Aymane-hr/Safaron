@@ -55,7 +55,10 @@
                                 </div>
                                 <div class="d-flex align-items-center mb-3">
                                     <a href="javascript:void(0);" class="btn btn-outline-light btn-icon btn-sm d-flex align-items-center justify-content-center me-2"><i class="isax isax-share"></i></a>
-                                    <a href="javascript:void(0);" class="btn btn-outline-light btn-sm d-inline-flex align-items-center"><i class="isax isax-heart5 text-danger me-1"></i>Save</a>
+                                    <a href="javascript:void(0);" class="btn btn-outline-light btn-sm d-inline-flex align-items-center wishlist-toggle {{ Auth::check() && Auth::user()->wishlists()->where('voyage_id', $voyage->id)->exists() ? 'active' : '' }}" data-id="{{ $voyage->id }}">
+                                        <i class="isax {{ Auth::check() && Auth::user()->wishlists()->where('voyage_id', $voyage->id)->exists() ? 'isax-heart5 text-danger' : 'isax-heart' }} me-1"></i>
+                                        <span class="wishlist-text">{{ Auth::check() && Auth::user()->wishlists()->where('voyage_id', $voyage->id)->exists() ? 'Enregistré' : 'Enregistrer' }}</span>
+                                    </a>
                                 </div>
                             </div>
                             <div class="service-wrap mb-4">

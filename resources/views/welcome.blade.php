@@ -63,7 +63,7 @@
                                             <div class="form-item dropdown">
                                                 <select name="ville_depart" class="form-control">
                                                     <option value="">Choisir une ville de départ</option>
-                                                    @foreach (App\Models\Ville::all() as $ville)
+                                                    @foreach (App\Models\Ville::has('voyagesDepart')->orHas('voyagesArrivee')->get() as $ville)
                                                     <option value="{{ $ville->id }}">{{ $ville->ville}}</option>
                                                     @endforeach
                                                 </select>
@@ -71,7 +71,7 @@
                                             <div class="form-item dropdown ps-2 ps-sm-3">
                                                 <select name="ville_arrivee" class="form-control">
                                                     <option value="">Choisir une ville d'arrivée</option>
-                                                    @foreach (App\Models\Ville::all() as $ville)
+                                                    @foreach (App\Models\Ville::has('voyagesDepart')->orHas('voyagesArrivee')->get() as $ville)
                                                     <option value="{{ $ville->id }}">{{ $ville->ville}}</option>
                                                     @endforeach
                                                 </select>
@@ -1243,97 +1243,46 @@
     <!-- /Banner Search -->
 
     <!-- Destination Section -->
+    @php
+        $cityImages = [
+            'Fès' => 'assets/img/citys/360_F_190951678_ecT0d63mDdPO5GnbNE7q02fofcmrIRem.jpg',
+            'Casablanca' => 'assets/img/citys/istockphoto-2158130578-612x612.jpg',
+            'Rabat' => 'assets/img/citys/360_F_415148494_49dcXHrLBKS8eu2mjPWbHjG5CpLKgMva.jpg',
+            'Tanger' => 'assets/img/citys/360_F_230277502_lVnQnE39sAc3PDf6NqjU9Ei3eNQoreYS.jpg',
+            'Marrakech' => 'assets/img/citys/istockphoto-638948336-612x612.jpg',
+            'Laayoun' => 'assets/img/citys/Yassine-Benkirane-16-1920x898-1-696x326.png',
+            'Oujda' => 'assets/img/citys/Ville-Oujda-Maroc.jpg',
+        ];
+        $displayVilles = \App\Models\Ville::has('voyagesDepart')->orHas('voyagesArrivee')->get();
+    @endphp
+
+    <!-- Destination Section -->
     <section class="section destination-section">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-5 col-lg-10 text-center wow fadeInUp" data-wow-delay="0.2s">
                     <div class="section-header section-header-four text-center">
-                        <h2 class="mb-2"><span>Popular</span> Locations</h2>
-                        <p class="sub-title">Connecting Needs with Offers for Professional Travel Services Book your next trip with ease.
-</p>
+                        <h2 class="mb-2"><span>Nos</span> Destinations</h2>
+                        <p class="sub-title">Découvrez toutes les villes desservies par nos voyages. Réservez votre place dès maintenant.</p>
                     </div>
                 </div>
             </div>
 
             <div class="row justify-content-center g-4">
-
-                <!-- Destination Item-->
-                <div class="col-lg-3 col-sm-6">
+                @foreach($displayVilles as $ville)
+                <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="location-wrap wow fadeInDown">
-                        <img src="{{ asset('assets\img\citys\360_F_190951678_ecT0d63mDdPO5GnbNE7q02fofcmrIRem.jpg') }}" alt="img">
-                        <span class="loc-name bg-white">Fès</span>
-                        @php $villeFes = \App\Models\Ville::where('ville', 'like', '%Fès%')->first(); @endphp
-                        <a href="{{ $villeFes ? route('voyages.client.index', ['ville_arrivee' => $villeFes->id]) : '#' }}" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
+                        @php
+                            $imagePath = $cityImages[$ville->ville] ?? 'assets/img/citys/Ville-Oujda-Maroc.jpg'; // Fallback to Oujda if no specific image
+                        @endphp
+                        <img src="{{ asset($imagePath) }}" alt="{{ $ville->ville }}" style="height: 250px; object-fit: cover; width: 100%;">
+                        <span class="loc-name bg-white">{{ $ville->ville }}</span>
+                        <a href="{{ route('voyages.client.index', ['ville_arrivee' => $ville->id]) }}" class="loc-view">
+                            <i class="isax isax-arrow-right-1"></i>
+                        </a>
                     </div>
                 </div>
-                <!-- /Destination Item-->
-
-                <!-- Destination Item-->
-                <div class="col-lg-3 col-sm-6">
-                    <div class="location-wrap wow fadeInDown">
-                        <img src="{{ asset('assets\img\citys\istockphoto-2158130578-612x612.jpg') }}" alt="img">
-                        <span class="loc-name bg-white">Casablanca</span>
-                        @php $villeCasa = \App\Models\Ville::where('ville', 'like', '%Casablanca%')->first(); @endphp
-                        <a href="{{ $villeCasa ? route('voyages.client.index', ['ville_arrivee' => $villeCasa->id]) : '#' }}" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
-                    </div>
-                </div>
-                <!-- /Destination Item-->
-
-                <!-- Destination Item-->
-                <div class="col-lg-3 col-sm-6">
-                    <div class="location-wrap wow fadeInDown">
-                        <img src="{{ asset('assets\img\citys\360_F_415148494_49dcXHrLBKS8eu2mjPWbHjG5CpLKgMva.jpg') }}" alt="img">
-                        <span class="loc-name bg-white">Rabat</span>
-                        @php $villeRabat = \App\Models\Ville::where('ville', 'like', '%Rabat%')->first(); @endphp
-                        <a href="{{ $villeRabat ? route('voyages.client.index', ['ville_arrivee' => $villeRabat->id]) : '#' }}" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
-                    </div>
-                </div>
-                <!-- /Destination Item-->
-
-                <!-- Destination Item-->
-                <div class="col-lg-3 col-sm-6">
-                    <div class="location-wrap wow fadeInDown">
-                        <img src="{{ asset('assets\img\citys\360_F_230277502_lVnQnE39sAc3PDf6NqjU9Ei3eNQoreYS.jpg') }}" alt="img">
-                        <span class="loc-name bg-white">Tanger</span>
-                        @php $villeTanger = \App\Models\Ville::where('ville', 'like', '%Tanger%')->first(); @endphp
-                        <a href="{{ $villeTanger ? route('voyages.client.index', ['ville_arrivee' => $villeTanger->id]) : '#' }}" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
-                    </div>
-                </div>
-                <!-- /Destination Item-->
-
-                <!-- Destination Item-->
-                <div class="col-lg-4 col-sm-6">
-                    <div class="location-wrap wow fadeInDown">
-                        <img src="{{ asset('assets\img\citys\istockphoto-638948336-612x612.jpg') }}" alt="img">
-                        <span class="loc-name bg-white">Marrakech</span>
-                        @php $villeMarrakech = \App\Models\Ville::where('ville', 'like', '%Marrakech%')->first(); @endphp
-                        <a href="{{ $villeMarrakech ? route('voyages.client.index', ['ville_arrivee' => $villeMarrakech->id]) : '#' }}" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
-                    </div>
-                </div>
-                <!-- /Destination Item-->
-
-                <!-- Destination Item-->
-                <div class="col-lg-4 col-sm-6">
-                    <div class="location-wrap wow fadeInDown">
-                        <img src="{{ asset('assets\img\citys\Yassine-Benkirane-16-1920x898-1-696x326.png') }}" alt="img">
-                        <span class="loc-name bg-white">Laayoun</span>
-                        @php $villeLaayoun = \App\Models\Ville::where('ville', 'like', '%Laayoun%')->first(); @endphp
-                        <a href="{{ $villeLaayoun ? route('voyages.client.index', ['ville_arrivee' => $villeLaayoun->id]) : '#' }}" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
-                    </div>
-                </div>
-                <!-- /Destination Item-->
-
-                <!-- Destination Item-->
-                <div class="col-lg-4 col-sm-6">
-                    <div class="location-wrap wow fadeInDown">
-                        <img src="{{ asset('assets\img\citys\Ville-Oujda-Maroc.jpg') }}" alt="img">
-                        <span class="loc-name bg-white">Oujda</span>
-                        @php $villeOujda = \App\Models\Ville::where('ville', 'like', '%Oujda%')->first(); @endphp
-                        <a href="{{ $villeOujda ? route('voyages.client.index', ['ville_arrivee' => $villeOujda->id]) : '#' }}" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
-                    </div>
-                </div>
-                <!-- /Destination Item-->
-
+                @endforeach
             </div>
         </div>
     </section>
@@ -1364,286 +1313,145 @@
 
     <!-- /Client Section -->
 
-    <!-- Place Section -->
-    <section class="section place-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-6 col-lg-10 text-center wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="section-header section-header-four mb-4 text-center">
-                        <h2 class="mb-2"><span>Focusing</span> on Unique Experiences.</h2>
-                        <p class="sub-title">Connecting Needs with Offers for Professional Travel Services in Morocco — Book your next trip with ease.</p>
-                    </div>
+ <!-- Place Section -->
+<section class="section place-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-10 text-center wow fadeInUp" data-wow-delay="0.2s">
+                <div class="section-header section-header-four mb-4 text-center">
+                    <h2 class="mb-2"><span>Expériences</span> de Voyage Uniques.</h2>
+                    <p class="sub-title">Connectez-vous aux meilleures offres de transport professionnel au Maroc — Réservez votre prochain trajet en toute simplicité.</p>
                 </div>
-            </div>
-            <div class="owl-carousel place-slider nav-center">
-
-                <!-- Flight Item-->
-                @foreach ($voyages as $voyage)
-                    
-                <div class="place-item mb-4">
-                    <div class="place-img">
-                        <a href="flight-details.html">
-                            <img src="{{ asset('storage/' . $voyage->autocar->image) }}" class="img-fluid" alt="img">
-                        </a>
-                        <div class="fav-item">
-                            <div class="d-flex align-items-center">
-                                <a href="javascript:void(0);" class="fav-icon me-2">
-                                    <i class="isax isax-heart5"></i>
-                                </a>
-                                <span class="badge bg-indigo">Cheapest</span>
-                            </div>
-                            <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium rounded">4.3</span>
-                        </div>
-                    </div>
-                    <div class="place-content">
-                        <div class="flight-loc d-flex align-items-center justify-content-between mb-2">
-                            <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-45 me-2"></i>{{$voyage->villeDepart->ville}}</span>
-                            <span class="arrow-icon"><i class="isax isax-arrow-2"></i></span>
-                            <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-135 me-2"></i>{{$voyage->villeArrivee->ville}}</span>
-                        </div>
-                        <h5 class="text-truncate mb-1"><a href="flight-details.html">{{$voyage->autocar->societe->raison_social}}</a></h5>
-                        {{-- <div class="d-flex align-items-center mb-2">
-                            <span class="avatar avatar-sm me-2">
-                                <img src="assets/img/icons/airindia.svg" class="rounded-circle" alt="icon">
-                            </span>
-                            <p class="fs-14 mb-0">Indigo</p>
-                            <p class="fs-14 d-inline-flex align-items-center mb-0"><i class="fa-solid fa-circle fs-6 text-primary mx-2"></i>1-stop at Frankfurt</p>
-                        </div> --}}
-                        <div class="date-info p-2 mb-3">
-                            <p class="d-flex align-items-center"><i class="isax isax-calendar-2 me-2"></i>{{$voyage->date_depart}} - {{$voyage->date_arrivee}}</p>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                            <h6 class="text-primary"><span class="fs-14 fw-normal text-default">From </span>{{$voyage->prix}} DHS</h6>
-                            <div class="d-flex align-items-center">
-                                <span class="badge bg-outline-success fs-10 fw-medium me-2">{{$voyage->autocar->nbr_siege}} Seats Left</span>
-                                <a href="javascript:void(0);" class="avatar avatar-sm">
-                                    <img src="assets/img/users/user-11.jpg" class="rounded-circle" alt="img">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-                <!-- /Flight Item-->
-
-                <!-- Flight Item-->
-                {{-- <div class="place-item mb-4">
-                    <div class="place-img">
-                        <div class="img-slider image-slide owl-carousel nav-center">
-                            <div class="slide-images">
-                                <a href="flight-details.html">
-                                    <img src="assets/img/flight/flight-02.jpg" class="img-fluid" alt="img">
-                                </a>
-                            </div>
-                            <div class="slide-images">
-                                <a href="flight-details.html">
-                                    <img src="assets/img/flight/flight-06.jpg" class="img-fluid" alt="img">
-                                </a>
-                            </div>
-                            <div class="slide-images">
-                                <a href="flight-details.html">
-                                    <img src="assets/img/flight/flight-07.jpg" class="img-fluid" alt="img">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="fav-item">
-                            <div class="d-flex align-items-center">
-                                <a href="javascript:void(0);" class="fav-icon me-2">
-                                    <i class="isax isax-heart5"></i>
-                                </a>
-                                <span class="badge bg-indigo">Cheapest</span>
-                            </div>
-                            <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium rounded">4.7</span>
-                        </div>
-                    </div>
-                    <div class="place-content">
-                        <div class="flight-loc d-flex align-items-center justify-content-between mb-2">
-                            <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-45 me-2"></i>Chicago</span>
-                            <span class="arrow-icon"><i class="isax isax-arrow-2"></i></span>
-                            <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-135 me-2"></i>Melbourne</span>
-                        </div>
-                        <h5 class="text-truncate mb-1"><a href="flight-details.html">Cloudrider 789</a></h5>
-                        <div class="d-flex align-items-center mb-2">
-                            <span class="avatar avatar-sm me-2">
-                                <img src="assets/img/icons/airindia.svg" class="rounded-circle" alt="icon">
-                            </span>
-                            <p class="fs-14 mb-0">Indigo</p>
-                            <p class="fs-14 d-inline-flex align-items-center mb-0"><i class="fa-solid fa-circle fs-6 text-primary mx-2"></i>1-stop at Dallas</p>
-                        </div>
-                        <div class="date-info p-2 mb-3">
-                            <p class="d-flex align-items-center"><i class="isax isax-calendar-2 me-2"></i>Sep 11, 2024 - Sep 13, 2024</p>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                            <h6 class="text-primary"><span class="fs-14 fw-normal text-default">From </span>$550</h6>
-                            <div class="d-flex align-items-center">
-                                <span class="badge bg-outline-success fs-10 fw-medium me-2">14 Seats Left</span>
-                                <a href="javascript:void(0);" class="avatar avatar-sm">
-                                    <img src="assets/img/users/user-12.jpg" class="rounded-circle" alt="img">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-                <!-- /Flight Item-->
-
-                <!-- Flight Item-->
-                {{-- <div class="place-item mb-4">
-                    <div class="place-img">
-                        <a href="flight-details.html">
-                            <img src="assets/img/flight/flight-03.jpg" class="img-fluid" alt="img">
-                        </a>
-                        <div class="fav-item">
-                            <div class="d-flex align-items-center">
-                                <a href="javascript:void(0);" class="fav-icon me-2">
-                                    <i class="isax isax-heart5"></i>
-                                </a>
-                                <span class="badge bg-indigo">Cheapest</span>
-                            </div>
-                            <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium rounded">4.5</span>
-                        </div>
-                    </div>
-                    <div class="place-content">
-                        <div class="flight-loc d-flex align-items-center justify-content-between mb-2">
-                            <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-45 me-2"></i>Miami</span>
-                            <span class="arrow-icon"><i class="isax isax-arrow-2"></i></span>
-                            <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-135 me-2"></i>Tokyo</span>
-                        </div>
-                        <h5 class="text-truncate mb-1"><a href="flight-details.html">Aether Express 901</a></h5>
-                        <div class="d-flex align-items-center mb-2">
-                            <span class="avatar avatar-sm me-2">
-                                <img src="assets/img/icons/airindia.svg" class="rounded-circle" alt="icon">
-                            </span>
-                            <p class="fs-14 mb-0">Indigo</p>
-                            <p class="fs-14 d-inline-flex align-items-center mb-0"><i class="fa-solid fa-circle fs-6 text-primary mx-2"></i>1-stop at Seoul</p>
-                        </div>
-                        <div class="date-info p-2 mb-3">
-                            <p class="d-flex align-items-center"><i class="isax isax-calendar-2 me-2"></i>Sep 22, 2024 - Sep 24, 2024</p>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                            <h6 class="text-primary"><span class="fs-14 fw-normal text-default">From </span>$450</h6>
-                            <div class="d-flex align-items-center">
-                                <span class="badge bg-outline-success fs-10 fw-medium me-2">12 Seats Left</span>
-                                <a href="javascript:void(0);" class="avatar avatar-sm">
-                                    <img src="assets/img/users/user-13.jpg" class="rounded-circle" alt="img">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-                <!-- /Flight Item-->
-
-                <!-- Flight Item-->
-                {{-- <div class="place-item mb-4">
-                    <div class="place-img">
-                        <div class="img-slider image-slide owl-carousel nav-center">
-                            <div class="slide-images">
-                                <a href="flight-details.html">
-                                    <img src="assets/img/flight/flight-04.jpg" class="img-fluid" alt="img">
-                                </a>
-                            </div>
-                            <div class="slide-images">
-                                <a href="flight-details.html">
-                                    <img src="assets/img/flight/flight-08.jpg" class="img-fluid" alt="img">
-                                </a>
-                            </div>
-                            <div class="slide-images">
-                                <a href="flight-details.html">
-                                    <img src="assets/img/flight/flight-10.jpg" class="img-fluid" alt="img">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="fav-item">
-                            <div class="d-flex align-items-center">
-                                <a href="javascript:void(0);" class="fav-icon selected me-2">
-                                    <i class="isax isax-heart5"></i>
-                                </a>
-                                <span class="badge bg-indigo">Cheapest</span>
-                            </div>
-                            <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium rounded">4.3</span>
-                        </div>
-                    </div>
-                    <div class="place-content">
-                        <div class="flight-loc d-flex align-items-center justify-content-between mb-2">
-                            <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-45 me-2"></i>Boston</span>
-                            <span class="arrow-icon"><i class="isax isax-arrow-2"></i></span>
-                            <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-135 me-2"></i>Singapore</span>
-                        </div>
-                        <h5 class="text-truncate mb-1"><a href="flight-details.html">Silverwing 505</a></h5>
-                        <div class="d-flex align-items-center mb-2">
-                            <span class="avatar avatar-sm me-2">
-                                <img src="assets/img/icons/airindia.svg" class="rounded-circle" alt="icon">
-                            </span>
-                            <p class="fs-14 mb-0">Indigo</p>
-                            <p class="fs-14 d-inline-flex align-items-center mb-0"><i class="fa-solid fa-circle fs-6 text-primary mx-2"></i>1-stop at London</p>
-                        </div>
-                        <div class="date-info p-2 mb-3">
-                            <p class="d-flex align-items-center"><i class="isax isax-calendar-2 me-2"></i>Oct 17, 2024 - Oct 19, 2024</p>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                            <h6 class="text-primary"><span class="fs-14 fw-normal text-default">From </span>$700</h6>
-                            <div class="d-flex align-items-center">
-                                <span class="badge bg-outline-success fs-10 fw-medium me-2">18 Seats Left</span>
-                                <a href="javascript:void(0);" class="avatar avatar-sm">
-                                    <img src="assets/img/users/user-15.jpg" class="rounded-circle" alt="img">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-                <!-- /Flight Item-->
-
-                <!-- Flight Item-->
-                {{-- <div class="place-item mb-4">
-                    <div class="place-img">
-                        <a href="flight-details.html">
-                            <img src="assets/img/flight/flight-10.jpg" class="img-fluid" alt="img">
-                        </a>
-                        <div class="fav-item">
-                            <div class="d-flex align-items-center">
-                                <a href="javascript:void(0);" class="fav-icon me-2">
-                                    <i class="isax isax-heart5"></i>
-                                </a>
-                                <span class="badge bg-indigo">Cheapest</span>
-                            </div>
-                            <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium rounded">4.6</span>
-                        </div>
-                    </div>
-                    <div class="place-content">
-                        <div class="flight-loc d-flex align-items-center justify-content-between mb-2">
-                            <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-45 me-2"></i>Paris</span>
-                            <span class="arrow-icon"><i class="isax isax-arrow-2"></i></span>
-                            <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-135 me-2"></i>Cape Town</span>
-                        </div>
-                        <h5 class="text-truncate mb-1"><a href="flight-details.html">Nimbus 345</a></h5>
-                        <div class="d-flex align-items-center mb-2">
-                            <span class="avatar avatar-sm me-2">
-                                <img src="assets/img/icons/airindia.svg" class="rounded-circle" alt="icon">
-                            </span>
-                            <p class="fs-14 mb-0">Indigo</p>
-                            <p class="fs-14 d-inline-flex align-items-center mb-0"><i class="fa-solid fa-circle fs-6 text-primary mx-2"></i>1-stop at Doha</p>
-                        </div>
-                        <div class="date-info p-2 mb-3">
-                            <p class="d-flex align-items-center"><i class="isax isax-calendar-2 me-2"></i>Aug 26, 2024 - Aug 27, 2024</p>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                            <h6 class="text-primary"><span class="fs-14 fw-normal text-default">From </span>$300</h6>
-                            <div class="d-flex align-items-center">
-                                <span class="badge bg-outline-success fs-10 fw-medium me-2">27 Seats Left</span>
-                                <a href="javascript:void(0);" class="avatar avatar-sm">
-                                    <img src="assets/img/users/user-10.jpg" class="rounded-circle" alt="img">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-                <!-- /Flight Item-->
-
-            </div>
-            <div class="text-center view-all wow fadeInUp">
-                <a href="{{ route('voyages.list') }}" class="btn btn-dark">View All Voyages<i class="isax isax-arrow-right-3 ms-2"></i></a>
             </div>
         </div>
-    </section>
-    <!-- /Place Section -->
 
+        <div class="owl-carousel place-slider nav-center">
+            @foreach ($voyages as $voyage)
+            <div class="place-item mb-4 position-relative">
+                <div class="place-img">
+                    <a href="{{ route('client.reservations.show', $voyage->id) }}">
+                        <img src="{{ $voyage->image ? asset('storage/' . $voyage->image) : asset('storage/' . $voyage->autocar->image) }}" class="img-fluid" alt="img">
+                    </a>
+                    <div class="fav-item-overlay">
+                        <a href="javascript:void(0);"
+                           class="fav-icon wishlist-toggle {{ Auth::check() && Auth::user()->wishlists()->where('voyage_id', $voyage->id)->exists() ? 'active' : '' }}"
+                           data-id="{{ $voyage->id }}">
+                            <i class="isax {{ Auth::check() && Auth::user()->wishlists()->where('voyage_id', $voyage->id)->exists() ? 'isax-heart5 text-danger' : 'isax-heart' }}"></i>
+                        </a>
+                        <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium rounded">4.3</span>
+                    </div>
+                </div>
+                <div class="place-content">
+                    <div class="flight-loc d-flex align-items-center justify-content-between mb-2">
+                        <span class="loc-name d-inline-flex align-items-center">
+                            <i class="isax isax-airplane rotate-45 me-2"></i>{{ $voyage->villeDepart->ville }}
+                        </span>
+                        <span class="arrow-icon"><i class="isax isax-arrow-2"></i></span>
+                        <span class="loc-name d-inline-flex align-items-center">
+                            <i class="isax isax-airplane rotate-135 me-2"></i>{{ $voyage->villeArrivee->ville }}
+                        </span>
+                    </div>
+                    <h5 class="text-truncate mb-1">
+                        <a href="{{ route('client.reservations.show', $voyage->id) }}" class="stretched-link">{{ $voyage->autocar->societe->raison_social }}</a>
+                    </h5>
+                    <div class="date-info p-2 mb-3">
+                        <p class="d-flex align-items-center">
+                            <i class="isax isax-calendar-2 me-2"></i>{{ $voyage->date_depart }} - {{ $voyage->date_arrivee }}
+                        </p>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                        <h6 class="text-primary"><span class="fs-14 fw-normal text-default">À partir de </span>{{ $voyage->prix }} DHS</h6>
+                        <div class="d-flex align-items-center">
+                            <span class="badge bg-outline-success fs-10 fw-medium me-2">{{ $voyage->autocar->nbr_siege - $voyage->reservations_count }} Places restantes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+
+        <div class="text-center view-all wow fadeInUp">
+            <a href="{{ route('voyages.list') }}" class="btn btn-dark">View All Voyages<i class="isax isax-arrow-right-3 ms-2"></i></a>
+        </div>
+    </div>
+</section>
+<!-- /Place Section -->
+
+<style>
+    .place-item {
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #eee;
+    }
+    .place-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    .place-img {
+        height: 220px;
+        position: relative;
+        overflow: hidden;
+        background: #f8f9fa;
+    }
+    .place-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    .place-item:hover .place-img img {
+        transform: scale(1.1);
+    }
+    .fav-item-overlay {
+        position: absolute;
+        top: 15px;
+        left: 0;
+        right: 0;
+        padding: 0 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 10;
+        pointer-events: none;
+    }
+    .fav-item-overlay > * {
+        pointer-events: auto;
+    }
+    .fav-icon {
+        background: white;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: #333;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        transition: all 0.2s ease;
+    }
+    .fav-icon:hover {
+        transform: scale(1.1);
+        color: #ff4d4f;
+    }
+    .fav-icon i {
+        font-size: 18px;
+    }
+    .place-content {
+        padding: 20px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    .date-info {
+        background: #f0f7ff;
+        border-radius: 8px;
+        color: #006ce4;
+    }
+</style>
 </x-app-layout>

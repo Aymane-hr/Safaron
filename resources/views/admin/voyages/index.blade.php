@@ -56,6 +56,8 @@
             @endforeach
         </tbody>
     </table>
-
+    <div class="d-flex justify-content-center">
+        {{ $voyages->links() }}
+    </div>
 </div>
 @endsection

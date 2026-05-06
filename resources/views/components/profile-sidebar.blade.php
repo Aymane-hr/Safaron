@@ -7,8 +7,9 @@
             <div class="profile-content rounded-pill">
                 <div class="d-flex align-items-center justify-content-between">
                     <div class=" d-flex align-items-center justify-content-center">
-                        <img src="{{ Storage::url('profile_images/' . basename(auth()->user()->image)) }}"
-                         alt="image" class="img-fluid avatar avatar-lg rounded-circle me-1">
+                        <img src="{{ auth()->user()->profile_image_path }}"
+                         alt="image" class="img-fluid avatar avatar-lg rounded-circle me-1"
+                         onerror="this.src='{{ asset('assets/img/users/user-01.jpg') }}'">
                         <div>
                             <h6 class="fs-16">{{ $name }}</h6>
                             <span class="fs-14 text-gray-6">Depuis le {{ auth()->user()->created_at->format('d M Y') }}
@@ -30,7 +31,7 @@
                 </li>
                 <li>
                     <a href="{{ route('client.profile.dashboard.index') }}" class="d-flex align-items-center @if(request()->routeIs('client.profile.dashboard.*')) active @endif">
-                        <i class="isax isax-grid-55"></i> Tableau de bord
+                        <i class="isax isax-grid-55"></i> Home
                     </a>
                 </li>
                 <li class="submenu">
@@ -53,7 +54,7 @@
                     </div>
                 </li>
                 <li class="mb-2">
-                    <a href="wishlist.html" class="d-flex align-items-center">
+                    <a href="{{ route('wishlist') }}" class="d-flex align-items-center @if(request()->routeIs('wishlist')) active @endif">
                         <i class="isax isax-heart5"></i> Mes Favoris
                     </a>
                 </li>

@@ -162,6 +162,17 @@
             </small>
         </div>
 
+        <!-- Image -->
+        <div class="mb-3">
+            <label for="image" class="form-label fw-bold">Image du voyage:</label>
+            <input type="file" name="image" id="image" class="form-control">
+            <small class="text-danger">
+                @error('image')
+                    {{ $message }}
+                @enderror
+            </small>
+        </div>
+
         <!-- Submit Button -->
         <div class="d-flex justify-content-end">
             <button type="submit" class="btn btn-primary">

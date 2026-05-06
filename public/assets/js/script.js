@@ -492,6 +492,9 @@ Template Name: DreamsTour - Bootstrap Template
       dots: false,
       smartSpeed: 2000,
       autoplay: false,
+      // Let clicks reach links / wishlist hearts; nav arrows still move the carousel
+      mouseDrag: false,
+      touchDrag: false,
       navText: [
         "<i class='isax isax-arrow-left-2'></i>",
         "<i class='isax isax-arrow-right-3'></i>",
@@ -607,9 +610,9 @@ Template Name: DreamsTour - Bootstrap Template
     }
   });
 
-  // Fav Icon
-  if ($(".fav-icon").length > 0) {
-    $(".fav-icon").on("click", function () {
+  // Fav Icon (skip wishlist hearts — those use AJAX in page scripts)
+  if ($(".fav-icon").not(".wishlist-toggle").length > 0) {
+    $(".fav-icon").not(".wishlist-toggle").on("click", function () {
       $(this).toggleClass("selected");
     });
   }

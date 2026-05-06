@@ -7,13 +7,14 @@ use App\Models\Voyage;
 use App\Models\Ville;
 use App\Http\Requests\StoreVoyageRequest;
 use App\Http\Requests\UpdateVoyageRequest;
+use Illuminate\Support\Facades\Storage;
 
 class VoyageController extends Controller
 {
     public function listVoyages()
     {
-        $villes = Ville::all();
-        $voyages = Voyage::paginate(8);
+        $villes = Ville::has('voyagesDepart')->orHas('voyagesArrivee')->get();
+        $voyages = Voyage::withCount('reservations')->paginate(8);
         return view('client.voyages.listevoyage', compact('villes', 'voyages'));
     }
 
@@ -22,7 +23,7 @@ class VoyageController extends Controller
      */
     public function index()
     {
-        $voyages = Voyage::paginate(3);
+        $voyages = Voyage::withCount('reservations')->paginate(10);
         return view('admin.voyages.index', compact('voyages'));
     }
 
@@ -40,6 +41,10 @@ class VoyageController extends Controller
     public function store(StoreVoyageRequest $request)
     {
         $formFields = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $formFields['image'] = $request->file('image')->store('voyages', 'public');
+        }
 
         Voyage::create($formFields);
 
@@ -69,6 +74,13 @@ class VoyageController extends Controller
     {
         $formFields = $request->validated();
 
+        if ($request->hasFile('image')) {
+            if ($voyage->image) {
+                Storage::disk('public')->delete($voyage->image);
+            }
+            $formFields['image'] = $request->file('image')->store('voyages', 'public');
+        }
+
         $voyage->update($formFields);
 
         return redirect()->route("voyages.index")->with("update", "Votre voyage a été modifié avec succès.");
@@ -85,7 +97,7 @@ class VoyageController extends Controller
 
     public function filter(Request $request)
     {
-        $query = Voyage::query();
+        $query = Voyage::withCount('reservations');
 
         // Filter by departure city
         if ($request->filled('ville_depart')) {
@@ -118,7 +130,7 @@ class VoyageController extends Controller
 
     public function filter_sidebar(Request $request)
     {
-        $query = Voyage::query();
+        $query = Voyage::withCount('reservations');
 
         // dd($request->all(),$request->has('type_voyages') && count($request->type_voyages) > 0);
 
@@ -147,7 +159,7 @@ class VoyageController extends Controller
 
     public function search(Request $request)
     {
-        $query = Voyage::query();
+        $query = Voyage::withCount('reservations');
 
         // dd($request->all());
 
@@ -164,7 +176,7 @@ class VoyageController extends Controller
     }
     public function clientIndex(Request $request)
     {
-        $query = Voyage::query();
+        $query = Voyage::withCount('reservations');
 
         if ($request->filled('ville_depart')) {
             $query->where('ville_depart_id', $request->ville_depart);
@@ -182,8 +194,13 @@ class VoyageController extends Controller
 
         return view('client.voyages.listevoyage', [
             'voyages' => $voyages,
-            'villes' => Ville::all(),
+            'villes' => Ville::has('voyagesDepart')->orHas('voyagesArrivee')->get(),
         ]);
+    }
+    public function detail(Request $request)
+    {
+        $voyage = Voyage::findOrFail($request->id);
+        return view('client.voyages.detail', compact('voyage'));
     }
 }
 

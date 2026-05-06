@@ -35,7 +35,7 @@ class ReservationController extends Controller
         $v_d = DB::table('villes')->find($SelectedVoyage->ville_depart_id);
         $v_a = DB::table('villes')->find($SelectedVoyage->ville_arrivee_id);
         // dd($voyage);
-        $villes = Ville::all();
+        $villes = Ville::has('voyagesDepart')->orHas('voyagesArrivee')->get();
         $type_voyages = TypeVoyage::all();
         // dd($type_voyages);
         $autocars = autocar::all();

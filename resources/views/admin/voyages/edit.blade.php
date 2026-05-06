@@ -168,6 +168,22 @@
             </small>
         </div>
 
+        <!-- Image -->
+        <div class="mb-3">
+            <label for="image" class="form-label fw-bold">Image du voyage:</label>
+            @if($voyage->image)
+                <div class="mb-2">
+                    <img src="{{ asset('storage/' . $voyage->image) }}" alt="Voyage Image" style="max-width: 200px;" class="rounded shadow-sm">
+                </div>
+            @endif
+            <input type="file" name="image" id="image" class="form-control">
+            <small class="text-danger">
+                @error('image')
+                    {{ $message }}
+                @enderror
+            </small>
+        </div>
+
         <!-- Boutons -->
         <div class="d-flex justify-content-between">
             <a href="{{ route('voyages.index') }}" class="btn btn-secondary">Retour à la liste</a>
