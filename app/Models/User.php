@@ -35,8 +35,8 @@ class User extends Authenticatable
     
     public function getProfileImagePathAttribute()
     {
-        if ($this->image && file_exists(public_path('storage/profile_images/' . basename($this->image)))) {
-            return asset('storage/profile_images/' . basename($this->image));
+        if ($this->image) {
+            return asset('storage/' . $this->image);
         }
         return asset('assets/img/users/user-01.jpg');
     }

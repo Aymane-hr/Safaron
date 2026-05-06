@@ -35,9 +35,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">
-                  <i class="nav-icon bi bi-circle"></i>
-                  <p>Users</p>
+                <a href="{{ route('admin.users.index') }}" class="nav-link @if (request()->routeIs('admin.users.*')) active @endif">
+                  <i class="nav-icon bi bi-people"></i>
+                  <p>Utilisateurs</p>
                 </a>
               </li>
               <li class="nav-item">

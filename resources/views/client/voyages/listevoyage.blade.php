@@ -543,28 +543,40 @@
         .form-info > span i {
             font-size: 22px;
         }
-        /* Voyage Card Styles */
-        .place-item {
-            border-radius: 12px;
-            overflow: hidden;
-            background: #fff;
-            border: 1px solid #eee;
-            transition: all 0.3s ease;
-            height: 100%;
+        /* Voyage Card Styles (Horizontal) */
+        .voyage-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #ffffff;
+            min-height: 220px;
         }
-        .place-item:hover {
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        .voyage-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08) !important;
         }
-        .place-img {
-            height: 200px;
+        .voyage-img-wrapper {
             overflow: hidden;
             background: #f8f9fa;
         }
-        .place-img img {
-            width: 100%;
-            height: 100%;
+        .voyage-img-wrapper img {
+            transition: transform 0.5s ease;
             object-fit: cover;
+        }
+        .voyage-card:hover .voyage-img-wrapper img {
+            transform: scale(1.1);
+        }
+        .hover-lift {
+            transition: all 0.2s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2);
+        }
+        .fs-12 { font-size: 12px; }
+        .fs-14 { font-size: 14px; }
+        .bg-outline-success {
+            background-color: transparent;
+            color: #198754;
+            border: 1px solid #198754;
         }
     </style>
 </x-app-layout>

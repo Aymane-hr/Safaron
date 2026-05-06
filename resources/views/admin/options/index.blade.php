@@ -1,100 +1,88 @@
 @extends('admin.Layout.app')
 
-@section('title', 'Liste des options')
+@section('title', 'Liste des Options')
 
 @section('content')
-
-    <h1 class="mb-4 text-center text-primary fw-bold">📌 Liste des options</h1>
-
-
-
-
-    <!-- Bouton pour ajouter une nouvelle option -->
-    <div class="d-flex justify-content-end mb-3">
-        <a href="{{ route('options.create') }}" class="btn btn-success shadow">
-            <i class="bi bi-plus-circle"></i> Ajouter une nouvelle option
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 mb-0 text-gray-800 fw-bold">Configuration des Options</h1>
+        <a href="{{ route('options.create') }}" class="btn btn-primary shadow-sm rounded-pill px-4">
+            <i class="bi bi-plus-circle me-2"></i> Ajouter une Option
         </a>
     </div>
 
-    <!-- Liste des options -->
-    <div class="card shadow-lg border-0">
-        <div class="card-header bg-primary text-white fw-bold">
-            <i class="bi bi-list-task"></i> Options Disponibles
-        </div>
-        <div class="card-body">
+    <div class="card shadow-sm border-0 overflow-hidden" style="max-width: 800px; margin: auto;">
+        <div class="card-body p-0">
             @if($options->isEmpty())
-                <div class="alert alert-info text-center py-4" role="alert">
-                    <i class="bi bi-info-circle-fill me-2"></i>
-                    🚀 Aucune option disponible. Ajoutez-en une maintenant !
+                <div class="text-center py-5">
+                    <i class="bi bi-info-circle text-muted fs-1"></i>
+                    <p class="text-muted mt-3">Aucune option disponible. Ajoutez-en une maintenant !</p>
                 </div>
             @else
                 <div class="table-responsive">
-                    <table class="table table-hover align-middle text-center">
-                        <thead class="table-dark">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
                             <tr>
-                                <th>#</th>
-                                <th>Nom de l'Option</th>
-                                <th>Actions</th>
+                                <th class="ps-4 py-3" style="width: 15%">#</th>
+                                <th class="py-3">Nom de l'Option</th>
+                                <th class="pe-4 py-3 text-center" style="width: 25%">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($options as $option)
                                 <tr>
-                                    <td>{{ ($options->currentPage() - 1) * $options->perPage() + $loop->iteration }}</td>
-                                    <td class="fw-bold">{{ $option->option }}</td>
+                                    <td class="ps-4 text-muted fw-medium">#{{ ($options->currentPage() - 1) * $options->perPage() + $loop->iteration }}</td>
                                     <td>
-                                        <a href="{{ route('options.edit', $option->id) }}" class="btn btn-warning btn-sm shadow">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <form action="{{ route('options.destroy', $option->id) }}" method="POST" class="d-inline delete-form"  onsubmit="confirmDelete(event, this)">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm shadow">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
-                                        </form>
+                                        <div class="d-flex align-items-center">
+                                            <div class="rounded-circle bg-warning bg-opacity-10 p-2 me-3 text-warning">
+                                                <i class="bi bi-gear"></i>
+                                            </div>
+                                            <span class="fw-bold text-dark">{{ $option->option }}</span>
+                                        </div>
+                                    </td>
+                                    <td class="pe-4 text-center">
+                                        <div class="d-flex justify-content-center gap-3">
+                                            <a href="{{ route('options.edit', $option->id) }}" class="btn btn-sm btn-light border text-warning rounded-pill px-3 shadow-sm hover-lift" title="Modifier">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
+                                            <form action="{{ route('options.destroy', $option->id) }}" method="POST" class="d-inline" onsubmit="confirmDelete(event, this)">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-light border text-danger rounded-pill px-3 shadow-sm hover-lift" title="Supprimer">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-
-                <!-- Pagination améliorée -->
-                <div class="mt-3 d-flex justify-content-center align-items-center gap-2">
-                    <!-- Aller à la première page -->
-                    @if(!$options->onFirstPage())
-                        <a href="{{ $options->url(1) }}" class="btn btn-outline-primary shadow-sm">
-                            <i class="bi bi-chevron-double-left"></i> Première
-                        </a>
-                    @endif
-
-                    <!-- Bouton -5 pages -->
-                    @if($options->currentPage() > 5)
-                        <a href="{{ $options->url($options->currentPage() - 5) }}" class="btn btn-outline-secondary shadow-sm">
-                            <i class="bi bi-arrow-left-circle"></i> -5
-                        </a>
-                    @endif
-
-                    <!-- Pagination Laravel -->
-                    {{ $options->links('pagination::bootstrap-5') }}
-
-                    <!-- Bouton +5 pages -->
-                    @if($options->currentPage() + 5 <= $options->lastPage())
-                        <a href="{{ $options->url($options->currentPage() + 5) }}" class="btn btn-outline-secondary shadow-sm">
-                            +5 <i class="bi bi-arrow-right-circle"></i>
-                        </a>
-                    @endif
-
-                    <!-- Aller à la dernière page -->
-                    @if($options->currentPage() < $options->lastPage())
-                        <a href="{{ $options->url($options->lastPage()) }}" class="btn btn-outline-primary shadow-sm">
-                            Dernière <i class="bi bi-chevron-double-right"></i>
-                        </a>
-                    @endif
-                </div>
             @endif
         </div>
+        @if(!$options->isEmpty())
+        <div class="card-footer bg-white border-top-0 py-3">
+            <div class="d-flex justify-content-center">
+                {{ $options->links() }}
+            </div>
+        </div>
+        @endif
     </div>
+</div>
 
+<style>
+    .table thead th {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 700;
+        color: #555;
+    }
+    .hover-lift:hover {
+        transform: translateY(-2px);
+        background-color: #f8f9fa;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+    }
+</style>
 @endsection

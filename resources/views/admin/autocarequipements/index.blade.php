@@ -1,69 +1,94 @@
 @extends('admin.Layout.app')
 
+@section('title', 'Équipements des Autocars')
+
 @section('content')
-    <div class="container mt-5">
-        <h1 class="mb-4 text-center text-primary fw-bold">📌 Liste des Équipements des Autocars</h1>
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 mb-0 text-gray-800 fw-bold">Associations Équipements</h1>
+        <a href="{{ route('autocarequipements.create') }}" class="btn btn-primary shadow-sm rounded-pill px-4">
+            <i class="bi bi-link-45deg me-2"></i> Associer un Équipement
+        </a>
+    </div>
 
-        <!-- Button to Add Equipment -->
-        <div class="d-flex justify-content-end mb-3">
-            <a href="{{ route('autocarequipements.create') }}" class="btn btn-success">
-                <i class="bi bi-plus-circle"></i> Associer un Équipement à un Autocar
-            </a>
-        </div>
-
-        <!-- Equipment Table -->
-        <div class="card rounded shadow-sm">
-            <div class="card-body">
-
-                @if ($autocarequipements->isEmpty())
-                    <!-- Message when table is empty -->
-                    <div class="alert alert-info text-center py-4" role="alert">
-                        <i class="bi bi-info-circle-fill me-2"></i>
-                        Aucun équipement associé trouvé. Ajoutez un nouvel équipement maintenant !
-                    </div>
-                @else
-                    <div class="table-responsive">
-                        <table class="table table-hover table-striped table-bordered">
-                            <thead class="table-dark">
+    <div class="card shadow-sm border-0 overflow-hidden">
+        <div class="card-body p-0">
+            @if ($autocarequipements->isEmpty())
+                <div class="text-center py-5">
+                    <i class="bi bi-tools text-muted fs-1"></i>
+                    <p class="text-muted mt-3">Aucune association trouvée. Commencez par en créer une !</p>
+                </div>
+            @else
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-4 py-3" style="width: 10%">#</th>
+                                <th class="py-3">Autocar (Matricule)</th>
+                                <th class="py-3">Équipement</th>
+                                <th class="pe-4 py-3 text-center" style="width: 20%">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($autocarequipements as $item)
                                 <tr>
-                                    <th>#</th> <!-- Order Number -->
-                                    <th>Autocar</th>
-                                    <th>Équipement</th>
-                                    <th class="text-center">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($autocarequipements as $autocar_equipement)
-                                    <tr>
-                                        <td>{{ ($autocarequipements->currentPage() - 1) * $autocarequipements->perPage() + $loop->iteration }}</td>
-                                        <td>{{ $autocar_equipement->autocar->matricule }}</td>
-                                        <td>{{ $autocar_equipement->equipement->equipement }}</td>
-                                        <td class="d-flex justify-content-center">
-                                            <!-- Edit Button -->
-                                            <a href="{{ route('autocarequipements.edit', $autocar_equipement->id) }}" class="btn btn-warning btn-sm me-2">
-                                                <i class="bi bi-pencil-square"></i>
+                                    <td class="ps-4 text-muted fw-medium">#{{ ($autocarequipements->currentPage() - 1) * $autocarequipements->perPage() + $loop->iteration }}</td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="rounded bg-dark bg-opacity-10 p-2 me-3 text-dark">
+                                                <i class="bi bi-bus-front"></i>
+                                            </div>
+                                            <span class="fw-bold text-dark">{{ $item->autocar->matricule }}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 rounded-pill fw-medium">
+                                            {{ $item->equipement->equipement }}
+                                        </span>
+                                    </td>
+                                    <td class="pe-4 text-center">
+                                        <div class="d-flex justify-content-center gap-3">
+                                            <a href="{{ route('autocarequipements.edit', $item->id) }}" class="btn btn-sm btn-light border text-warning rounded-pill px-3 shadow-sm hover-lift" title="Modifier">
+                                                <i class="bi bi-pencil"></i>
                                             </a>
-                                            <!-- Delete Button with Confirmation -->
-                                            <form action="{{ route('autocarequipements.destroy', $autocar_equipement->id) }}" method="POST" class="delete-form" onsubmit="confirmDelete(event, this)">
+                                            <form action="{{ route('autocarequipements.destroy', $item->id) }}" method="POST" onsubmit="confirmDelete(event, this)" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                <button type="submit" class="btn btn-sm btn-light border text-danger rounded-pill px-3 shadow-sm hover-lift" title="Supprimer">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!-- Pagination -->
-                    <div class="d-flex justify-content-center mt-4">
-                        {{ $autocarequipements->links('pagination::bootstrap-5') }}
-                    </div>
-                @endif
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @endif
+        </div>
+        @if(!$autocarequipements->isEmpty())
+        <div class="card-footer bg-white border-top-0 py-3">
+            <div class="d-flex justify-content-center">
+                {{ $autocarequipements->links() }}
             </div>
         </div>
+        @endif
     </div>
+</div>
+
+<style>
+    .table thead th {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 700;
+        color: #555;
+    }
+    .hover-lift:hover {
+        transform: translateY(-2px);
+        background-color: #f8f9fa;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+    }
+</style>
 @endsection

@@ -17,7 +17,6 @@ use App\Http\Controllers\ModeReglementController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\AutocarEquipementController;
-use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     $voyages = Voyage::withCount('reservations')->get();
@@ -77,7 +76,9 @@ Route::middleware('auth')->group(function () {
 
     // ======= Routes Admin =======
     Route::middleware('admin')->group(function () {
-        Route::get('/admin', [DashboardController::class, 'index'])->name('admin');
+        Route::get('/admin', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin');
+        Route::get('/admin/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.users.index');
+        Route::delete('/admin/users/{user}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('admin.users.destroy');
 
         // Resources
         Route::resource('autocars', AutocarController::class);
