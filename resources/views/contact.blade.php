@@ -75,34 +75,42 @@
                     <div class="card contact-card border-0 shadow-lg rounded-4 overflow-hidden">
                         <div class="card-body p-4 p-md-5">
                             <h4 class="fw-bold mb-4">Envoyez-nous un message</h4>
-                            <form action="#">
+
+                            @if(session('success'))
+                                <div class="alert alert-success border-0 shadow-sm mb-4">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
+                            <form action="{{ route('contact.store') }}" method="POST">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label fw-medium">Nom Complet</label>
-                                            <input type="text" class="form-control form-control-lg bg-light border-0"
-                                                placeholder="Entrez votre nom">
+                                            <input type="text" name="name" class="form-control form-control-lg bg-light border-0"
+                                                placeholder="Entrez votre nom" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label fw-medium">Adresse Email</label>
-                                            <input type="email" class="form-control form-control-lg bg-light border-0"
-                                                placeholder="Entrez votre email">
+                                            <input type="email" name="email" class="form-control form-control-lg bg-light border-0"
+                                                placeholder="Entrez votre email" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="mb-3">
                                             <label class="form-label fw-medium">Sujet</label>
-                                            <input type="text" class="form-control form-control-lg bg-light border-0"
-                                                placeholder="Sujet de votre message">
+                                            <input type="text" name="subject" class="form-control form-control-lg bg-light border-0"
+                                                placeholder="Sujet de votre message" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="mb-4">
                                             <label class="form-label fw-medium">Message</label>
-                                            <textarea class="form-control form-control-lg bg-light border-0" rows="5"
-                                                placeholder="Votre message ici..."></textarea>
+                                            <textarea name="message" class="form-control form-control-lg bg-light border-0" rows="5"
+                                                placeholder="Votre message ici..." required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">

@@ -24,6 +24,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
 Route::post('/wishlist/toggle/{voyage}', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
 
@@ -78,6 +79,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('admin')->group(function () {
         Route::get('/admin', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin');
         Route::get('/admin/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.users.index');
+        Route::get('/admin/clients', [App\Http\Controllers\Admin\UserController::class, 'clients'])->name('admin.clients.index');
         Route::get('/admin/users/{user}/edit', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('admin.users.edit');
         Route::put('/admin/users/{user}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('admin.users.update');
         Route::put('/admin/users/{user}/password', [App\Http\Controllers\Admin\UserController::class, 'updatePassword'])->name('admin.users.update-password');

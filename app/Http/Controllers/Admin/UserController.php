@@ -19,6 +19,26 @@ class UserController extends Controller
     }
 
     /**
+     * Display a listing of the clients.
+     */
+    public function clients()
+    {
+        // Les clients sont les utilisateurs sans rôle administratif et isadmin = 0
+        $users = User::where('isadmin', 0)
+            ->where(function($query) {
+                $query->whereDoesntHave('roles')
+                      ->orWhereHas('roles', function($q) {
+                          $q->where('name', 'client');
+                      });
+            })
+            ->with('roles')
+            ->latest()
+            ->paginate(10);
+
+        return view('admin.users.clients', compact('users'));
+    }
+
+    /**
      * Show the form for editing the specified user.
      */
     public function edit(User $user)

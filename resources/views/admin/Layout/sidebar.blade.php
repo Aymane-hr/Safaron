@@ -38,9 +38,9 @@
               @endcan
               @can('utilisateurs.read')
               <li class="nav-item">
-                <a href="{{ route('admin.users.index') }}" class="nav-link @if (request()->routeIs('admin.users.*')) active @endif">
+                <a href="{{ route('admin.clients.index') }}" class="nav-link @if (request()->routeIs('admin.clients.*')) active @endif">
                   <i class="nav-icon bi bi-people"></i>
-                  <p>Utilisateurs</p>
+                  <p>Clients</p>
                 </a>
               </li>
               @endcan
