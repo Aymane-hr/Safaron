@@ -28,60 +28,79 @@
               role="menu"
               data-accordion="false"
             >
+              @can('dashboard.read')
               <li class="nav-item">
                 <a href="{{ route('admin') }}" class="nav-link @if (request()->routeIs('admin')) active @endif">
                   <i class="nav-icon bi bi-speedometer2"></i>
                   <p>Dashboard</p>
                 </a>
               </li>
+              @endcan
+              @can('utilisateurs.read')
               <li class="nav-item">
                 <a href="{{ route('admin.users.index') }}" class="nav-link @if (request()->routeIs('admin.users.*')) active @endif">
                   <i class="nav-icon bi bi-people"></i>
                   <p>Utilisateurs</p>
                 </a>
               </li>
+              @endcan
+              @can('villes.read')
               <li class="nav-item">
                 <a href="{{route('villes.index')}}" class="nav-link @if (request()->routeIs('villes.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Ville</p>
                 </a>
               </li>
+              @endcan
+              @can('type voyages.read')
               <li class="nav-item">
                 <a href="{{route('type_voyages.index')}}" class="nav-link @if (request()->routeIs('type_voyages.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>type de voyages</p>
                 </a>
               </li>
+              @endcan
+              @can('mode reglements.read')
               <li class="nav-item">
                 <a href="{{ route('modeReglements.index') }}" class="nav-link @if (request()->routeIs('mode_reglements.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>mode reglements</p>
                 </a>
               </li>
+              @endcan
+              @can('reservations.read')
               <li class="nav-item">
                 <a href="{{ route('reservation.admin.index') }}" class="nav-link @if (request()->routeIs('reservation.admin.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Reservations</p>
                 </a>
               </li>
+              @endcan
+              @can('voyages.read')
               <li class="nav-item">
                 <a href="{{route('voyages.index')}}" class="nav-link @if (request()->routeIs('voyages.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Voyages</p>
                 </a>
               </li>
+              @endcan
+              @can('societes.read')
               <li class="nav-item">
                 <a href="{{ route('societes.index') }}" class="nav-link @if (request()->routeIs('societes.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Societes</p>
                 </a>
               </li>
+              @endcan
+              @can('autocars.read')
               <li class="nav-item">
                 <a  href="{{route('autocars.index')}}"  class="nav-link @if (request()->routeIs('autocars.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>AutoCars</p>
                 </a>
               </li>
+              @endcan
+              @can('equipements.read')
               <li class="nav-item">
                 <a href="{{ route('equipements.index') }}" class="nav-link">
                   <i class="nav-icon bi bi-circle"></i>
@@ -94,6 +113,8 @@
                   <p>AutoCar_Equipements</p>
                 </a>
               </li>
+              @endcan
+              @can('options.read')
               <li class="nav-item">
                 <a href="{{ route('autocaroptions.index') }}" class="nav-link">
                   <i class="nav-icon bi bi-circle"></i>
@@ -106,6 +127,7 @@
                   <p>Options</p>
                 </a>
               </li>
+              @endcan
             </ul>
             <!--end::Sidebar Menu-->
           </nav>

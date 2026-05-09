@@ -13,8 +13,55 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->paginate(10);
-        return view('admin.users.index', compact('users'));
+        $users = User::with('roles')->latest()->paginate(10);
+        $roles = \App\Models\Role::withCount('users')->get();
+        return view('admin.users.index', compact('users', 'roles'));
+    }
+
+    /**
+     * Show the form for editing the specified user.
+     */
+    public function edit(User $user)
+    {
+        $roles = \App\Models\Role::all();
+        return view('admin.users.edit', compact('user', 'roles'));
+    }
+
+    /**
+     * Update the specified user in storage.
+     */
+    public function update(Request $request, User $user)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'role' => 'required|exists:roles,id',
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        $user->roles()->sync([$request->role]);
+
+        return redirect()->route('admin.users.index')->with('success', 'Utilisateur mis à jour avec succès.');
+    }
+
+    /**
+     * Reset the user's password.
+     */
+    public function updatePassword(Request $request, User $user)
+    {
+        $request->validate([
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user->update([
+            'password' => \Illuminate\Support\Facades\Hash::make($request->password),
+        ]);
+
+        return back()->with('success', 'Mot de passe réinitialisé avec succès.');
     }
 
     /**

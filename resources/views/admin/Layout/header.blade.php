@@ -19,24 +19,42 @@
                         alt="User Image" />
                     <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+                <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end shadow-lg border-0">
                     <!--begin::User Image-->
-                    <li class="user-header text-bg-primary">
-                        <img src="{{ auth()->user()->profile_image_path }}" class="rounded-circle shadow"
+                    <li class="user-header text-bg-primary d-flex flex-column align-items-center justify-content-center py-4">
+                        <img src="{{ auth()->user()->profile_image_path }}" class="rounded-circle shadow-sm border border-3 border-white mb-2" style="width: 80px; height: 80px; object-fit: cover;"
                             alt="User Image" />
-                        <p>
-                            {{ Auth::user()->name }} <small>{{ __('Member since') }}
-                                {{ Auth::user()->created_at->format('M Y') }}</small>
-                        </p>
+                        <div class="text-center">
+                            <h6 class="fw-bold mb-0 text-white">{{ Auth::user()->name }}</h6>
+                            <small class="opacity-75">{{ Auth::user()->email }}</small>
+                        </div>
                     </li>
                     <!--end::User Image-->
+                    <!--begin::Menu Body-->
+                    <li class="user-body p-2">
+                        <a href="{{ route('home') }}" class="dropdown-item rounded d-flex align-items-center py-2">
+                            <div class="bg-light rounded p-2 me-3"><i class="bi bi-house text-primary"></i></div>
+                            <span class="fw-medium">Agence</span>
+                        </a>
+                        <a href="{{ route('admin.users.index') }}" class="dropdown-item rounded d-flex align-items-center py-2">
+                            <div class="bg-light rounded p-2 me-3"><i class="bi bi-people text-primary"></i></div>
+                            <span class="fw-medium">Gestion Utilisateurs</span>
+                        </a>
+                    </li>
+                    <!--end::Menu Body-->
+                    <li class="border-top my-1"></li>
                     <!--begin::Menu Footer-->
-                    <li class="user-footer">
-                        <a href="{{ route('profile.edit') }}" class="btn btn-default btn-flat">{{ __('Profile') }}</a>
-                        <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                    <li class="user-footer p-2">
+                        <a href="{{ route('profile.edit') }}" class="dropdown-item rounded d-flex align-items-center py-2 mb-1">
+                            <div class="bg-light rounded p-2 me-3"><i class="bi bi-person text-secondary"></i></div>
+                            <span class="fw-medium">Profile</span>
+                        </a>
+                        <form method="POST" action="{{ route('logout') }}" class="d-block">
                             @csrf
-                            <button type="submit"
-                                class="btn btn-default btn-flat float-end">{{ __('Sign out') }}</button>
+                            <button type="submit" class="dropdown-item rounded d-flex align-items-center py-2 text-danger">
+                                <div class="bg-danger bg-opacity-10 rounded p-2 me-3"><i class="bi bi-box-arrow-right"></i></div>
+                                <span class="fw-medium">Log out</span>
+                            </button>
                         </form>
                     </li>
                     <!--end::Menu Footer-->
