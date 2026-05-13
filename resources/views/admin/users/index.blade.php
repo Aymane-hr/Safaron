@@ -114,9 +114,9 @@
                         </div>
                     </div>
                     <div class="col-auto d-flex gap-2">
-                        <button class="btn btn-outline-secondary border-dashed px-3">
+                        <a href="{{ route('admin.users.create') }}" class="btn btn-outline-secondary border-dashed px-3">
                             <i class="bi bi-plus-lg"></i>
-                        </button>
+                        </a>
                         <div class="dropdown">
                             <button class="btn btn-outline-secondary px-3 dropdown-toggle" data-bs-toggle="dropdown">
                                 Colonnes

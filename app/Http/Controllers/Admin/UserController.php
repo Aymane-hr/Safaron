@@ -39,6 +39,42 @@ class UserController extends Controller
     }
 
     /**
+     * Show the form for creating a new user.
+     */
+    public function create()
+    {
+        $roles = \App\Models\Role::all();
+        return view('admin.users.create', compact('roles'));
+    }
+
+    /**
+     * Store a newly created user in storage.
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'role' => 'nullable|exists:roles,id',
+            'isadmin' => 'nullable|boolean',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => \Illuminate\Support\Facades\Hash::make($request->password),
+            'isadmin' => $request->has('isadmin') ? 1 : 0,
+        ]);
+
+        if ($request->role) {
+            $user->roles()->attach($request->role);
+        }
+
+        return redirect()->route('admin.users.index')->with('success', 'Utilisateur créé avec succès.');
+    }
+
+    /**
      * Show the form for editing the specified user.
      */
     public function edit(User $user)
